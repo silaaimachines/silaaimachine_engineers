@@ -1,3 +1,5 @@
+import { ShoppingBag } from 'lucide-react'
+import { LayoutGrid,Search, ShoppingBagIcon} from 'lucide-react'
 import React from 'react'
 
 const Header = () => {
@@ -14,6 +16,7 @@ const Header = () => {
 
         <div className=' flex  gap-3 items-center   border rounded-full p-1 px-1 '>
             <Search/>
+            
             <input type='text' placeholder='Search'
             className='outline-none'/>
 
@@ -22,7 +25,7 @@ const Header = () => {
     <div className='flex items-center gap-1'>
     
         <ShoppingBagIcon/>
-        <Button>login</Button>
+      {/*   <Button>login</Button> */}
 
     </div>
     </div>
