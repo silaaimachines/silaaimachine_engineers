@@ -1,0 +1,62 @@
+{
+  "kind": "collectionType",
+  "collectionName": "servicing_dones",
+  "info": {
+    "singularName": "servicing-done",
+    "pluralName": "servicing-dones",
+    "displayName": "Servicing Done",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "JobNumber": {
+      "type": "biginteger",
+      "required": true
+    },
+    "ServiceTypeDone": {
+      "type": "enumeration",
+      "enum": [
+        "Checking",
+        "Free Service",
+        "Full Service",
+        "Full Service and Wash",
+        "Over Oiling and Checking",
+        "Standard Service",
+        "Others"
+      ],
+      "required": true
+    },
+    "ChooseService": {
+      "type": "enumeration",
+      "enum": [
+        "Store Service",
+        "Home Service"
+      ],
+      "required": true
+    },
+    "ExtraService": {
+      "type": "text"
+    },
+    "JobDoneBy": {
+      "type": "string",
+      "required": false
+    },
+    "ServiceStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Pending",
+        "Finished"
+      ],
+      "required": false,
+      "private": true,
+      "default": "Finished"
+    },
+    "SparePartsUsed": {
+      "type": "blocks",
+      "required": false
+    }
+  }
+}

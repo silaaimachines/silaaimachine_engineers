@@ -1,0 +1,134 @@
+{
+  "kind": "collectionType",
+  "collectionName": "service_registrations",
+  "info": {
+    "singularName": "service-registration",
+    "pluralName": "service-registrations",
+    "displayName": "Service Registration",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ChooseService": {
+      "type": "enumeration",
+      "enum": [
+        "Store Service",
+        "Home Service"
+      ],
+      "required": true
+    },
+    "CustomerName": {
+      "type": "string",
+      "required": true
+    },
+    "ContactNumber": {
+      "type": "biginteger",
+      "required": true
+    },
+    "WhatsAppNumber": {
+      "type": "biginteger"
+    },
+    "CustomerAddress": {
+      "type": "text"
+    },
+    "CustomerCity": {
+      "type": "string"
+    },
+    "CustomerType": {
+      "type": "enumeration",
+      "enum": [
+        "Personal",
+        "Profession",
+        "Tailor",
+        "Fabricator",
+        "Institution",
+        "Others"
+      ],
+      "required": true
+    },
+    "ServiceType": {
+      "type": "enumeration",
+      "enum": [
+        "Checking",
+        "Free Checking",
+        "Standard Service",
+        "Full Service",
+        "Full Service & Wash",
+        "Over Oiling & Checking",
+        "Others"
+      ],
+      "required": true
+    },
+    "MachineType": {
+      "type": "enumeration",
+      "enum": [
+        "Bag Closer",
+        "Domestic SM",
+        "Embroidery / 130K",
+        "Interlock SM",
+        "Industrial / Locksmith",
+        "Leather / 31K",
+        "Link Deluxe SM",
+        "Umbrella / TA1 / 103K / 95K",
+        "Others"
+      ]
+    },
+    "MachineBrand": {
+      "type": "enumeration",
+      "enum": [
+        "Conark",
+        "Geminy",
+        "Jack",
+        "Merritt",
+        "Revo",
+        "Samrat",
+        "Singer",
+        "Usha",
+        "Others"
+      ]
+    },
+    "ModelName": {
+      "type": "string"
+    },
+    "EngineNumber": {
+      "type": "string"
+    },
+    "Problem": {
+      "type": "enumeration",
+      "enum": [
+        "Handle Jam",
+        "Needle Breaking",
+        "No Stitch",
+        "Rusted",
+        "Stitch False",
+        "Thread Lachhi",
+        "Thread Breaking",
+        "Others"
+      ]
+    },
+    "DueDate": {
+      "type": "date"
+    },
+    "Notes": {
+      "type": "text"
+    },
+    "JobNumber": {
+      "type": "biginteger",
+      "required": false
+    },
+    "CustomerID": {
+      "type": "string"
+    },
+    "ServiceStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Pending",
+        "Finished"
+      ],
+      "default": "Pending"
+    }
+  }
+}
