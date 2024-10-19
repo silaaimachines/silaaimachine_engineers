@@ -1,12 +1,9 @@
 import localFont from "next/font/local";
 import "./globals.css";
-<<<<<<< HEAD
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-=======
 import Header from "./_components/Header";
+
+
 import Footer from "./_components/Footer";
->>>>>>> 4065198ea532d258c3492a3203f0a0d042b17f9e
 import ProductPage from "./pages/product/[id]";
 import CheckoutPage from "./pages/product/CheckOut";
 import SignIn from "./SignIn";

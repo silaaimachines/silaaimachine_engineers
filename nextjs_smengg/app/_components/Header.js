@@ -1,9 +1,5 @@
-<<<<<<< HEAD:nextjs_smengg/app/components/Header.js
 import { ShoppingBag } from 'lucide-react'
 import { LayoutGrid,Search, ShoppingBagIcon} from 'lucide-react'
-=======
-import { Search, ShoppingBag, ShoppingBagIcon } from 'lucide-react'
->>>>>>> 4065198ea532d258c3492a3203f0a0d042b17f9e:nextjs_smengg/app/_components/Header.js
 import React from 'react'
 
 const Header = () => {
@@ -29,11 +25,8 @@ const Header = () => {
     <div className='flex items-center gap-1'>
     
         <ShoppingBagIcon/>
-<<<<<<< HEAD:nextjs_smengg/app/components/Header.js
       {/*   <Button>login</Button> */}
 
-=======
->>>>>>> 4065198ea532d258c3492a3203f0a0d042b17f9e:nextjs_smengg/app/_components/Header.js
     </div>
     </div>
   )
