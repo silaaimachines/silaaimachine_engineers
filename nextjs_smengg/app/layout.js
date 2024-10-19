@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/Footer";
 import ProductPage from "./pages/product/[id]";
+import CheckoutPage from "./pages/product/CheckOut";
+import SignIn from "./SignIn";
 
 
 const geistSans = localFont({
@@ -29,7 +31,7 @@ export default function RootLayout({ children }) {
       >
         <Header/>
         {children}
-        <ProductPage/>
+        <SignIn/>
         <Footer/>
       </body>
     </html>
