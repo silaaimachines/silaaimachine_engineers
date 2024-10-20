@@ -5,6 +5,7 @@ import Footer from "./_components/Footer";
 import ProductPage from "./pages/product/[id]";
 import CheckoutPage from "./pages/product/CheckOut";
 import SignIn from "./SignIn";
+import Navbar from "./_components/navigationbar";
 
 
 const geistSans = localFont({
@@ -30,8 +31,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header/>
+        <Navbar/>
         {children}
-        <SignIn/>
+        
         <Footer/>
       </body>
     </html>
