@@ -1,6 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./_components/Header";
+
+
 import Footer from "./_components/Footer";
 import ProductPage from "./pages/product/[id]";
 import CheckoutPage from "./pages/product/CheckOut";
