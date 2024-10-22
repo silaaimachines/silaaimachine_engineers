@@ -4,9 +4,9 @@ import React, { useEffect } from 'react'
 import Slider from './_components/Slider'
 import GlobalApi from './_utils/GlobalApi'
 
-export default async function Home() {
+export default function Home() {
 
-  const [sliderList, setSliderList] = useState([]);
+  /* const [sliderList, setSliderList] = useState([]);
 
   useEffect(() => {
     getSliders();
@@ -17,7 +17,7 @@ export default async function Home() {
       console.log(res.data.data)
       setSlid
     })
-  }
+  } */
 
   return (
     <div>
