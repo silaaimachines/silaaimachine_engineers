@@ -2,8 +2,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
-import Navbar from "./_components/navigationbar";
-import SingleProduct from "./pages/product/SingleProduct";
 
 
 const geistSans = localFont({
