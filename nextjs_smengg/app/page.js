@@ -28,11 +28,11 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <div className='py-5 px-16'>
+    <div className='py-4'>
+      <div className='py-5 px-2'>
         <Slider sliderList= {sliderList}/>
       </div>
-      <div className='py-5 px-16'>
+      <div className='py-2 px-2'>
         <BrandsSlider brandSliderList={brandSliderList}/>
       </div>
     </div>
