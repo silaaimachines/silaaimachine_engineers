@@ -1,3 +1,5 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const SingleProduct = () => {
@@ -9,7 +11,7 @@ const SingleProduct = () => {
           <div className="flex flex-wrap justify-center items-center lg:w-full mx-auto bg-white rounded-lg overflow-hidden">
             {/*  <!-- Image Section --> */}
             <div className="w-full lg:w-1/2 p-5">
-              <img alt="ecommerce" className="object-cover object-center w-full h-96 lg:h-auto shadow-lg rounded-lg mb-6 lg:mb-0" src="https://dummyimage.com/800x800" />
+              <Image src="https://m.media-amazon.com/images/I/61UE8SbqpwL._AC_UF894,1000_QL80_.jpg" width={500} height={500} alt="product" className="object-cover object-center w-full h-96 lg:h-auto shadow-lg rounded-lg mb-6 lg:mb-0"  />
             </div>
 
             {/*  <!-- Product Info Section --> */}
@@ -34,7 +36,7 @@ const SingleProduct = () => {
 
               {/*  <!-- Related Product 1 --> */}
               <div className="bg-white rounded-lg p-6 shadow-lg">
-                <img alt="related" className="object-cover object-center w-full h-48 rounded-lg mb-6 shadow-lg" src="https://dummyimage.com/500x500" />
+                <Image alt="related" className="object-cover object-center w-full h-48 rounded-lg mb-6 shadow-lg" src="https://m.media-amazon.com/images/I/41vbH9ahvLL._SX300_SY300_QL70_FMwebp_.jpg"  width={400} height={400}/>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">Product Name 1</h3>
                 <p className="leading-relaxed text-base mb-4">Fam locavore kickstarter distillery. Mixtape chillwave tumeric sriracha taximy.</p>
                 <span className="block text-2xl font-bold text-gray-900">$45.00</span>

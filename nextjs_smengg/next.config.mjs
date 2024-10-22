@@ -2,7 +2,7 @@
 
 const nextConfig = {
     images: {
-        domains: ['silaaimachines.com', 'localhost'],
+        domains: ['silaaimachines.com', 'localhost','m.media-amazon.com'],
     }
 };
 
