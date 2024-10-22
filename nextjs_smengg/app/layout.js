@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "./_components/Header";
+import DesktopHeader from "./_components/DesktopHeader";
+import MobileHeader from "./_components/MobileHeader";
 import Footer from "./_components/Footer";
 
 
@@ -26,7 +27,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header/>
+        <DesktopHeader/>
+        <MobileHeader/>
         {children}
         <Footer/>
       </body>

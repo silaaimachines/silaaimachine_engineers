@@ -6,8 +6,11 @@ const axiosClient=axios.create({
 
 const getCategory=()=>axiosClient.get('/categories?populate=*');
 const getSliders=()=>axiosClient.get('/sliders?populate=*');
+const getBrandSliders=()=>axiosClient.get('/brands?populate=*');
+
 
 export default{
     getCategory,
-    getSliders
+    getSliders,
+    getBrandSliders
 }

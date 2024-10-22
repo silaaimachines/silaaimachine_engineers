@@ -1,20 +1,18 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import siteIcon from '../public/images/02.png';
-import { Button } from '@/components/ui/button';
+import { Menu, X, Search } from 'lucide-react';
 import Link from 'next/link';
-import { Menu, PhoneCall, Search, X } from 'lucide-react';
+import siteIcon from '../public/images/02.png';
 import GlobalApi from '../_utils/GlobalApi';
 
-const Header = () => {
+const MobileHeader = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [categoryList, setCategoryList] = useState([]);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
-
-  const [categoryList, setCategoryList] = useState([]);
 
   useEffect(() => {
     getCategoryList();
@@ -27,36 +25,15 @@ const Header = () => {
   };
 
   return (
-    <header className='px-5'>
-      {/* Desktop View */}
-      <div className='hidden md:flex justify-between items-center p-3'>
-        <div>
-          <Image src={siteIcon} alt='logo' width={200} height={200} />
-        </div>
-
-        <div className='flex gap-5 items-center' style={{ width: '35%' }}>
-          <div className='flex gap-3 items-center border rounded-full p-2 justify-between w-full'>
-            <input type='text' placeholder='Search' className='outline-none px-3 w-full' />
-            <Search className='h-5 w-5' />
-          </div>
-          <Button variant="outline" as="a" href="cd nextjs_smen">
-            <PhoneCall className='h-5 w-5' />Call Us
-          </Button>
-          <Button>Login</Button>
-        </div>
-      </div>
-
-      {/* Mobile View */}
-      <div className='md:hidden flex justify-between items-center p-3'>
+    <div className='md:hidden p-3 px-5 shadow-sm'>
+      <div className='flex justify-between items-center'>
         <Image src={siteIcon} alt='logo' width={150} height={150} />
         <Menu onClick={toggleDrawer} className="cursor-pointer" />
       </div>
 
-      {/* Mobile Drawer with modern styling */}
       {isDrawerOpen && (
         <div>
           <div className='fixed inset-0 z-50 bg-black bg-opacity-50 backdrop-blur-sm' onClick={toggleDrawer} />
-
           <div className={`fixed top-0 left-0 h-full w-3/4 bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'}`}>
             <div className="p-6">
               <div className="flex justify-end items-center mb-6">
@@ -73,11 +50,11 @@ const Header = () => {
                   <Link href="/" onClick={toggleDrawer} className="transition-colors duration-300">
                     Home
                   </Link>
-                  <hr className="border-gray-300 my-2" /> {/* Separator */}
+                  <hr className="border-gray-300 my-2" />
                   {categoryList.map((category, index) => (
                     <div key={index}>
                       <h2 className="transition-colors duration-300 hover:text-gray-700">{category?.Name}</h2>
-                      <hr className="border-gray-300 my-2" /> {/* Separator */}
+                      <hr className="border-gray-300 my-2" />
                     </div>
                   ))}
                 </div>
@@ -86,8 +63,8 @@ const Header = () => {
           </div>
         </div>
       )}
-    </header>
+    </div>
   );
 };
 
-export default Header;
+export default MobileHeader;

@@ -1,28 +1,42 @@
 "use client";
 
-import React, { useEffect } from 'react'
+import { useEffect, useState } from 'react';
 import Slider from './_components/Slider'
 import GlobalApi from './_utils/GlobalApi'
+import BrandsSlider from './_components/BrandsSlider';
 
-export default async function Home() {
-
+const Home = () => {
   const [sliderList, setSliderList] = useState([]);
+  const [brandSliderList, setBrandSliderList] = useState([]);
 
   useEffect(() => {
     getSliders();
+    getBrandSliders();
   }, []);
 
   const getSliders = () => {
     GlobalApi.getSliders().then(res => {
-      console.log(res.data.data)
-      setSlid
+      setSliderList(res.data.data);
+    })
+  }
+
+  const getBrandSliders = () => {
+    GlobalApi.getBrandSliders().then(res => {
+      console.log(res.data.data);
+      setBrandSliderList(res.data.data);
     })
   }
 
   return (
     <div>
-      {/* <Slider sliderList= {sliderList}/> */}
-      hhh
+      <div className='py-5 px-16'>
+        <Slider sliderList= {sliderList}/>
+      </div>
+      <div className='py-5 px-16'>
+        <BrandsSlider brandSliderList={brandSliderList}/>
+      </div>
     </div>
-  )
-}
+  );
+};
+
+export default Home;

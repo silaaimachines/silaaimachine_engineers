@@ -6,20 +6,29 @@ import {
     CarouselNext,
     CarouselPrevious,
   } from "@/components/ui/carousel"
+
+import Autoplay from "embla-carousel-autoplay"
 import Image from 'next/image'
 
 function Slider({sliderList}) {
   return (
-    <Carousel>
+    <Carousel
+    plugins={[
+      Autoplay({
+        delay: 3000,
+      }),
+    ]}>
     <CarouselContent>
-        {/* {sliderList.map((slider, index)=>(
-            <CarouselItem key={index}>
-                <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL+slider.attributes?.image?.data?.attributes?.url}
-                width={1000}
-                height={500}
-                /> 
-            </CarouselItem>
-        ))} */}
+      {sliderList.map((slider, index) => (
+        <CarouselItem key={index}>
+          <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL+slider?.Image?.url}
+          width={5000}
+          height={2500}
+          alt='Slider Image'
+          className='w-full h-auto object-cover rounded-2xl'
+          />
+        </CarouselItem>
+      ))}
     </CarouselContent>
     <CarouselPrevious />
     <CarouselNext />
