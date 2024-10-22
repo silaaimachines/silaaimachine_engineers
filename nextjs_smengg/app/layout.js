@@ -3,6 +3,13 @@ import "./globals.css";
 import DesktopHeader from "./_components/DesktopHeader";
 import MobileHeader from "./_components/MobileHeader";
 import Footer from "./_components/Footer";
+import Test from "./_components/Test";
+import SingleProduct from "./pages/product/SingleProduct";
+
+
+
+
+
 
 
 const geistSans = localFont({
@@ -27,9 +34,17 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+<<<<<<< HEAD
         <DesktopHeader/>
         <MobileHeader/>
+=======
+        <Header/>
+        {/* <Test/> */}
+        <SingleProduct/>
+     
+>>>>>>> fd83a6a5470f6d1a3a6f2e01f3478018f1f6f85c
         {children}
+
         <Footer/>
       </body>
     </html>
