@@ -1,12 +1,28 @@
-import Image from "next/image";
-import SwiperComponent from "./_components/homecomponent/slider";
+"use client";
 
-export default function Home() {
+import React, { useEffect } from 'react'
+import Slider from './_components/Slider'
+import GlobalApi from './_utils/GlobalApi'
+
+export default async function Home() {
+
+  const [sliderList, setSliderList] = useState([]);
+
+  useEffect(() => {
+    getSliders();
+  }, []);
+
+  const getSliders = () => {
+    GlobalApi.getSliders().then(res => {
+      console.log(res.data.data)
+      setSlid
+    })
+  }
+
   return (
-    <div className=" justify-center items-center">
-      <div className="h-1"></div>
-      <SwiperComponent/>
-      <div className="h-1"></div>
+    <div>
+      {/* <Slider sliderList= {sliderList}/> */}
+      hhh
     </div>
-  );
+  )
 }
