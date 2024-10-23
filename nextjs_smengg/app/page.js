@@ -22,7 +22,6 @@ const Home = () => {
 
   const getBrandSliders = () => {
     GlobalApi.getBrandSliders().then(res => {
-      console.log(res.data.data);
       setBrandSliderList(res.data.data);
     })
   }

@@ -3,7 +3,7 @@
 const nextConfig = {
     reactStrictMode: false,
     images: {
-        domains: ['silaaimachines.com', 'localhost','m.media-amazon.com'],
+        domains: ['silaaimachines.com', 'localhost', '192.168.1.10','m.media-amazon.com'],
     }
 };
 

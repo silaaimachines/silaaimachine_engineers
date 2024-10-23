@@ -30,8 +30,6 @@ function Slider({sliderList}) {
         </CarouselItem>
       ))}
     </CarouselContent>
-    <CarouselPrevious />
-    <CarouselNext />
     </Carousel>
   )
 }

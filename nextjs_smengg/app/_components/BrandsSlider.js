@@ -1,29 +1,38 @@
 import React from 'react'
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+  } from "@/components/ui/carousel"
+
+import Autoplay from "embla-carousel-autoplay"
 import Image from 'next/image'
 
 function BrandsSlider({ brandSliderList }) {
     return (
-        <div className='container relative overflow-hidden'>
-            <div className='flex justify-center'>
-                <div className='flex gap-20 overflow-hidden' 
-                     style={{
-                         maskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
-                         WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)',
-                     }}>
+        <div className='container'>
+            <Carousel
+            plugins={[
+                Autoplay({
+                delay: 2000,
+                }),
+            ]}>
+                <CarouselContent>
                     {brandSliderList.map((brand, index) => (
-                        <div key={index} className='flex-none'>
-                            <Image 
-                                src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + brand?.Logo?.url}
-                                width={100}
-                                height={50}
-                                alt={`Brand ${index}`}
+                        <CarouselItem key={index} className='md:basis-1/2 lg:basis-1/3 flex justify-center items-center'>
+                            <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + brand?.Logo?.url}
+                            width={100}
+                            height={50}
+                            alt={`${brand?.Name} Logo`}
                             />
-                        </div>
+                        </CarouselItem>
                     ))}
-                </div>
-            </div>
+                </CarouselContent>
+            </Carousel>
         </div>
-    );
+    )
 }
 
 export default BrandsSlider;
