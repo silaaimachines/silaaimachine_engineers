@@ -31,7 +31,6 @@ const Home = () => {
 
   const getCategories = () => {
     GlobalApi.getCategory().then(res => {
-      console.log(res.data.data);
       setCategoryList(res.data.data);
     })
   }
@@ -39,15 +38,15 @@ const Home = () => {
   return (
     <div className='py-4'>
       <div className='py-5 px-2'>
-        <Slider sliderList= {sliderList}/>
+        <Slider sliderList={sliderList} />
       </div>
-      <div  className='py-2 lg:px-10 md:px-5 sm:px-2'>
-        <CategoryList categoryList={categoryList}/>
+      <div className='py-2 lg:px-10 md:px-5 sm:px-2'>
+        <CategoryList categoryList={categoryList} />
       </div>
       <div className='py-2 px-2'>
-        <BrandsSlider brandSliderList={brandSliderList}/>
+        <BrandsSlider brandSliderList={brandSliderList} />
       </div>
-     
+
     </div>
   );
 };
