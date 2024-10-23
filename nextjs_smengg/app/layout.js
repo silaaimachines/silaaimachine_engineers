@@ -37,7 +37,8 @@ export default function RootLayout({ children }) {
         <DesktopHeader/>
         <MobileHeader/>
         {children}
-
+{/* <SingleProduct/> */}
+        
         <Footer/>
       </body>
     </html>
