@@ -1,35 +1,42 @@
-import { ShoppingBag } from 'lucide-react'
 import React from 'react'
 import Image from 'next/image'
-
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { motion } from 'framer-motion'
 
 const CategoryList = ({ categoryList }) => {
+  // Animation variants
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
   return (
-    <div>
-      <h2 className='text-2xl font-bold py-2 flex items-center justify-center'>Category List</h2>
-
-
-      <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
+    <ScrollArea className="w-full overflow-hidden rounded-md flex px-5">
+      <div className="flex space-x-5">
         {categoryList.map((category, index) => (
-          <div
+          <motion.div
             key={index}
-            className='flex flex-col items-center justify-center p-4 bg-gray-100 transition duration-300 ease-in-out rounded-lg  border shadow-sm cursor-pointer hover:bg-gray-200'
+            initial="hidden"
+            animate="visible"
+            variants={itemVariants}
+            transition={{ duration: 2, delay: index * 0.1 }} // Delay for staggered effect
+            className='flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-lg border shrink-0 shadow-sm cursor-pointer hover:border-[#e42584]'
           >
-            <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + category?.Images?.url}
-              width={350}
-              height={350}
+            <Image
+              src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + category?.Images?.url}
+              width={200} // Adjust size as necessary
+              height={200} // Adjust size as necessary
               alt='Slider Image'
-              className=' h-[200px] w-[200px] object-contain'
+              className='h-[200px] w-[200px] object-contain rounded-t-lg'
             />
-            <h2 className='mt-4 text-sm font-medium text-center'>{category?.Name}</h2>
-          </div>
+            <div className='w-full bg-[#e42584] rounded-b-lg'>
+              <h2 className='m-2 text-sm text-center text-white'>{category?.Name}</h2>
+            </div>
+          </motion.div>
         ))}
       </div>
-
-
-
-
-    </div>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   )
 }
 
