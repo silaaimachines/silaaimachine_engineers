@@ -54,7 +54,8 @@ const SingleProduct = () => {
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-10">
     {/*  <!-- Related Product 1 --> */}
     <div className="relative group">
-      <div className="absolute -inset-3 text-black bg-gradient-to-r from-pink-400 to-purple-500 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition duration-10000 group-hover:duration-12000"></div>
+      <div className="absolute -inset-3 text-black bg-gradient-to-r from-pink-400 to-purple-500 rounded-lg
+       blur-sm opacity-0 group-hover:opacity-100 transition duration-10000 group-hover:duration-12000"></div>
       <div className="relative bg-white rounded-lg p-6 border hover:scale-105 transition duration-300">
         <Image
           alt="related"
