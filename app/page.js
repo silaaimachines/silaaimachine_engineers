@@ -5,13 +5,15 @@ import Slider from './_components/Slider'
 import GlobalApi from './_utils/GlobalApi'
 import BrandsSlider from './_components/BrandsSlider';
 import CategoryList from './_components/CategoryList';
-import FeaturedProducts from'./_components/FeaturedProducts';
+import FeaturedProducts from './_components/FeaturedProducts';
+import banner_1 from './public/banner/banner.webp';
+import Image from 'next/image';
 
 const Home = () => {
   const [sliderList, setSliderList] = useState([]);
   const [brandSliderList, setBrandSliderList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  const [featuredProductsList, setFeaturedProductsList]=useState([]);
+  const [featuredProductsList, setFeaturedProductsList] = useState([]);
 
   useEffect(() => {
     getSliders();
@@ -38,25 +40,30 @@ const Home = () => {
     })
   }
 
-  const getFeaturedProductList=()=>{
-    GlobalApi.getProducts().then(res =>{
+  const getFeaturedProductList = () => {
+    GlobalApi.getProducts().then(res => {
       setFeaturedProductsList(res.data.data);
     })
   }
 
   return (
-    <div>
-      <div className=' px-2'>
+    <div className='px-5'>
+      <div>
         <Slider sliderList={sliderList} />
       </div>
-      <div className='py-2 lg:px-10 md:px-5 sm:px-2'>
-        <CategoryList categoryList={categoryList} />
-      </div>
-      <div className='py-2 px-2'>
+      <div>
         <BrandsSlider brandSliderList={brandSliderList} />
       </div>
-      <div className='py-2 px-2'>
-        <FeaturedProducts featuredProductsList={featuredProductsList}/>
+      <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
+        <CategoryList categoryList={categoryList} />
+      </div>
+      <div className='py-5 lg:px-10 md:px-2 sm:px-1'>
+        <Image
+          src={banner_1} width={1000} height={500} alt='banner'
+          className='w-full h-auto'/>
+      </div>
+      <div className='py-2 px-10'>
+        <FeaturedProducts featuredProductsList={featuredProductsList} />
       </div>
 
     </div>

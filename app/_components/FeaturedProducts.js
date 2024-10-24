@@ -20,7 +20,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
     };
 
     return (
-        <div className="px-5">
+        <div>
             <div className='flex items-center gap-2'>
                 <h1 className='text-3xl font-semibold underline decoration-red-500'>Featured</h1>
                 <h1 className='py-5 text-2xl font-semibold'>Products </h1>

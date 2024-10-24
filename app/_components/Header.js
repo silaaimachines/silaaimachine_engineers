@@ -6,12 +6,13 @@ import { Search, PhoneCall, Menu, X } from 'lucide-react';
 import siteIcon from '../public/images/02.png';
 import Link from 'next/link';
 import ThemeToggle from '../_components/ThemeToggle';
+import { Separator } from "@/components/ui/separator"
 
 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage the mobile drawer
-  
+
   // Function to toggle the menu open/close
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,15 +23,15 @@ const Header = () => {
       {/* Desktop Navbar */}
       <div className='hidden md:flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-10 backdrop-blur-sm'>
         <div>
-        <Link href="/">
-          <Image src={siteIcon} alt='logo' width={200} height={200} />
-        </Link>
+          <Link href="/">
+            <Image src={siteIcon} alt='logo' width={200} height={200} />
+          </Link>
         </div>
 
         <div className='flex gap-5 items-center'>
-          <Link href="/">Home</Link>
-          <Link href="/store">Store</Link>
-          <Link href="/categories">Categories</Link>
+          <Link href="/" className='hover:font-semibold hover:underline hover:decoration-theme_color hover:underline-offset-8'>Home</Link>
+          <Link href="/store" className='hover:font-semibold hover:underline hover:decoration-theme_color hover:underline-offset-8'>Store</Link>
+          <Link href="/categories" className='hover:font-semibold hover:underline hover:decoration-theme_color hover:underline-offset-8'>Categories</Link>
         </div>
 
         <div className='flex gap-5 items-center'>
@@ -39,7 +40,7 @@ const Header = () => {
             <PhoneCall className='h-5 w-5' />Call Us
           </Button>
           <Button>Login</Button>
-          <ThemeToggle/>
+          <ThemeToggle />
         </div>
       </div>
 
