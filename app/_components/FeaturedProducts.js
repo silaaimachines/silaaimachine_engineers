@@ -1,7 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion'; // Assuming you are using framer-motion for animations
+import { motion, useInView } from 'framer-motion'; // Added useInView for lazy animations
 import Image from 'next/image'; // Assuming you're using Next.js Image component
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "../../components/ui/scroll-area"; // Updated import path
 
 const FeaturedProducts = ({ featuredProductsList }) => {
     // Animation variants
@@ -19,8 +19,12 @@ const FeaturedProducts = ({ featuredProductsList }) => {
         return Math.round(((basePrice - discountPrice) / basePrice) * 100);
     };
 
+    // Use the useInView hook to check visibility
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { triggerOnce: true, threshold: 0.2 }); // Animation triggers once, when 20% of the element is visible
+
     return (
-        <div>
+        <div ref={ref}> {/* Apply the ref to the wrapper div */}
             <div className='flex items-center gap-2'>
                 <h1 className='text-3xl font-semibold underline decoration-red-500'>Featured</h1>
                 <h1 className='py-5 text-2xl font-semibold'>Products </h1>
@@ -37,9 +41,9 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                             <motion.div
                                 key={index}
                                 initial="hidden"
-                                animate="visible"
+                                animate={isInView ? "visible" : "hidden"} // Animation only triggers when in view
                                 variants={itemVariants}
-                                transition={{ duration: 2, delay: index * 0.1 }} // Delay for staggered effect
+                                transition={{ duration: 1, delay: index * 0.1 }} // Delay for staggered effect
                                 className='flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-lg border shrink-0 shadow-sm cursor-pointer hover:border-[#e42584] w-[250px]'
                             >
                                 {Images && Images[0]?.url && (

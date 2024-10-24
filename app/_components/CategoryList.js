@@ -1,7 +1,7 @@
-import React from 'react'
-import Image from 'next/image'
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { motion } from 'framer-motion'
+import React from 'react';
+import Image from 'next/image';
+import { ScrollArea, ScrollBar } from "../../components/ui/scroll-area"; // Updated import path
+import { motion, useInView } from 'framer-motion'; // Added useInView
 
 const CategoryList = ({ categoryList }) => {
   // Animation variants
@@ -10,11 +10,15 @@ const CategoryList = ({ categoryList }) => {
     visible: { opacity: 1, scale: 1 },
   };
 
+  // Use the useInView hook to check visibility
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { triggerOnce: true, threshold: 0.2 }); // Animation triggers once, when 20% of the element is visible
+
   return (
-    <div>
+    <div ref={ref}> {/* Apply the ref to the wrapper div */}
       <div className='flex items-center gap-1'>
-      <h1 className='py-5 font-semibold text-md md:text-2xl'>Shop by</h1>
-      <h1 className='font-semibold underline decoration-theme_color text-lg md:text-3xl'>Categories</h1>
+        <h1 className='py-5 font-semibold text-md md:text-2xl'>Shop by</h1>
+        <h1 className='font-semibold underline decoration-theme_color text-lg md:text-3xl'>Categories</h1>
       </div>
       <ScrollArea className="w-full overflow-hidden">
         <div className="flex space-x-5">
@@ -22,9 +26,9 @@ const CategoryList = ({ categoryList }) => {
             <motion.div
               key={index}
               initial="hidden"
-              animate="visible"
+              animate={isInView ? "visible" : "hidden"} // Animation only triggers when in view
               variants={itemVariants}
-              transition={{ duration: 2, delay: index * 0.1 }} // Delay for staggered effect
+              transition={{ duration: 1, delay: index * 0.1 }} // Delay for staggered effect
               className='flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-t-lg border shrink-0 shadow-sm cursor-pointer hover:border-theme_color'
             >
               <Image
@@ -43,7 +47,7 @@ const CategoryList = ({ categoryList }) => {
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
     </div>
-  )
-}
+  );
+};
 
-export default CategoryList
+export default CategoryList;
