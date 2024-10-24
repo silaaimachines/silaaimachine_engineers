@@ -24,7 +24,7 @@ const Store = () => {
 
 
 
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 lg:gap-4 p-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-5 lg:gap-4 p-4">
       {productList.map((product, index) => (
 
         <div className='relative group'>
@@ -33,8 +33,7 @@ const Store = () => {
           <div
             key={index}
 
-            className="flex flex-col items-center border shadow-lg rounded-lg 
-        p-4 hover:scale-105 transform transition-all duration-300 ease-in-out bg-white dark:bg-black"
+            className="flex flex-col items-center border shadow-lg rounded-lg hover:scale-105 transform transition-all duration-300 ease-in-out bg-white dark:bg-black"
           >
             <div className='relative'>
             <Image
@@ -42,7 +41,7 @@ const Store = () => {
               width={400}
               height={400}
               alt={product?.Name}
-              className="rounded-md h-[200px] w-[200px] object-contain "
+              className="rounded-md h-full w-full object-contain"
             />
             <p className="mt-2 text-lg font-semibold z-10 text-center">{product?.Name}</p>
             <p className="mt-2 text-lg font-semibold z-10 text-center">₹ {product?.BasePrice}</p>
