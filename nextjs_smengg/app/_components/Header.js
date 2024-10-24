@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 const DesktopHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage the mobile drawer
-
+  
   // Function to toggle the menu open/close
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
