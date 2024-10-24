@@ -5,16 +5,19 @@ import Slider from './_components/Slider'
 import GlobalApi from './_utils/GlobalApi'
 import BrandsSlider from './_components/BrandsSlider';
 import CategoryList from './_components/CategoryList';
+import FeaturedProducts from'./_components/FeaturedProducts';
 
 const Home = () => {
   const [sliderList, setSliderList] = useState([]);
   const [brandSliderList, setBrandSliderList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
+  const [featuredProductsList, setFeaturedProductsList]=useState([]);
 
   useEffect(() => {
     getSliders();
     getBrandSliders();
     getCategories();
+    getFeaturedProductList();
   }, []);
 
   const getSliders = () => {
@@ -35,6 +38,12 @@ const Home = () => {
     })
   }
 
+  const getFeaturedProductList=()=>{
+    GlobalApi.getProducts().then(res =>{
+      setFeaturedProductsList(res.data.data);
+    })
+  }
+
   return (
     <div>
       <div className=' px-2'>
@@ -45,6 +54,9 @@ const Home = () => {
       </div>
       <div className='py-2 px-2'>
         <BrandsSlider brandSliderList={brandSliderList} />
+      </div>
+      <div className='py-2 px-2'>
+        <FeaturedProducts featuredProductsList={featuredProductsList}/>
       </div>
 
     </div>
