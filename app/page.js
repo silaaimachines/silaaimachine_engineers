@@ -36,8 +36,8 @@ const Home = () => {
   }
 
   return (
-    <div className='py-4'>
-      <div className='py-5 px-2'>
+    <div>
+      <div className=' px-2'>
         <Slider sliderList={sliderList} />
       </div>
       <div className='py-2 lg:px-10 md:px-5 sm:px-2'>
