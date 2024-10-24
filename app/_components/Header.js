@@ -56,7 +56,7 @@ const Header = () => {
       {/* Mobile Menu Drawer */}
       {isMenuOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-20">
-          <div className="fixed top-0 right-0 h-full w-64 bg-white p-5 shadow-md z-30">
+          <div className="fixed top-0 right-0 h-full w-64 bg-white dark:bg-black p-5 shadow-md z-30">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold">Menu</h2>
               <X className="h-6 w-6 cursor-pointer" onClick={toggleMenu} />

@@ -11,6 +11,7 @@ const getProducts=()=>axiosClient.get('/products?populate=*');
 
 
 
+
 export default{
     getCategory,
     getSliders,
