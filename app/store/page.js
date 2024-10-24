@@ -26,7 +26,9 @@ const Store = () => {
         <div key={index}>
           <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + product?.Images[0]?.url} 
           width={500}
-          height={500}/>
+          height={500}
+          alt={product?.Name}
+          />
           <p>{product?.Name}</p>
         </div>
       ))}
