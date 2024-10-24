@@ -5,6 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Search, PhoneCall, Menu, X } from 'lucide-react';
 import siteIcon from '../public/images/02.png';
 import Link from 'next/link';
+import ThemeToggle from '../_components/ThemeToggle';
+
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage the mobile drawer
@@ -36,6 +39,7 @@ const Header = () => {
             <PhoneCall className='h-5 w-5' />Call Us
           </Button>
           <Button>Login</Button>
+          <ThemeToggle/>
         </div>
       </div>
 
