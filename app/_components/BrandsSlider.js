@@ -21,9 +21,9 @@ function BrandsSlider({ brandSliderList }) {
             ]}>
                 <CarouselContent>
                     {brandSliderList.map((brand, index) => (
-                        <CarouselItem key={index} className='md:basis-1/2 lg:basis-1/3 flex justify-center items-center'>
+                        <CarouselItem key={index} className='basis-1/3 md:basis-1/3 lg:basis-1/5 flex justify-center items-center'>
                             <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + brand?.Logo?.url}
-                            width={100}
+                            width={75}
                             height={50}
                             alt={`${brand?.Name} Logo`}
                             />
