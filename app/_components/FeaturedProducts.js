@@ -1,7 +1,7 @@
 import React from 'react';
-import { motion, useInView } from 'framer-motion'; // Added useInView for lazy animations
-import Image from 'next/image'; // Assuming you're using Next.js Image component
-import { ScrollArea, ScrollBar } from "../../components/ui/scroll-area"; // Updated import path
+import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
+import { ScrollArea, ScrollBar } from "../../components/ui/scroll-area";
 
 const FeaturedProducts = ({ featuredProductsList }) => {
     // Animation variants
@@ -26,13 +26,13 @@ const FeaturedProducts = ({ featuredProductsList }) => {
     return (
         <div ref={ref}> {/* Apply the ref to the wrapper div */}
             <div className='flex items-center gap-2'>
-                <h1 className='text-3xl font-semibold underline decoration-red-500'>Featured</h1>
-                <h1 className='py-5 text-2xl font-semibold'>Products </h1>
+                <h1 className='font-semibold underline decoration-theme_color text-lg md:text-3xl'>Featured</h1>
+                <h1 className='py-5 font-semibold text-md md:text-2xl'>Products </h1>
             </div>
 
             {/* ScrollArea with explicit height */}
             <ScrollArea className="overflow-x-auto w-full">
-                <div className="flex space-x-5">
+                <div className="flex space-x-1">
                     {filteredProducts.map((product, index) => {
                         const { BasePrice, DiscountPrice, Name, Images } = product;
                         const discountPercentage = calculateDiscountPercentage(BasePrice, DiscountPrice);
@@ -44,7 +44,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                 animate={isInView ? "visible" : "hidden"} // Animation only triggers when in view
                                 variants={itemVariants}
                                 transition={{ duration: 1, delay: index * 0.1 }} // Delay for staggered effect
-                                className='flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-lg border shrink-0 shadow-sm cursor-pointer hover:border-[#e42584] w-[250px]'
+                                className='flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl border shrink-0 shadow-sm cursor-pointer hover:border-theme_color'
                             >
                                 {Images && Images[0]?.url && (
                                     <Image
@@ -52,15 +52,15 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                         width={200} // Adjust size as necessary
                                         height={200} // Adjust size as necessary
                                         alt={Images[0]?.alternativeText || 'Product Image'}
-                                        className='h-[200px] w-[200px] object-contain rounded-t-lg'
+                                        className='h-[200px] w-[200px] object-contain rounded-t-2xl'
                                     />
                                 )}
-                                <div className='w-full bg-[#e42584] rounded-b-lg p-3'>
+                                <div className='w-full bg-[#e42584] rounded-b-2xl'>
                                     <h2 className='text-sm text-center text-white'>{Name}</h2>
                                     <div className="text-center flex items-center justify-center gap-1">
                                         {DiscountPrice ? (
                                             <>
-                                                <p className="text-lg font-semibold text-white">
+                                                <p className="text-sm font-semibold text-white">
                                                     ₹ {DiscountPrice}
                                                 </p>
                                                 <p className="text-sm line-through">
@@ -71,7 +71,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                                 </p>
                                             </>
                                         ) : (
-                                            <p className="text-lg font-semibold text-white">
+                                            <p className="font-semibold text-white text-sm">
                                                 ₹ {BasePrice}
                                             </p>
                                         )}
