@@ -16,12 +16,12 @@ const CategoryList = ({ categoryList }) => {
 
   return (
     <div ref={ref}> {/* Apply the ref to the wrapper div */}
-      <div className='flex items-center gap-1'>
+      <div className='flex items-center gap-2'>
         <h1 className='py-5 font-semibold text-md md:text-2xl'>Shop by</h1>
         <h1 className='font-semibold underline decoration-theme_color text-lg md:text-3xl'>Categories</h1>
       </div>
       <ScrollArea className="w-full overflow-hidden">
-        <div className="flex space-x-5">
+        <div className="flex space-x-1">
           {categoryList.map((category, index) => (
             <motion.div
               key={index}
@@ -36,10 +36,10 @@ const CategoryList = ({ categoryList }) => {
                 width={200} // Adjust size as necessary
                 height={200} // Adjust size as necessary
                 alt='Slider Image'
-                className='object-contain rounded-t-lg h-auto w-full/2'
+                className='object-cover rounded-t-lg w-full/2 h-[100px] md:h-[150px] lg:h-auto'
               />
-              <div className='w-full bg-theme_color'>
-                <h2 className='m-2 text-center text-white text-sm md:text-'>{category?.Name}</h2>
+              <div className='w-full bg-[#180161]'>
+                <h2 className='m-1 text-center text-white text-sm'>{category?.Name}</h2>
               </div>
             </motion.div>
           ))}

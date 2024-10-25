@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Search, PhoneCall, Menu, X } from 'lucide-react';
-import siteIcon from '../public/images/02.png';
+import siteIcon from '../public/images/SilaaimachineLogo.png';
 import Link from 'next/link';
 import ThemeToggle from '../_components/ThemeToggle';
 import { Separator } from "@/components/ui/separator"

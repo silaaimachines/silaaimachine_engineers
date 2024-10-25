@@ -25,7 +25,7 @@ function Slider({sliderList}) {
           width={5000}
           height={2500}
           alt='Slider Image'
-          className='w-full h-auto rounded-2xl object-contain'
+          className='w-full h-auto object-contain'
           />
         </CarouselItem>
       ))}
