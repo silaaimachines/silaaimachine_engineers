@@ -21,8 +21,7 @@ const StoreLocation = () => {
     const markers = [
         {
             position: { lat: 22.223337, lng: 84.866342 },
-            title: 'Marker 1',
-            content: 'This is Marker 1.',
+         
         },
     ];
 
@@ -57,7 +56,7 @@ const StoreLocation = () => {
                     <GoogleMap
                         mapContainerClassName="w-full h-96 sm:h-[400px] md:h-[500px] lg:h-[600px]"
                         center={center}
-                        zoom={10}
+                        zoom={18}
                         onLoad={onLoad}
                         onUnmount={onUnmount}
                     >
