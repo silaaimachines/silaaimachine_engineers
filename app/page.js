@@ -64,6 +64,9 @@ const Home = () => {
       <div>
         <BrandsSlider brandSliderList={brandSliderList} />
       </div>
+      <div className='py-2 px-10'>
+        <FeaturedProducts featuredProductsList={featuredProductsList} />
+      </div>
       <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
         <CategoryList categoryList={categoryList} />
       </div>
@@ -72,9 +75,7 @@ const Home = () => {
           src={banner_1} width={1000} height={500} alt='banner'
           className='w-full h-auto'/>
       </div>
-      <div className='py-2 px-10'>
-        <FeaturedProducts featuredProductsList={featuredProductsList} />
-      </div>
+      
       <div className='py-2 px-2'>
         <Customertype customerTypeList={customerTypeList}/>
       </div>
