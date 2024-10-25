@@ -60,24 +60,24 @@ const Home = () => {
     <div>
       {/* Floating Contact Icons */}
       <div className="fixed right-5 bottom-10 space-y-4 hidden md:flex lg:flex flex-col z-50">
-        <a 
-          href="https://wa.me/+919437782677" 
-          target="_blank" 
+        <a
+          href="https://wa.me/+919437782677"
+          target="_blank"
           rel="noopener noreferrer"
           className="p-3 bg-green-500 text-white rounded-full"
           aria-label="Contact us on WhatsApp"
         >
           <FaWhatsapp size={24} />
         </a>
-        <a 
-          href="tel:+919437782677" 
+        <a
+          href="tel:+919437782677"
           className="p-3 bg-blue-500 text-white rounded-full"
           aria-label="Call us"
         >
           <FaPhoneAlt size={24} />
         </a>
-        <a 
-          href="mailto:satya.silaaimachines@gmail.com" 
+        <a
+          href="mailto:satya.silaaimachines@gmail.com"
           className="p-3 bg-red-500 text-white rounded-full"
           aria-label="Email us"
         >
@@ -92,6 +92,9 @@ const Home = () => {
       <div className='flex justify-center'>
         <BrandsSlider brandSliderList={brandSliderList} />
       </div>
+      <div className='py-2 px-10'>
+        <FeaturedProducts featuredProductsList={featuredProductsList} />
+      </div>
       <div className='px-5'>
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <CategoryList categoryList={categoryList} />
@@ -101,9 +104,6 @@ const Home = () => {
             src={banner_1} width={1000} height={500} alt='banner'
             className='w-full h-auto'
           />
-        </div>
-        <div className='py-2 px-10'>
-          <FeaturedProducts featuredProductsList={featuredProductsList} />
         </div>
         <div className='py-2 px-2'>
           <Customertype customerTypeList={customerTypeList} />
