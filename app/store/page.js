@@ -41,46 +41,52 @@ const Store = () => {
             initial="hidden"
             animate="visible"
             variants={itemVariants}
-            transition={{ duration: 0.3, delay: index * 0.1 }} // Staggered effect for each item
-            whileHover={{ scale: 1.05 }} // Add scale effect on hover
+            transition={{ duration: 0.1, delay: index * 0.05 }} // Faster staggered effect for each item
+            whileHover={{ scale: 1.05 }} // Instant scale effect on hover
             className="relative group"
           >
             {/* Glowing background effect */}
-            <div className="absolute -inset-1 bg-gradient-to-tr from-[#6c3db8] to-[#eb3395] rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-1200"></div>
+            <div className="absolute -inset-1 bg-gradient-to-tr from-[#6c3db8] to-[#eb3395] rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition duration-300"></div>
 
             {/* Foreground product card */}
-            <div className="relative flex flex-col items-center border rounded-lg transition-all duration-300 ease-in-out bg-white dark:bg-black">
+            <div className="relative flex flex-col items-center justify-center border rounded-2xl transition-all duration-300 ease-in-out bg-white dark:bg-black shadow-sm cursor-pointer">
               <div className="relative z-10"> {/* Ensures the product content is on top of the glow */}
-                {Images && Images[0]?.url && (
-                  <Image
-                    src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + Images[0].url}
-                    width={400}
-                    height={400}
-                    alt={Name}
-                    className="rounded-md h-full w-full object-contain"
-                  />
-                )}
+                <div className="relative">
+                  {Images && Images[0]?.url && (
+                    <Image
+                      src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + Images[0].url}
+                      width={400}
+                      height={400}
+                      alt={Name}
+                      className="rounded-t-2xl h-full w-full object-contain"
+                    />
+                  )}
+                  {DiscountPrice && (
+                    <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                      {discountPercentage}% off
+                    </div>
+                  )}
+                </div>
 
-                <p className="mt-2 text-lg font-semibold z-10 text-center">{Name}</p>
+                <div className='rounded-b-2xl w-full'>
+                  <h2 className='text-center text-white text-sm bg-theme_color p-1'>{Name}</h2>
 
-                <div className="text-center flex items-center justify-center gap-1">
-                  {DiscountPrice ? (
-                    <>
-                      <p className="text-lg font-semibold text-center ">
-                        ₹ {DiscountPrice}
-                      </p>
-                      <p className="text-sm line-through text-gray-500">
+                  <div className="text-center flex items-center justify-center gap-1 m-2">
+                    {DiscountPrice ? (
+                      <>
+                        <p className="text-lg font-semibold text-center">
+                          ₹ {DiscountPrice}
+                        </p>
+                        <p className="text-sm line-through text-gray-500">
+                          ₹ {BasePrice}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-lg font-semibold text-center">
                         ₹ {BasePrice}
                       </p>
-                      <p className="text-sm text-green-500">
-                        {discountPercentage}% off
-                      </p>
-                    </>
-                  ) : (
-                    <p className="text-lg font-semibold text-center">
-                      ₹ {BasePrice}
-                    </p>
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

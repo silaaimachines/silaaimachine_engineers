@@ -38,7 +38,7 @@ const CategoryList = ({ categoryList }) => {
                 alt='Slider Image'
                 className='object-cover rounded-t-lg w-full/2 h-[100px] md:h-[150px] lg:h-auto'
               />
-              <div className='w-full bg-[#180161]'>
+              <div className='w-full bg-theme_color'>
                 <h2 className='m-1 text-center text-white text-sm'>{category?.Name}</h2>
               </div>
             </motion.div>

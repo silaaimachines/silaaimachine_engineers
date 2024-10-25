@@ -9,7 +9,6 @@ import FeaturedProducts from './_components/FeaturedProducts';
 import Customertype from './_components/Customertype';
 import banner_1 from './public/banner/banner.webp';
 import Image from 'next/image';
-import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const Home = () => {
   const [sliderList, setSliderList] = useState([]);

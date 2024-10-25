@@ -31,7 +31,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
             </div>
 
             {/* ScrollArea with explicit height */}
-            <ScrollArea className="overflow-x-auto w-full">
+            <ScrollArea className="w-full overflow-hidden">
                 <div className="flex space-x-1">
                     {filteredProducts.map((product, index) => {
                         const { BasePrice, DiscountPrice, Name, Images } = product;
@@ -46,32 +46,38 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                 transition={{ duration: 1, delay: index * 0.1 }} // Delay for staggered effect
                                 className='flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl border shrink-0 shadow-sm cursor-pointer hover:border-theme_color'
                             >
-                                {Images && Images[0]?.url && (
-                                    <Image
-                                        src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + Images[0].url}
-                                        width={200} // Adjust size as necessary
-                                        height={200} // Adjust size as necessary
-                                        alt={Images[0]?.alternativeText || 'Product Image'}
-                                        className='h-[200px] w-[200px] object-contain rounded-t-2xl'
-                                    />
-                                )}
-                                <div className='w-full bg-[#e42584] rounded-b-2xl'>
-                                    <h2 className='text-sm text-center text-white'>{Name}</h2>
-                                    <div className="text-center flex items-center justify-center gap-1">
+                                <div className="relative">
+                                    {Images && Images[0]?.url && (
+                                        <Image
+                                            src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + Images[0].url}
+                                            width={200} // Adjust size as necessary
+                                            height={200} // Adjust size as necessary
+                                            alt={Images[0]?.alternativeText || 'Product Image'}
+                                            className='object-cover rounded-t-2xl w-full/2 h-[100px] md:h-[150px] lg:h-auto'
+                                        />
+                                    )}
+                                    {DiscountPrice && (
+                                        <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                                            {discountPercentage}% off
+                                        </div>
+                                    )}
+                                </div>
+                                <div className='rounded-b-2xl w-full'>
+                                    <div>
+                                        <h2 className='text-center text-white text-sm bg-theme_color p-1'>{Name}</h2>
+                                    </div>
+                                    <div className="text-center flex items-center justify-center gap-3 m-2">
                                         {DiscountPrice ? (
                                             <>
-                                                <p className="text-sm font-semibold text-white">
+                                                <p className="text-sm font-semibold">
                                                     ₹ {DiscountPrice}
                                                 </p>
                                                 <p className="text-sm line-through">
                                                     ₹ {BasePrice}
                                                 </p>
-                                                <p className="text-sm text-green-500">
-                                                    {discountPercentage}% off
-                                                </p>
                                             </>
                                         ) : (
-                                            <p className="font-semibold text-white text-sm">
+                                            <p className="font-semibold text-sm">
                                                 ₹ {BasePrice}
                                             </p>
                                         )}
@@ -81,7 +87,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                         );
                     })}
                 </div>
-                <ScrollBar orientation="horizontal"/>
+                <ScrollBar orientation="horizontal" />
             </ScrollArea>
         </div>
     );
