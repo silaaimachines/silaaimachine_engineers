@@ -7,8 +7,11 @@ const axiosClient=axios.create({
 const getCategory=()=>axiosClient.get('/categories?populate=*');
 const getSliders=()=>axiosClient.get('/sliders?populate=*');
 const getBrandSliders=()=>axiosClient.get('/brands?populate=*');
-const getProducts=()=>axiosClient.get('/products?populate=*');
+
 const getCustomerType=()=>axiosClient.get('/customer-types?populate=*');
+const getProducts = (page = 1, pageSize = 25) =>
+    axiosClient.get(`/products?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
+  
 
 
 
