@@ -49,7 +49,7 @@ module.exports = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
-			theme_color: '#e42584',
+			theme_color: '#e61a72',
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
