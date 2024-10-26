@@ -40,7 +40,7 @@ const CategoryList = ({ categoryList }) => {
                   className='object-cover rounded-t-2xl w-full h-auto'
                 />
               </div>
-              <div className='rounded-b-2xl w-full bg-theme_color'>
+              <div className='rounded-b-2xl w-full bg-black dark:bg-gray-700 py-2'>
                 <h2 className='m-1 text-center text-white text-sm'>{category?.Name}</h2>
               </div>
             </motion.div>

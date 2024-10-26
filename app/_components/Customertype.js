@@ -40,7 +40,7 @@ const Customertype = ({ customerTypeList }) => {
                     alt='Slider Image'
                     className='h-[200px] w-[200px] object-contain rounded-t-lg'
                   />
-                  <div className='w-full bg-[#e42584] rounded-b-lg'>
+                  <div className='w-full bg-black dark:bg-gray-700 rounded-b-lg'>
                     <h2 className='m-2 text-sm text-center text-white'>{customer_type?.Name}</h2>
                   </div>
                 </motion.div>
