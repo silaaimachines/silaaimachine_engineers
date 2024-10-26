@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { ScrollArea, ScrollBar } from "../../components/ui/scroll-area";
-import Link from 'next/link'; // Import Link
+import Link from 'next/link';
 
 const FeaturedProducts = ({ featuredProductsList }) => {
     // Animation variants
@@ -38,7 +38,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                         const discountPercentage = calculateDiscountPercentage(BasePrice, DiscountPrice);
 
                         return (
-                            <Link key={index} href={`/products/${slug}`}> {/* Wrap with Link */}
+                            <Link key={index} href={`/product/${slug}`} passHref> {/* Update Link to navigate to /product/[slug] */}
                                 <motion.div
                                     initial="hidden"
                                     animate={isInView ? "visible" : "hidden"}
