@@ -5,11 +5,7 @@ import { ScrollArea, ScrollBar } from "../../components/ui/scroll-area";
 import Link from 'next/link';
 import GlobalApi from '../_utils/GlobalApi';
 
-const FeaturedProducts = () => {
-    const [featuredProducts, setFeaturedProducts] = useState([]);
-    const ref = React.useRef(null);
-    const isInView = useInView(ref, { triggerOnce: true, threshold: 0.2 });
-
+const FeaturedProducts = ({featuredProductsList}) => {
     // Animation variants
     const itemVariants = {
         hidden: { opacity: 0, scale: 0.9 },
@@ -22,26 +18,19 @@ const FeaturedProducts = () => {
         return Math.round(((basePrice - discountPrice) / basePrice) * 100);
     };
 
-    // Fetch all featured products on component mount
-    useEffect(() => {
-        const fetchFeaturedProducts = () => {
-            GlobalApi.getAllFeaturedProducts().then(res => {
-                setFeaturedProducts(res);
-              });
-        };
-        fetchFeaturedProducts();
-    }, []);
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { triggerOnce: true, threshold: 0.2 });
 
     return (
         <div ref={ref}>
-            <div className='flex items-center gap-1 py-2 md:py-5'>
-                <h1 className='font-semibold underline decoration-theme_color'>Featured</h1>
-                <h1 className='font-semibold'>Products</h1>
+            <div className='flex items-center gap-1 md:gap-2 py-2 md:py-5'>
+                <h1 className='font-semibold underline decoration-theme_color text-lg md:text-2xl'>Featured</h1>
+                <h1 className='font-semibold text-lg md:text-2xl'>Products</h1>
             </div>
 
             <ScrollArea className="w-full overflow-hidden">
                 <div className="flex space-x-1">
-                    {featuredProducts.map((product, index) => {
+                    {featuredProductsList.map((product, index) => {
                         const { BasePrice, DiscountPrice, Name, Images, slug } = product;
                         const discountPercentage = calculateDiscountPercentage(BasePrice, DiscountPrice);
 

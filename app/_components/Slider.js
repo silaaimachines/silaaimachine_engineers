@@ -32,7 +32,7 @@ function Slider({ sliderList }) {
           ))}
         </CarouselContent>
       </Carousel>
-      <div className='flex justify-between bg-gray-50 dark:bg-gray-800 gap-5 p-2 lg:px-80 md:px-40 lg:py-5 md:py-3 py-2'>
+      <div className='flex justify-center bg-gray-50 dark:bg-gray-900 gap-10 md:gap-24 lg:gap-60 lg:py-5 md:py-3 py-2 px-2'>
         <div className='flex items-center gap-2'>
           <ShieldCheck className='w-7 md:w-10 h-auto' />
           <div className='flex flex-col'>
