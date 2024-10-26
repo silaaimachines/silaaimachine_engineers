@@ -3,6 +3,8 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import GlobalApi from '../_utils/GlobalApi';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+
 
 const Store = () => {
   const [productList, setProductList] = useState([]);
@@ -53,11 +55,12 @@ const Store = () => {
     <div className="p-9">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 md:gap-5 lg:gap-4">
         {productList.map((product, index) => {
-          const { BasePrice, DiscountPrice, Name, Images } = product;
+          const { BasePrice, DiscountPrice, Name, Images,slug } = product;
           const discountPercentage = calculateDiscountPercentage(BasePrice, DiscountPrice);
           const isLastProduct = index === productList.length - 1;
 
           return (
+            <Link key={index} href={`/product/${slug}`} passHref>
             <motion.div
               key={index}
               ref={isLastProduct ? lastProductRef : null} // Set ref to last product for observer
@@ -109,6 +112,7 @@ const Store = () => {
                 </div>
               </div>
             </motion.div>
+            </Link>
           );
         })}
       </div>
