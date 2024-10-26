@@ -61,7 +61,7 @@ const Home = () => {
       <div>
         <Slider sliderList={sliderList} />
       </div>
-      <div className='px-5'>
+      <div className='px-2'>
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <FeaturedProducts featuredProductsList={featuredProductsList} />
         </div>

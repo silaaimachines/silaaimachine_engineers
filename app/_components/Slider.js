@@ -21,7 +21,7 @@ function Slider({ sliderList }) {
         <CarouselContent>
           {sliderList.map((slider, index) => (
             <CarouselItem key={index}>
-              <Image 
+              <Image
                 src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + slider?.Image?.url}
                 width={5000}
                 height={2500}
