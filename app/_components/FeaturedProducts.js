@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { ScrollArea, ScrollBar } from "../../components/ui/scroll-area";
 import Link from 'next/link';
-import GlobalApi from '../_utils/GlobalApi';
+
 
 const FeaturedProducts = ({featuredProductsList}) => {
     // Animation variants

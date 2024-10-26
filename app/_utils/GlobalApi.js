@@ -42,6 +42,9 @@ const getProductBySlug = (slug) =>
 const getCategoryBySlug = (slug) =>
     axiosClient.get(`/categories?filters[slug][$eq]=${slug}&populate=*`);
 
+const getCustomerTypeBySlug = (slug) =>
+    axiosClient.get(`/customer-types?filters[slug][$eq]=${slug}&populate=*`);
+
 const getAllCategories = () => fetchAllPaginatedData('/categories');
 const getAllSliders = () => fetchAllPaginatedData('/sliders');
 const getAllBrandSliders = () => fetchAllPaginatedData('/brands');
@@ -58,4 +61,5 @@ export default {
     getAllSliders,
     getAllBrandSliders,
     getAllCustomerTypes,
+    getCustomerTypeBySlug
 };
