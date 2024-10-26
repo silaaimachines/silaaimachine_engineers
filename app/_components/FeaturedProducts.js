@@ -64,7 +64,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                     </div>
                                     <div className='rounded-b-2xl w-full'>
                                         <div>
-                                            <h2 className='text-center text-white text-sm bg-theme_color p-1'>{Name}</h2>
+                                            <h2 className='text-center text-white text-sm bg-[#fd94b4] p-1'>{Name}</h2>
                                         </div>
                                         <div className="text-center flex items-center justify-center gap-3 m-2">
                                             {DiscountPrice ? (
