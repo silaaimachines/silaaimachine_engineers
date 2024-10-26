@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
 import { ScrollArea, ScrollBar } from "../../components/ui/scroll-area";
 import Link from 'next/link';
+import GlobalApi from '../_utils/GlobalApi';
 
-const FeaturedProducts = ({ featuredProductsList }) => {
+const FeaturedProducts = () => {
+    const [featuredProducts, setFeaturedProducts] = useState([]);
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { triggerOnce: true, threshold: 0.2 });
+
     // Animation variants
     const itemVariants = {
         hidden: { opacity: 0, scale: 0.9 },
         visible: { opacity: 1, scale: 1 },
     };
-
-    // Filter products where Featured is true
-    const filteredProducts = featuredProductsList.filter(product => product?.Featured);
 
     // Helper function to calculate discount percentage
     const calculateDiscountPercentage = (basePrice, discountPrice) => {
@@ -20,25 +22,31 @@ const FeaturedProducts = ({ featuredProductsList }) => {
         return Math.round(((basePrice - discountPrice) / basePrice) * 100);
     };
 
-    // Use the useInView hook to check visibility
-    const ref = React.useRef(null);
-    const isInView = useInView(ref, { triggerOnce: true, threshold: 0.2 }); // Animation triggers once, when 20% of the element is visible
+    // Fetch all featured products on component mount
+    useEffect(() => {
+        const fetchFeaturedProducts = () => {
+            GlobalApi.getAllFeaturedProducts().then(res => {
+                setFeaturedProducts(res);
+              });
+        };
+        fetchFeaturedProducts();
+    }, []);
 
     return (
         <div ref={ref}>
-            <div className='flex items-center gap-2'>
-                <h1 className='font-semibold underline decoration-theme_color text-lg md:text-3xl'>Featured</h1>
-                <h1 className='py-5 font-semibold text-md md:text-2xl'>Products </h1>
+            <div className='flex items-center gap-1 py-2 md:py-5'>
+                <h1 className='font-semibold underline decoration-theme_color'>Featured</h1>
+                <h1 className='font-semibold'>Products</h1>
             </div>
 
             <ScrollArea className="w-full overflow-hidden">
                 <div className="flex space-x-1">
-                    {filteredProducts.map((product, index) => {
-                        const { BasePrice, DiscountPrice, Name, Images, slug } = product; // Get slug from product
+                    {featuredProducts.map((product, index) => {
+                        const { BasePrice, DiscountPrice, Name, Images, slug } = product;
                         const discountPercentage = calculateDiscountPercentage(BasePrice, DiscountPrice);
 
                         return (
-                            <Link key={index} href={`/product/${slug}`} passHref> {/* Update Link to navigate to /product/[slug] */}
+                            <Link key={index} href={`/product/${slug}`} passHref>
                                 <motion.div
                                     initial="hidden"
                                     animate={isInView ? "visible" : "hidden"}
@@ -50,8 +58,8 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                         {Images && Images[0]?.url && (
                                             <Image
                                                 src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + Images[0].url}
-                                                width={200} // Adjust size as necessary
-                                                height={200} // Adjust size as necessary
+                                                width={200}
+                                                height={200}
                                                 alt={Images[0]?.alternativeText || 'Product Image'}
                                                 className='object-cover rounded-t-2xl w-full/2 h-[100px] md:h-[150px] lg:h-auto'
                                             />

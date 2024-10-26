@@ -26,32 +26,32 @@ const Home = () => {
   }, []);
 
   const getSliders = () => {
-    GlobalApi.getSliders().then(res => {
-      setSliderList(res.data.data);
+    GlobalApi.getAllSliders().then(res => {
+      setSliderList(res);
     });
   };
 
   const getBrandSliders = () => {
-    GlobalApi.getBrandSliders().then(res => {
-      setBrandSliderList(res.data.data);
+    GlobalApi.getAllBrandSliders().then(res => {
+      setBrandSliderList(res);
     });
   };
 
   const getCategories = () => {
-    GlobalApi.getCategory().then(res => {
-      setCategoryList(res.data.data);
+    GlobalApi.getAllCategories().then(res => {
+      setCategoryList(res);
     });
   };
 
   const getFeaturedProductList = () => {
-    GlobalApi.getProducts().then(res => {
-      setFeaturedProductsList(res.data.data);
+    GlobalApi.getAllFeaturedProducts().then(res => {
+      setFeaturedProductsList(res);
     });
   };
 
   const getCustomerTypeList = () => {
-    GlobalApi.getCustomerType().then(res => {
-      setCustomerTypeList(res.data.data);
+    GlobalApi.getAllCustomerTypes().then(res => {
+      setCustomerTypeList(res);
     });
   };
 
@@ -61,16 +61,13 @@ const Home = () => {
       <div>
         <Slider sliderList={sliderList} />
       </div>
-      <div className='flex justify-center'>
-        <BrandsSlider brandSliderList={brandSliderList} />
-      </div>
       <div className='px-5'>
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <FeaturedProducts featuredProductsList={featuredProductsList} />
         </div>
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <CategoryList categoryList={categoryList} />
-        </div>
+        </div>  
         <div className='py-5 lg:px-10 md:px-2 sm:px-1'>
           <Image
             src={banner_1} width={1000} height={500} alt='banner'
@@ -80,6 +77,9 @@ const Home = () => {
         <div className='py-2 px-2'>
           <Customertype customerTypeList={customerTypeList} />
         </div>
+        <div className='flex justify-center'>
+        <BrandsSlider brandSliderList={brandSliderList} />
+      </div>
       </div>
     </div>
   );

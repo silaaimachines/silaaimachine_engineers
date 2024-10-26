@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import GlobalApi from '@/app/_utils/GlobalApi';
+import Image from 'next/image';
 
 export default function ProductPage() {
   const params = useParams();
@@ -14,8 +15,10 @@ export default function ProductPage() {
     const fetchProduct = async () => {
       try {
         const response = await GlobalApi.getProductBySlug(params.slug);
-        if (response.data && response.data.length > 0) {
-          setProduct(response.data[0]); // Assuming the product is returned as an array
+        console.log(response.data.data);
+        
+        if (response) {
+          setProduct(response.data.data[0]);
         } else {
           setError('Product not found');
         }
@@ -41,12 +44,10 @@ export default function ProductPage() {
     <div>
       <h2>{product.Name}</h2>
       <p>{product.Description}</p>
-      <p>Price: {product.BasePrice}</p>
-      <p>Discount Price: {product.DiscountPrice}</p>
-      <p>Quantity: {product.Quantity}</p>
-      {product.Images && product.Images.length > 0 && (
-        <img src={product.Images[0].formats.thumbnail.url} alt={product.Name} />
-      )}
+      <p>Base Price: ₹{product.BasePrice}</p>
+      <p>Discount Price: ₹{product.DiscountPrice}</p>
+      <p>Quantity Available: {product.Quantity}</p>
+      <Image src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + product.Images[0]?.url} alt={product.Name} width={500} height={500} />
     </div>
   );
 }

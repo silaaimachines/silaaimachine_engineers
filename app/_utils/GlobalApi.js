@@ -4,11 +4,34 @@ const axiosClient=axios.create({
     baseURL:'http://192.168.1.10:1337/api'
 })
 
-const getCategory=()=>axiosClient.get('/categories?populate=*');
-const getSliders=()=>axiosClient.get('/sliders?populate=*');
-const getBrandSliders=()=>axiosClient.get('/brands?populate=*');
+const fetchAllPaginatedData = async (endpoint, filters = {}, pageSize = 25) => {
+    try {
+        // Build query parameters with filters and pagination
+        const filterParams = Object.entries(filters).map(
+            ([key, value]) => `filters[${key}][$eq]=${value}`
+        ).join('&');
 
-const getCustomerType=()=>axiosClient.get('/customer-types?populate=*');
+        const initialResponse = await axiosClient.get(
+            `${endpoint}?populate=*&pagination[page]=1&pagination[pageSize]=${pageSize}&${filterParams}`
+        );
+
+        const totalPageCount = initialResponse.data.meta.pagination.pageCount;
+        let allData = [...initialResponse.data.data];
+
+        // Loop through pages if more than one page is needed
+        for (let currentPage = 2; currentPage <= totalPageCount; currentPage++) {
+            const response = await axiosClient.get(
+                `${endpoint}?populate=*&pagination[page]=${currentPage}&pagination[pageSize]=${pageSize}&${filterParams}`
+            );
+            allData = [...allData, ...response.data.data];
+        }
+
+        return allData;
+    } catch (error) {
+        console.error(`Error fetching data from ${endpoint}:`, error);
+        return [];
+    }
+};
 
 const getProducts = (page = 1, pageSize = 25) =>
     axiosClient.get(`/products?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
@@ -19,13 +42,20 @@ const getProductBySlug = (slug) =>
 const getCategoryBySlug = (slug) =>
     axiosClient.get(`/categories?filters[slug][$eq]=${slug}&populate=*`);
 
+const getAllCategories = () => fetchAllPaginatedData('/categories');
+const getAllSliders = () => fetchAllPaginatedData('/sliders');
+const getAllBrandSliders = () => fetchAllPaginatedData('/brands');
+const getAllCustomerTypes = () => fetchAllPaginatedData('/customer-types');
+const getAllFeaturedProducts = () => fetchAllPaginatedData('/products', { Featured: true });
 
-export default{
-    getCategory,
-    getSliders,
-    getBrandSliders,
+
+export default {
     getProducts,
-    getCustomerType,
     getProductBySlug,
-    getCategoryBySlug
-}
+    getCategoryBySlug,
+    getAllFeaturedProducts,
+    getAllCategories,
+    getAllSliders,
+    getAllBrandSliders,
+    getAllCustomerTypes,
+};
