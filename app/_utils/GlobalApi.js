@@ -16,11 +16,16 @@ const getProducts = (page = 1, pageSize = 25) =>
 const getProductBySlug = (slug) =>
     axiosClient.get(`/products?filters[slug][$eq]=${slug}&populate=*`);
 
+const getCategoryBySlug = (slug) =>
+    axiosClient.get(`/categories?filters[slug][$eq]=${slug}&populate=*`);
+
+
 export default{
     getCategory,
     getSliders,
     getBrandSliders,
     getProducts,
     getCustomerType,
-    getProductBySlug
+    getProductBySlug,
+    getCategoryBySlug
 }
