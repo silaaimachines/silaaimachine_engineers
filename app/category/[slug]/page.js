@@ -132,6 +132,11 @@ const calculateDiscountPercentage = (basePrice, discountPrice) => {
 };
 
 // Helper function to format price
-const formatPrice = (price) => {
-  return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(price);
-};
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(price);
+  };

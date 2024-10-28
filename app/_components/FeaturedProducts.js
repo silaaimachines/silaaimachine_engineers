@@ -9,6 +9,16 @@ const FeaturedProducts = ({ featuredProductsList }) => {
         return Math.round(((basePrice - discountPrice) / basePrice) * 100);
     };
 
+    // Helper function to format price
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(price);
+    };
+
     return (
         <div>
             <div className="flex items-center gap-1 md:gap-2 py-2 md:py-5">
@@ -48,15 +58,15 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                         {DiscountPrice ? (
                                             <>
                                                 <p className="text-sm font-semibold">
-                                                    ₹{DiscountPrice}
+                                                    {formatPrice(DiscountPrice)}
                                                 </p>
                                                 <p className="text-xs line-through text-gray-300">
-                                                    ₹{BasePrice}
+                                                    {formatPrice(BasePrice)}
                                                 </p>
                                             </>
                                         ) : (
                                             <p className="font-semibold text-sm text-center">
-                                                ₹{BasePrice}
+                                                {formatPrice(BasePrice)}
                                             </p>
                                         )}
                                     </div>
