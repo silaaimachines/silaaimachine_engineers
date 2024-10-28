@@ -5,15 +5,28 @@ import Footer from "./_components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const montserrat = localFont({
+  src: [
+    { path: './fonts/Montserrat-Thin.ttf', weight: '100', style: 'normal' },
+    { path: './fonts/Montserrat-ThinItalic.ttf', weight: '100', style: 'italic' },
+    { path: './fonts/Montserrat-ExtraLight.ttf', weight: '200', style: 'normal' },
+    { path: './fonts/Montserrat-ExtraLightItalic.ttf', weight: '200', style: 'italic' },
+    { path: './fonts/Montserrat-Light.ttf', weight: '300', style: 'normal' },
+    { path: './fonts/Montserrat-LightItalic.ttf', weight: '300', style: 'italic' },
+    { path: './fonts/Montserrat-Regular.ttf', weight: '400', style: 'normal' },
+    { path: './fonts/Montserrat-Italic.ttf', weight: '400', style: 'italic' },
+    { path: './fonts/Montserrat-Medium.ttf', weight: '500', style: 'normal' },
+    { path: './fonts/Montserrat-MediumItalic.ttf', weight: '500', style: 'italic' },
+    { path: './fonts/Montserrat-SemiBold.ttf', weight: '600', style: 'normal' },
+    { path: './fonts/Montserrat-SemiBoldItalic.ttf', weight: '600', style: 'italic' },
+    { path: './fonts/Montserrat-Bold.ttf', weight: '700', style: 'normal' },
+    { path: './fonts/Montserrat-BoldItalic.ttf', weight: '700', style: 'italic' },
+    { path: './fonts/Montserrat-ExtraBold.ttf', weight: '800', style: 'normal' },
+    { path: './fonts/Montserrat-ExtraBoldItalic.ttf', weight: '800', style: 'italic' },
+    { path: './fonts/Montserrat-Black.ttf', weight: '900', style: 'normal' },
+    { path: './fonts/Montserrat-BlackItalic.ttf', weight: '900', style: 'italic' },
+  ],
+  variable: '--font-montserrat',
 });
 
 export const metadata = {
@@ -23,10 +36,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={montserrat.className} suppressHydrationWarning>
+      <body className="antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

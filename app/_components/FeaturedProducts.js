@@ -31,7 +31,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                             width={200}
                                             height={200}
                                             alt={Images[0]?.alternativeText || 'Product Image'}
-                                            className='object-cover rounded-t-2xl w-full h-auto'
+                                            className='object-cover rounded-t-2xl w-full h-auto p-3'
                                         />
                                     )}
                                     {DiscountPrice && (

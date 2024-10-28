@@ -21,7 +21,7 @@ const Customertype = ({ customerTypeList }) => {
                     width={200}
                     height={200}
                     alt={customer_type?.Image?.alternativeText || 'Customer Type Image'}
-                    className="object-cover rounded-t-2xl w-full h-auto"
+                    className="object-cover rounded-t-2xl w-full h-auto p-3"
                   />
                 )}
               </div>
