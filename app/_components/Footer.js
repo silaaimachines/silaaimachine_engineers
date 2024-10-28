@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="text-center md:text-left">
           <h2 className="font-semibold text-lg mb-4">Our Policies</h2>
           <ul className="space-y-2">
-            <li><Link href="privacy-policy" className="hover:text-pink-500">Privacy Policy</Link></li>
+            <li><Link href="/privacy-policy" className="hover:text-pink-500">Privacy Policy</Link></li>
             <li><a href="#" className="hover:text-pink-500">Terms of Service</a></li>
             <li><a href="#" className="hover:text-pink-500">Returns & Exchanges</a></li>
           </ul>
@@ -34,7 +34,7 @@ const Footer = () => {
             <li><a href="#" className="hover:text-pink-500">Home</a></li>
             <li><a href="#" className="hover:text-pink-500">About Us</a></li>
             <li><a href="#" className="hover:text-pink-500">Services</a></li>
-            <li><Link href="contact" className="hover:text-pink-500">Contact</Link></li>
+            <li><Link href="/contact" className="hover:text-pink-500">Contact</Link></li>
           </ul>
         </div>
       </div>
