@@ -1,8 +1,8 @@
 const { default: axios } = require("axios");
 
-const axiosClient=axios.create({
-    baseURL:'http://192.168.29.181:1337/api'
-})
+const axiosClient = axios.create({
+    baseURL: 'http://192.168.29.181:1337/api'
+});
 
 const fetchAllPaginatedData = async (endpoint, filters = {}, pageSize = 25) => {
     try {
@@ -45,12 +45,15 @@ const getCategoryBySlug = (slug) =>
 const getCustomerTypeBySlug = (slug) =>
     axiosClient.get(`/customer-types?filters[slug][$eq]=${slug}&populate=*`);
 
+// Modified function to enable pagination
+const getProductsForCategories = (slug, page = 1, pageSize = 25) =>
+    axiosClient.get(`/products?filters[category][slug][$eq]=${slug}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
+
 const getAllCategories = () => fetchAllPaginatedData('/categories');
 const getAllSliders = () => fetchAllPaginatedData('/sliders');
 const getAllBrandSliders = () => fetchAllPaginatedData('/brands');
 const getAllCustomerTypes = () => fetchAllPaginatedData('/customer-types');
 const getAllFeaturedProducts = () => fetchAllPaginatedData('/products', { Featured: true });
-
 
 export default {
     getProducts,
@@ -61,5 +64,6 @@ export default {
     getAllSliders,
     getAllBrandSliders,
     getAllCustomerTypes,
-    getCustomerTypeBySlug
+    getCustomerTypeBySlug,
+    getProductsForCategories
 };
