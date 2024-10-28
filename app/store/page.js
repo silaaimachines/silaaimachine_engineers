@@ -52,8 +52,8 @@ const Store = () => {
   };
 
   return (
-    <div className="p-9">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center gap-2 py-2 md:py-5">
+    <div className="p-3 md:p-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
         {productList.map((product, index) => {
           const { BasePrice, DiscountPrice, Name, Images,slug } = product;
           const discountPercentage = calculateDiscountPercentage(BasePrice, DiscountPrice);
@@ -71,7 +71,7 @@ const Store = () => {
               className="relative group"
             >
               <div className="absolute -inset-1 bg-theme_color rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative flex flex-col items-center justify-center border rounded-2xl transition-all duration-300 ease-in-out bg-white dark:bg-black shadow-sm cursor-pointer">
+              <div className="relative flex flex-col items-center justify-center border border-gray-300 rounded-2xl transition-all duration-300 ease-in-out bg-white dark:bg-black shadow-sm cursor-pointer">
                 <div className="relative z-10">
                   <div className="relative">
                     {Images && Images[0]?.url && (
@@ -80,29 +80,29 @@ const Store = () => {
                         width={400}
                         height={400}
                         alt={Name}
-                        className="rounded-t-2xl h-full w-full object-contain"
+                        className="rounded-t-2xl h-full w-full object-contain p-3"
                       />
                     )}
                     {DiscountPrice && (
-                      <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                      <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
                         {discountPercentage}% off
                       </div>
                     )}
                   </div>
                   <div className='rounded-b-2xl w-full'>
-                    <h2 className='text-center text-xs md:text-sm py-2'>{Name}</h2>
+                    <h2 className='text-xs md:text-sm px-3 py-2'>{Name}</h2>
                     <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
                       {DiscountPrice ? (
                         <>
-                          <p className="text-lg font-semibold text-center">
+                          <p className="text-sm font-semibold">
                             ₹ {DiscountPrice}
                           </p>
-                          <p className="text-sm line-through text-gray-500">
+                          <p className="text-xs line-through text-gray-300">
                             ₹ {BasePrice}
                           </p>
                         </>
                       ) : (
-                        <p className="text-lg font-semibold text-center">
+                        <p className="text-sm font-semibold text-center">
                           ₹ {BasePrice}
                         </p>
                       )}
