@@ -46,12 +46,17 @@ const Store = () => {
 
   // Helper function to format price
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(price);
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(price);
   };
 
   return (
     <div className="p-3 md:p-5">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
         {productList.map((product, index) => {
           const { BasePrice, DiscountPrice, Name, Images, slug } = product;
           const discountPercentage = calculateDiscountPercentage(BasePrice, DiscountPrice);

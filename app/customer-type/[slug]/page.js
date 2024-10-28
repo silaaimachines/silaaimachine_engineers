@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function CustomerTypePage() {
   const params = useParams();
   const [productList, setProductList] = useState([]);
-  const [customerType, setCustomerType] = useState(null);
+  const [customerType, setCustomerType] = useState({});
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [loading, setLoading] = useState(true);
@@ -67,8 +67,14 @@ export default function CustomerTypePage() {
     return Math.round(((basePrice - discountPrice) / basePrice) * 100);
   };
 
+  // Helper function to format price
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(price);
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(price);
   };
 
   if (loading && !productList.length) return <div>Loading...</div>;
