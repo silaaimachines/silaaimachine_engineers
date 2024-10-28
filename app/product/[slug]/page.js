@@ -63,12 +63,12 @@ export default function ProductPage() {
   }
 
   return (
-    <div className="p-6 space-y-8">
+    <div className="p-5 md:p-10  lg:px-20">
       {/* Product Details */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-10">
         <div className="flex justify-center items-center">
           {product.Images && product.Images.length > 0 ? (
-            <Carousel className="w-full max-w-lg">
+            <Carousel className="w-full">
               <CarouselPrevious>Previous</CarouselPrevious>
               <CarouselContent>
                 {product.Images.map((image, index) => (
@@ -78,7 +78,7 @@ export default function ProductPage() {
                       alt={`${product.Name} image ${index + 1}`}
                       width={500}
                       height={500}
-                      className="object-cover"
+                      className="object-cover w-full h-auto"
                     />
                   </CarouselItem>
                 ))}
@@ -90,8 +90,8 @@ export default function ProductPage() {
           )}
         </div>
         <div className="space-y-4">
-          <h1 className="text-2xl font-bold">{product.Name}</h1>
-          <p className="text-gray-600">{product.Description}</p>
+          <h1 className="text-lg md:text-2xl font-bold">{product.Name}</h1>
+          <p className="text-white">{product.Description}</p>
 
           {/* Conditional Price Display */}
           <div className="flex justify-start items-center gap-2 text-xl font-semibold">
@@ -108,10 +108,10 @@ export default function ProductPage() {
             )}
           </div>
 
-          <p className="text-sm text-red-500">
+        {/*   <p className="text-sm text-red-500">
             {product.Quantity > 0 ? `In Stock: ${product.Quantity}` : 'Out of Stock'}
-          </p>
-          <div className='flex justify-center items-center gap-2'>
+          </p> */}
+          <div className='flex justify-center items-center gap-2 pb-10'>
             <Button className="flex items-center " variant="outline">
               Buy Now
               {theme === 'dark' ? (
@@ -128,7 +128,7 @@ export default function ProductPage() {
       </div>
 
       {/* Related Products */}
-      <div className="space-y-4">
+      <div className="space-y-4 ">
         <h2 className="text-xl font-bold">Related Products</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 sm:gap-2">
           {relatedProducts.map((relatedProduct, index) => (

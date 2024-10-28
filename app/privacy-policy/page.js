@@ -4,9 +4,12 @@ import React from 'react';
 
 const PrivacyPolicy = () => {
   return (
-    <div className="privacy-policy">
-      <h1>Privacy Policy</h1>
-      <p>Last updated October 26, 2024</p>
+    <div className="privacy-policy ">
+      <h1 className='text-2xl md:text-4xl font-semibold text-center mb-5 bg-black text-white w-full py-10 md:py-20'>Privacy Policy</h1>
+      <div className="container mx-auto px-5 md:px-10 lg:px-20">
+
+      
+      <p className='text-lg font-semibold  mb-5'>Last updated October 26, 2024</p>
       <p>
         This Privacy Notice for SilaamachinesEnginners ("we," "us," or "our"),
         describes how and why we might access, collect, store, use, and/or share
@@ -26,14 +29,14 @@ const PrivacyPolicy = () => {
         you still have any questions or concerns, please contact us at{' '}
         <a href="mailto:satya.silaaimachines@gmail.com">satya.silaaimachines@gmail.com</a>.
       </p>
-      <h2>Summary of Key Points</h2>
+      <h2 className='text-lg font-semibold  mb-5 py-3'>Summary of Key Points</h2>
       <p>
         This summary provides key points from our Privacy Notice, but you can
         find out more details about any of these topics by using our table of
         contents below to find the section you are looking for.
       </p>
 
-      <h3>Table of Contents</h3>
+      <h3 className='text-lg font-semibold  mb-5 py-3'>Table of Contents</h3>
       <ol>
         <li>What information do we collect?</li>
         <li>How do we process your information?</li>
@@ -80,9 +83,9 @@ const PrivacyPolicy = () => {
       <p>Yes, we will update this notice as necessary to stay compliant with relevant laws...</p>
 
       <h3>11. How Can You Contact Us About This Notice?</h3>
-      <p>
+      <p className=' font-semibold  mb-5 py-3'>
         If you have questions or comments about this notice, you may email us at{' '}
-        <a href="mailto:satya.silaaimachines@gmail.com">satya.silaaimachines@gmail.com</a> or contact us by post at:
+        <a className='text-blue-500' href="mailto:satya.silaaimachines@gmail.com">satya.silaaimachines@gmail.com</a> <br></br>or contact us by post at:
       </p>
       <address>
         SilaamachinesEnginners<br />
@@ -92,10 +95,11 @@ const PrivacyPolicy = () => {
         India
       </address>
 
-      <h3>12. How Can You Review, Update, or Delete the Data We Collect from You?</h3>
+      <h3 className=' font-semibold  mb-5 py-3'>12. How Can You Review, Update, or Delete the Data We Collect from You?</h3>
       <p>Based on the applicable laws of your country, you may have the right to request access...</p>
-
+       
       <p>Last updated October 26, 2024.</p>
+    </div>
     </div>
   );
 };
