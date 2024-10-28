@@ -54,7 +54,7 @@ export default function ProductPage() {
   return (
     <div className="p-6 space-y-8">
       {/* Product Details */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="flex justify-center items-center">
           {product.Images && product.Images[0] && (
             <Image
