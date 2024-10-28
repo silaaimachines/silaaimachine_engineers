@@ -10,7 +10,7 @@ const Customertype = ({ customerTypeList }) => {
         <h1 className="font-semibold underline decoration-red-500 text-lg md:text-2xl">Customer-Type</h1>
       </div>
 
-      <div className="grid grid-cols-3 lg:grid-cols-6 gap-1">
+      <div className="grid grid-cols-3 lg:grid-cols-6 gap-1 md:gap-3 lg:gap-5">
         {customerTypeList.slice(0, 6).map((customer_type, index) => (
           <Link key={index} href={`/customer-type/${customer_type.slug}`} passHref>
             <div className="flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl border shrink-0 cursor-pointer hover:border-[#e42584] w-full h-auto shadow-sm">

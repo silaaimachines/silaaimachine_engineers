@@ -16,7 +16,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                 <h1 className="font-semibold text-lg md:text-2xl">Products</h1>
             </div>
 
-            <div className="grid grid-cols-3 lg:grid-cols-6 gap-1">
+            <div className="grid grid-cols-3 lg:grid-cols-6 gap-1 md:gap-3 lg:gap-5">
                 {featuredProductsList.slice(0, 6).map((product, index) => {
                     const { BasePrice, DiscountPrice, Name, Images, slug } = product;
                     const discountPercentage = calculateDiscountPercentage(BasePrice, DiscountPrice);

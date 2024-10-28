@@ -44,6 +44,11 @@ const Store = () => {
     return Math.round(((basePrice - discountPrice) / basePrice) * 100);
   };
 
+  // Helper function to format price
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(price);
+  };
+
   return (
     <div className="p-3 md:p-5">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
@@ -55,7 +60,6 @@ const Store = () => {
           return (
             <Link key={index} href={`/product/${slug}`} passHref>
               <div
-                key={index}
                 ref={isLastProduct ? lastProductRef : null}
                 className="relative group"
               >
@@ -83,11 +87,11 @@ const Store = () => {
                       <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
                         {DiscountPrice ? (
                           <>
-                            <p className="text-sm font-semibold">₹ {DiscountPrice}</p>
-                            <p className="text-xs line-through text-gray-300">₹ {BasePrice}</p>
+                            <p className="text-sm font-semibold">{formatPrice(DiscountPrice)}</p>
+                            <p className="text-xs line-through text-gray-300">{formatPrice(BasePrice)}</p>
                           </>
                         ) : (
-                          <p className="text-sm font-semibold text-center">₹ {BasePrice}</p>
+                          <p className="text-sm font-semibold text-center">{formatPrice(BasePrice)}</p>
                         )}
                       </div>
                     </div>

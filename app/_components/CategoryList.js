@@ -10,7 +10,7 @@ const CategoryList = ({ categoryList }) => {
         <h1 className="font-semibold underline decoration-theme_color text-lg md:text-3xl">Categories</h1>
       </div>
 
-      <div className="grid grid-cols-3 lg:grid-cols-6 gap-1">
+      <div className="grid grid-cols-3 lg:grid-cols-6 gap-1 md:gap-3 lg:gap-5">
         {categoryList.map((category, index) => (
           <Link key={index} href={`/category/${category.slug}`} passHref>
             <div className="flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl cursor-pointer border hover:border-theme_color w-full h-auto">
