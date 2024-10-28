@@ -7,7 +7,7 @@ const CategoryList = ({ categoryList }) => {
     <div>
       <div className="flex items-center gap-2 py-2 md:py-5">
         <h1 className="font-semibold text-md md:text-2xl">Shop by</h1>
-        <h1 className="font-semibold underline decoration-theme_color text-lg md:text-3xl">Categories</h1>
+        <h1 className="font-semibold underline decoration-theme_color text-lg md:text-2xl">Categories</h1>
       </div>
 
       <div className="grid grid-cols-3 lg:grid-cols-6 gap-1 md:gap-3 lg:gap-5">
