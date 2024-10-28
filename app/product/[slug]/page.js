@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import GlobalApi from '@/app/_utils/GlobalApi';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -19,6 +21,8 @@ export default function ProductPage() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const { theme } = useTheme(); // Get the current theme (light or dark)
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -107,7 +111,20 @@ export default function ProductPage() {
           <p className="text-sm text-red-500">
             {product.Quantity > 0 ? `In Stock: ${product.Quantity}` : 'Out of Stock'}
           </p>
+          <div className='flex justify-center items-center gap-2'>
+            <Button className="flex items-center " variant="outline">
+              Buy Now
+              {theme === 'dark' ? (
+                <Image src="/amazon-icon-dark.svg" width={15} height={15} alt="Amazon Icon Dark" />
+              ) : (
+                <Image src="/amazon-icon.svg" width={15} height={15} alt="Amazon Icon" />
+              )}
+            </Button>
+          </div>
+
+
         </div>
+
       </div>
 
       {/* Related Products */}
@@ -117,10 +134,10 @@ export default function ProductPage() {
           {relatedProducts.map((relatedProduct, index) => (
             <Link key={index} href={`/product/${relatedProduct.slug}`} passHref>
               <div className="group relative flex flex-col items-center justify-center border border-gray-300 rounded-2xl transition-all duration-300 ease-in-out bg-white dark:bg-black shadow-sm cursor-pointer hover:shadow-lg">
-                
+
                 {/* Background hover effect */}
                 <div className="absolute -inset-1 bg-theme_color rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                
+
                 {/* Main content */}
                 <div className="relative z-10 flex flex-col items-center bg-white dark:bg-black rounded-2xl">
                   <div className="relative">
@@ -133,7 +150,7 @@ export default function ProductPage() {
                         className="rounded-t-2xl h-full w-full object-contain p-3"
                       />
                     )}
-                    
+
                     {/* Discount badge */}
                     {relatedProduct.DiscountPrice && (
                       <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
