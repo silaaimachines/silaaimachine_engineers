@@ -20,7 +20,7 @@ const CategoryList = ({ categoryList }) => {
                   width={200}
                   height={200}
                   alt={category?.Name || 'Category Image'}
-                  className="object-cover rounded-t-2xl w-full h-auto"
+                  className='object-cover rounded-t-2xl w-full h-auto p-3'
                 />
               </div>
               <div className="rounded-b-2xl w-full bg-black dark:bg-gray-700 py-2">

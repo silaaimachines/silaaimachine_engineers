@@ -31,18 +31,18 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                             width={200}
                                             height={200}
                                             alt={Images[0]?.alternativeText || 'Product Image'}
-                                            className="object-cover rounded-t-2xl w-full h-auto"
+                                            className='object-cover rounded-t-2xl w-full h-auto'
                                         />
                                     )}
                                     {DiscountPrice && (
-                                        <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                                        <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full ">
                                             {discountPercentage}% off
                                         </div>
                                     )}
                                 </div>
                                 <div className="rounded-b-2xl w-full">
                                     <div>
-                                        <h2 className="text-center text-xs md:text-sm py-2">{Name}</h2>
+                                        <h2 className='text-center text-xs md:text-sm py-2'>{Name}</h2>
                                     </div>
                                     <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
                                         {DiscountPrice ? (
@@ -50,12 +50,12 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                                 <p className="text-sm font-semibold">
                                                     ₹{DiscountPrice}
                                                 </p>
-                                                <p className="text-xs line-through">
+                                                <p className="text-xs line-through text-gray-300">
                                                     ₹{BasePrice}
                                                 </p>
                                             </>
                                         ) : (
-                                            <p className="font-semibold text-sm">
+                                            <p className="font-semibold text-sm text-center">
                                                 ₹{BasePrice}
                                             </p>
                                         )}
