@@ -113,7 +113,7 @@ export default function ProductPage() {
           </p>
           <div className='flex justify-center items-center gap-2'>
             <Button className="flex items-center " variant="outline">
-              Buy on Amazon
+              Buy Now
               {theme === 'dark' ? (
                 <Image src="/amazon-icon-dark.svg" width={15} height={15} alt="Amazon Icon Dark" />
               ) : (
