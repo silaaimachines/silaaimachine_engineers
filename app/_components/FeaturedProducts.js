@@ -1,30 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
 const FeaturedProducts = ({ featuredProductsList }) => {
-    // Animation variants
-    const itemVariants = {
-        hidden: { opacity: 0, scale: 0.9, filter: 'blur(8px)'},
-        visible: { opacity: 1, scale: 1, filter: 'blur(0px)'},
-    };
-
     // Helper function to calculate discount percentage
     const calculateDiscountPercentage = (basePrice, discountPrice) => {
         if (!basePrice || !discountPrice) return 0;
         return Math.round(((basePrice - discountPrice) / basePrice) * 100);
     };
 
-    const ref = React.useRef(null);
-    const isInView = useInView(ref, { triggerOnce: true, threshold: 0.2 });
-
     return (
-        <div ref={ref}>
-            <div className='flex items-center gap-1 md:gap-2 py-2 md:py-5'>
-                <h1 className='font-semibold underline decoration-theme_color text-lg md:text-2xl'>Featured</h1>
-                <h1 className='font-semibold text-lg md:text-2xl'>Products</h1>
+        <div>
+            <div className="flex items-center gap-1 md:gap-2 py-2 md:py-5">
+                <h1 className="font-semibold underline decoration-theme_color text-lg md:text-2xl">Featured</h1>
+                <h1 className="font-semibold text-lg md:text-2xl">Products</h1>
             </div>
 
             <div className="grid grid-cols-3 lg:grid-cols-6 gap-1">
@@ -34,13 +23,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
 
                     return (
                         <Link key={index} href={`/product/${slug}`} passHref>
-                            <motion.div
-                                initial="hidden"
-                                animate={isInView ? "visible" : "hidden"}
-                                variants={itemVariants}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className='flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl shrink-0 cursor-pointer border hover:border-theme_color w-full h-auto'
-                            >
+                            <div className="flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl shrink-0 cursor-pointer border hover:border-theme_color w-full h-auto">
                                 <div className="relative">
                                     {Images && Images[0]?.url && (
                                         <Image
@@ -48,7 +31,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                             width={200}
                                             height={200}
                                             alt={Images[0]?.alternativeText || 'Product Image'}
-                                            className='object-cover rounded-t-2xl w-full h-auto'
+                                            className="object-cover rounded-t-2xl w-full h-auto"
                                         />
                                     )}
                                     {DiscountPrice && (
@@ -57,9 +40,9 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                         </div>
                                     )}
                                 </div>
-                                <div className='rounded-b-2xl w-full'>
+                                <div className="rounded-b-2xl w-full">
                                     <div>
-                                        <h2 className='text-center text-xs md:text-sm py-2'>{Name}</h2>
+                                        <h2 className="text-center text-xs md:text-sm py-2">{Name}</h2>
                                     </div>
                                     <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
                                         {DiscountPrice ? (
@@ -78,7 +61,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                         )}
                                     </div>
                                 </div>
-                            </motion.div>
+                            </div>
                         </Link>
                     );
                 })}
