@@ -91,7 +91,7 @@ export default function ProductPage() {
         </div>
         <div className="space-y-4">
           <h1 className="text-lg md:text-2xl font-bold">{product.Name}</h1>
-          <p className="text-white">{product.Description}</p>
+          <p >{product.Description}</p>
 
           {/* Conditional Price Display */}
           <div className="flex justify-start items-center gap-2 text-xl font-semibold">
