@@ -7,7 +7,6 @@ import BrandsSlider from './_components/BrandsSlider';
 import CategoryList from './_components/CategoryList';
 import FeaturedProducts from './_components/FeaturedProducts';
 import Customertype from './_components/Customertype';
-import banner_1 from './public/banner/banner.webp';
 import Image from 'next/image';
 
 const Home = () => {
@@ -65,15 +64,15 @@ const Home = () => {
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <FeaturedProducts featuredProductsList={featuredProductsList} />
         </div>
-        <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
-          <CategoryList categoryList={categoryList} />
-        </div>  
         <div className='py-5 lg:px-10 md:px-2 sm:px-1'>
           <Image
-            src={banner_1} width={1000} height={500} alt='banner'
+            src='/Banner1.gif' width={1000} height={500} alt='banner'
             className='w-full h-auto'
           />
         </div>
+        <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
+          <CategoryList categoryList={categoryList} />
+        </div> 
         <div className='py-5 lg:px-10 md:px-2 sm:px-1'>
           <Customertype customerTypeList={customerTypeList} />
         </div>

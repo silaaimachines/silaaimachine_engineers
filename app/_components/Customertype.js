@@ -10,7 +10,7 @@ const Customertype = ({ customerTypeList }) => {
         <h1 className="font-semibold underline decoration-red-500 text-lg md:text-2xl">Customer-Type</h1>
       </div>
 
-      <div className="grid grid-cols-3 lg:grid-cols-6 gap-1 md:gap-3 lg:gap-5">
+      <div className="grid grid-cols-3 lg:grid-cols-5 gap-1">
         {customerTypeList.slice(0, 6).map((customer_type, index) => (
           <Link key={index} href={`/customer-type/${customer_type.slug}`} passHref>
             <div className="flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl border shrink-0 cursor-pointer hover:border-[#e42584] w-full h-auto shadow-sm">
@@ -21,12 +21,12 @@ const Customertype = ({ customerTypeList }) => {
                     width={200}
                     height={200}
                     alt={customer_type?.Image?.alternativeText || 'Customer Type Image'}
-                    className="object-cover rounded-t-2xl w-full h-auto p-3"
+                    className="object-cover rounded-t-2xl w-full h-auto"
                   />
                 )}
               </div>
               <div className="w-full bg-black dark:bg-gray-700 rounded-b-2xl">
-                <h2 className="text-center text-xs md:text-sm py-2 text-white">{customer_type?.Name}</h2>
+                <h2 className="text-center text-sm md:text-lg py-2 text-white">{customer_type?.Name}</h2>
               </div>
             </div>
           </Link>
