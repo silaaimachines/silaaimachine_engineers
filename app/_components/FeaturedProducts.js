@@ -54,7 +54,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                     <div>
                                         <h2 className='text-center text-xs md:text-sm py-2'>{Name}</h2>
                                     </div>
-                                    <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
+                                    <div className="text-center flex items-center justify-center gap-1 md:gap-2 lg:gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
                                         {DiscountPrice ? (
                                             <>
                                                 <p className="text-sm font-semibold">

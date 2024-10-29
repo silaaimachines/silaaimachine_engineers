@@ -5,7 +5,7 @@ import Image from 'next/image';
 const Customertype = ({ customerTypeList }) => {
   return (
     <div>
-      <div className="flex items-center gap-1 md:gap-2 py-2 md:py-5 px-5">
+      <div className="flex items-center gap-1 md:gap-2 py-2 md:py-5">
         <h1 className="font-semibold text-lg md:text-2xl">Shop by</h1>
         <h1 className="font-semibold underline decoration-red-500 text-lg md:text-2xl">Customer-Type</h1>
       </div>
