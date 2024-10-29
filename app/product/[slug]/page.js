@@ -54,6 +54,16 @@ export default function ProductPage() {
     fetchProduct();
   }, [params.slug]);
 
+  // Helper function to format price
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(price);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -99,14 +109,14 @@ export default function ProductPage() {
           <div className="flex justify-start items-center gap-2 text-xl font-semibold">
             {product.DiscountPrice ? (
               <>
-                <p className="text-xl font-semibold">₹{product.DiscountPrice}</p>
-                <p className="line-through text-gray-500">₹{product.BasePrice}</p>
+                <p className="text-xl font-semibold">{formatPrice(product.DiscountPrice)}</p>
+                <p className="line-through text-gray-500">{formatPrice(product.BasePrice)}</p>
                 <p className="ml-2 text-green-500 text-sm">
                   ({Math.round(((product.BasePrice - product.DiscountPrice) / product.BasePrice) * 100)}% off)
                 </p>
               </>
             ) : (
-              <>₹{product.BasePrice}</>
+              <>{formatPrice(product.BasePrice)}</>
             )}
           </div>
 
@@ -164,14 +174,14 @@ export default function ProductPage() {
                   {/* Product name and price */}
                   <div className="rounded-b-2xl w-full">
                     <h3 className="text-xs md:text-sm px-3 py-2">{relatedProduct.Name}</h3>
-                    <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
+                    <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-theme_color py-2 rounded-b-2xl">
                       {relatedProduct.DiscountPrice ? (
                         <>
-                          <p className="text-sm font-semibold">{`₹${relatedProduct.DiscountPrice}`}</p>
-                          <p className="text-xs line-through text-gray-300">{`₹${relatedProduct.BasePrice}`}</p>
+                          <p className="text-sm font-semibold">{formatPrice(relatedProduct.DiscountPrice)}</p>
+                          <p className="text-xs line-through text-gray-300">{formatPrice(relatedProduct.BasePrice)}</p>
                         </>
                       ) : (
-                        <p className="text-sm font-semibold text-center">{`₹${relatedProduct.BasePrice}`}</p>
+                        <p className="text-sm font-semibold text-center">{formatPrice(relatedProduct.BasePrice)}</p>
                       )}
                     </div>
                   </div>
