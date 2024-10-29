@@ -88,7 +88,7 @@ export default function ProductPage() {
                       alt={`${product.Name} image ${index + 1}`}
                       width={500}
                       height={500}
-                      className="object-cover w-full h-auto"
+                      className="object-cover w-full h-auto rounded-2xl"
                     />
                   </CarouselItem>
                 ))}
