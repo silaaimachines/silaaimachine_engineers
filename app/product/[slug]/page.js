@@ -65,11 +65,11 @@ export default function ProductPage() {
   return (
     <div className="p-5 md:p-10  lg:px-20">
       {/* Product Details */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-9 pb-10">
         <div className="flex justify-center items-center">
           {product.Images && product.Images.length > 0 ? (
             <Carousel className="w-full">
-              <CarouselPrevious>Previous</CarouselPrevious>
+            
               <CarouselContent>
                 {product.Images.map((image, index) => (
                   <CarouselItem key={index} >
@@ -83,7 +83,9 @@ export default function ProductPage() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselNext>Next</CarouselNext>
+             <CarouselPrevious/>
+             <CarouselNext/>
+
             </Carousel>
           ) : (
             <p>No images available</p>
