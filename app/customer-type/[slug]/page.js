@@ -10,47 +10,50 @@ export default function CustomerTypePage() {
   const [productList, setProductList] = useState([]);
   const [customerType, setCustomerType] = useState({});
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(2);
+  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  
   const observer = useRef();
 
-  useEffect(() => {
-    const fetchCustomerType = async () => {
-      try {
-        const response = await GlobalApi.getCustomerTypeBySlug(params.slug);
-        if (response && response.data.data.length > 0) {
-          setCustomerType(response.data.data[0]);
-        } else {
-          setError('No customer type found');
-        }
-      } catch (err) {
-        setError('Error fetching customer type');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCustomerType();
-  }, [params.slug]);
+ 
 
   useEffect(() => {
-    if (customerType) {
+   
       getProductList(page);
-    }
-  }, [customerType, page]);
+      fetchCustomerTypeDetails();
+    
+  }, [params.slug, page]);
 
-  const getProductList = (currentPage) => {
+  const getProductList =async (currentPage) => {
     setLoading(true);
-    GlobalApi.getProductsForCustomerType(params.slug, currentPage)
-      .then((res) => {
-        setProductList((prevList) => [...prevList, ...res.data.data]);
-        if (res.data.meta && res.data.meta.pagination) {
-          setTotalPages(res.data.meta.pagination.pageCount);
-        }
-      })
-      .finally(() => setLoading(false));
+    try{
+      const response = await GlobalApi.getProductsForCustomerType(params.slug,currentPage);
+      setProductList((prev) => [...prev, ...response.data.data]);
+      if (response.data.meta.pagination) {
+        setTotalPages(response.data.meta.pagination.pageCount);
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }finally {
+      setLoading(false);
+    }
+    
   };
+
+  const fetchCustomerTypeDetails = async () => {
+    try {
+      const response = await GlobalApi.getProductsForCustomerType(params.slug);
+      if (response.data.data.length) {
+        setCustomerType(response.data.data[0]);
+      } else {
+        console.error('No customer type found');
+      }
+    } catch (error) {
+      console.error('Error fetching customer type details:', error);
+    }
+  };
+
+      
 
   const lastProductRef = useCallback((node) => {
     if (observer.current) observer.current.disconnect();
@@ -77,8 +80,7 @@ export default function CustomerTypePage() {
     }).format(price);
   };
 
-  if (loading && !productList.length) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+ 
 
   return (
     <div className="p-3 md:p-5">
