@@ -13,7 +13,7 @@ const Customertype = ({ customerTypeList }) => {
       <div className="grid grid-cols-3 lg:grid-cols-5 gap-1">
         {customerTypeList.slice(0, 6).map((customer_type, index) => (
           <Link key={index} href={`/customer-type/${customer_type.slug}`} passHref>
-            <div className="flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl border shrink-0 cursor-pointer hover:border-[#e42584] w-full h-auto shadow-sm">
+            <div className="flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl border shrink-0 cursor-pointer hover:border-theme_color w-full h-auto shadow-sm">
               <div className="relative">
                 {customer_type?.Image?.url && (
                   <Image
