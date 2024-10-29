@@ -51,6 +51,9 @@ const getProductsForCategories = (slug, page = 1, pageSize = 25) =>
 const getProductsForCustomerType = (slug, page = 1, pageSize = 25) =>
     axiosClient.get(`/products?filters[customer_type][slug][$eq]=${slug}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
 
+const getProductsForBrands = (slug, page = 1, pageSize = 25) =>
+    axiosClient.get(`/products?filters[brand][slug][$eq]=${slug}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
+
 const getAllCategories = () => fetchAllPaginatedData('/categories');
 const getAllSliders = () => fetchAllPaginatedData('/sliders');
 const getAllBrandSliders = () => fetchAllPaginatedData('/brands');
@@ -68,5 +71,6 @@ export default {
     getAllCustomerTypes,
     getCustomerTypeBySlug,
     getProductsForCategories,
-    getProductsForCustomerType
+    getProductsForCustomerType,
+    getProductsForBrands
 };
