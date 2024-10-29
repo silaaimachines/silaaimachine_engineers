@@ -25,8 +25,8 @@ const Customertype = ({ customerTypeList }) => {
                   />
                 )}
               </div>
-              <div className="w-full bg-black dark:bg-gray-700 rounded-b-2xl">
-                <h2 className="text-center text-sm md:text-lg py-2 text-white">{customer_type?.Name}</h2>
+              <div className="w-full bg-theme_color rounded-b-2xl">
+                <h2 className="text-center text-sm py-2 text-white">{customer_type?.Name}</h2>
               </div>
             </div>
           </Link>
