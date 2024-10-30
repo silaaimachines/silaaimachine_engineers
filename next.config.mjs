@@ -2,7 +2,7 @@
 const nextConfig = {
     reactStrictMode: false,
     images: {
-        domains: ['silaaimachines.com', 'localhost', '192.168.29.181']
+        domains: ['silaaimachines.com', 'localhost', '192.168.29.181', 'images.unsplash.com']
     },
     /* output: 'export' */
 };
