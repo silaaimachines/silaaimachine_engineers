@@ -16,7 +16,7 @@ function BrandsSlider({ brandSliderList }) {
             <Carousel
             plugins={[
                 Autoplay({
-                delay: 1000,
+                delay: 2000,
                 }),
             ]}>
                 <CarouselContent>
@@ -26,6 +26,7 @@ function BrandsSlider({ brandSliderList }) {
                             width={75}
                             height={50}
                             alt={`${brand?.Name} Logo`}
+                            className='w-[50px] h-auto md:w-[75px]'
                             />
                         </CarouselItem>
                     ))}

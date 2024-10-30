@@ -60,6 +60,9 @@ const Home = () => {
       <div>
         <Slider sliderList={sliderList} />
       </div>
+      <div className='flex justify-center py-2'>
+        <BrandsSlider brandSliderList={brandSliderList} />
+      </div>
       <div className='px-2'>
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <FeaturedProducts featuredProductsList={featuredProductsList} />
@@ -76,12 +79,6 @@ const Home = () => {
 
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <CategoryList categoryList={categoryList} />
-        </div>
-
-
-
-        <div className='flex justify-center'>
-          <BrandsSlider brandSliderList={brandSliderList} />
         </div>
       </div>
     </div>
