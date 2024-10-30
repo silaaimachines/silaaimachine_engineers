@@ -70,15 +70,19 @@ const Home = () => {
             className='w-full h-auto'
           />
         </div>
-        <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
-          <CategoryList categoryList={categoryList} />
-        </div> 
         <div className='py-5 lg:px-10 md:px-2 sm:px-1'>
           <Customertype customerTypeList={customerTypeList} />
         </div>
+
+        <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
+          <CategoryList categoryList={categoryList} />
+        </div>
+
+
+
         <div className='flex justify-center'>
-        <BrandsSlider brandSliderList={brandSliderList} />
-      </div>
+          <BrandsSlider brandSliderList={brandSliderList} />
+        </div>
       </div>
     </div>
   );
