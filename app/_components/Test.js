@@ -1,17 +1,32 @@
-import { Button } from '@/components/ui/button'
-import React from 'react'
+"use client";
 
-const Test = () => {
+import { motion } from "framer-motion";
+import React from "react";
+import { AuroraBackground } from "@/components/ui/aurora-background"; // Adjust the import path as needed
+
+export default function AuroraBackgroundDemo() {
   return (
-    <div className=' flex justify-center items-center bg-black h-screen'>
-       <div className='relative group' >
-        <div className='absolute -inset-0.5 text-black bg-gradient-to-tr from-[#a2c4c7] to-[#d78eb5]
-         rounded-lg blur-md opacity-0 group-hover:opacity-100 transition duration-10000 group-hover:duration-12000'></div>
-       <Button className="relative  border-black text-white hover:text-black  ">king</Button>
-       </div>
-    </div>
-   
-  )
+    <AuroraBackground>
+      <motion.div
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+        className="relative flex flex-col gap-4 items-center justify-center px-4"
+      >
+        <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
+          
+        </div>
+        <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
+          And this, is chemical burn.
+        </div>
+        <button className="bg-black dark:bg-white rounded-full w-fit text-white dark:text-black px-4 py-2">
+          Debug now
+        </button>
+      </motion.div>
+    </AuroraBackground>
+  );
 }
-
-export default Test
