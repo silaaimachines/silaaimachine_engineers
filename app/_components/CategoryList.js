@@ -1,13 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import LetterPullup from '@/components/ui/letter-pullup';
+
 
 const CategoryList = ({ categoryList }) => {
   return (
     <div>
       <div className="flex items-center gap-1 md:gap-2 py-2 md:py-5">
-        <h1 className="font-semibold text-lg md:text-2xl">Shop by</h1>
-        <h1 className="font-semibold underline decoration-red-500 text-lg md:text-2xl">Categories</h1>
+      <LetterPullup words={"Shop by Categories"} delay={0.05} />
+        
       </div>
 
       <div className="grid grid-cols-3 lg:grid-cols-5 gap-1">

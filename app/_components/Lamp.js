@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { LampContainer } from "../ui/lamp"; // Ensure this import path is correct
+import { LampContainer } from "@/components/ui/lamp";
 
 export default function LampDemo() {
   return (

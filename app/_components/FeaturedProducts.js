@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import LetterPullup from '@/components/ui/letter-pullup';
+
 
 const FeaturedProducts = ({ featuredProductsList }) => {
     // Helper function to calculate discount percentage
@@ -22,8 +24,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
     return (
         <div>
             <div className="flex items-center gap-1 md:gap-2 py-2 md:py-5">
-                <h1 className="font-semibold underline decoration-theme_color text-lg md:text-2xl">Featured</h1>
-                <h1 className="font-semibold text-lg md:text-2xl">Products</h1>
+            <LetterPullup words={"Featured Products"} delay={0.05} />
             </div>
 
             <div className="grid grid-cols-3 lg:grid-cols-6 gap-1 md:gap-3 lg:gap-5">

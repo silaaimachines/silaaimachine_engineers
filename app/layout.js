@@ -5,6 +5,7 @@ import Footer from "./_components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import Test from "./_components/Test";
+import LampDemo from "@/components/ui/lamp";
 
 
 const montserrat = localFont({
@@ -73,6 +74,7 @@ export default function RootLayout({ children }) {
             </a>
           </div>
           <Header />
+       {/*    <LampDemo/> */}
          {/*  <Test/> */}
           {children}
           <Footer />
