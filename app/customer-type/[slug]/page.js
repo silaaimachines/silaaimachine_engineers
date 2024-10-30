@@ -4,6 +4,8 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 import GlobalApi from '@/app/_utils/GlobalApi';
 import Image from 'next/image';
 import Link from 'next/link';
+import { BackgroundGradient } from '@/components/ui/background-gradient';
+import BoxReveal from '@/components/ui/box-reveal';
 
 export default function CustomerTypePage() {
   const params = useParams();
@@ -12,32 +14,32 @@ export default function CustomerTypePage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
-  
+
   const observer = useRef();
 
- 
+
 
   useEffect(() => {
-   
-      getProductList(page);
-      fetchCustomerTypeDetails();
-    
+
+    getProductList(page);
+    fetchCustomerTypeDetails();
+
   }, [params.slug, page]);
 
-  const getProductList =async (currentPage) => {
+  const getProductList = async (currentPage) => {
     setLoading(true);
-    try{
-      const response = await GlobalApi.getProductsForCustomerType(params.slug,currentPage);
+    try {
+      const response = await GlobalApi.getProductsForCustomerType(params.slug, currentPage);
       setProductList((prev) => [...prev, ...response.data.data]);
       if (response.data.meta.pagination) {
         setTotalPages(response.data.meta.pagination.pageCount);
       }
     } catch (error) {
       console.error('Error fetching products:', error);
-    }finally {
+    } finally {
       setLoading(false);
     }
-    
+
   };
 
   const fetchCustomerTypeDetails = async () => {
@@ -53,7 +55,7 @@ export default function CustomerTypePage() {
     }
   };
 
-      
+
 
   const lastProductRef = useCallback((node) => {
     if (observer.current) observer.current.disconnect();
@@ -80,7 +82,7 @@ export default function CustomerTypePage() {
     }).format(price);
   };
 
- 
+
 
   return (
     <div className="p-3 md:p-5">
@@ -93,45 +95,55 @@ export default function CustomerTypePage() {
 
           return (
             <Link key={index} href={`/product/${slug}`} passHref>
-              <div
-                ref={isLastProduct ? lastProductRef : null}
-                className="relative group"
-              >
-                <div className="absolute -inset-1 bg-theme_color rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                <div className="relative flex flex-col items-center justify-center border border-gray-300 rounded-2xl transition-all duration-300 ease-in-out bg-white dark:bg-black shadow-sm cursor-pointer">
-                  <div className="relative z-10">
-                    <div className="relative">
-                      {Images && Images[0]?.url && (
-                        <Image
-                          src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + Images[0].url}
-                          width={400}
-                          height={400}
-                          alt={Name}
-                          className="rounded-t-2xl h-full w-full object-contain p-3"
-                        />
-                      )}
-                      {DiscountPrice && (
-                        <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                          {discountPercentage}% off
-                        </div>
-                      )}
-                    </div>
-                    <div className="rounded-b-2xl w-full">
-                      <h2 className="text-xs md:text-sm px-3 py-2">{Name}</h2>
-                      <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
-                        {DiscountPrice ? (
-                          <>
-                            <p className="text-sm font-semibold">{formatPrice(DiscountPrice)}</p>
-                            <p className="text-xs line-through text-gray-300">{formatPrice(BasePrice)}</p>
-                          </>
-                        ) : (
-                          <p className="text-sm font-semibold text-center">{formatPrice(BasePrice)}</p>
+              <BackgroundGradient>
+                <div
+                  ref={isLastProduct ? lastProductRef : null}
+                  className="relative group"
+                >
+                  <div className="relative flex flex-col items-center justify-center border border-gray-300 rounded-2xl transition-all duration-300 ease-in-out bg-white dark:bg-black shadow-sm cursor-pointer">
+                    <div className="relative z-10">
+                      <div className="relative">
+                        {Images && Images[0]?.url && (
+                          <Image
+                            src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + Images[0].url}
+                            width={400}
+                            height={400}
+                            alt={Name}
+                            className="rounded-t-2xl h-full w-full object-contain p-3"
+                          />
                         )}
+                        {DiscountPrice && (
+                          <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                            {discountPercentage}% off
+                          </div>
+                        )}
+                      </div>
+                      <div className="rounded-b-2xl w-full">
+                        <BoxReveal boxColor={"#00000000"} duration={0.5}>
+                          <h2 className="text-xs md:text-sm px-3 py-2">{Name}</h2>
+                        </BoxReveal>
+                        <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
+                          {DiscountPrice ? (
+                            <>
+                              <BoxReveal boxColor={"#e61a72"} duration={1}>
+                                <p className="text-sm font-semibold">{formatPrice(DiscountPrice)}</p>
+                              </BoxReveal>
+
+                              <BoxReveal boxColor={"#e61a72"} duration={1}>
+                                <p className="text-xs line-through text-gray-300">{formatPrice(BasePrice)}</p>
+                              </BoxReveal>
+                            </>
+                          ) : (
+                            <BoxReveal boxColor={"#e61a72"} duration={1}>
+                              <p className="text-sm font-semibold text-center">{formatPrice(BasePrice)}</p>
+                            </BoxReveal>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </BackgroundGradient>
             </Link>
           );
         })}

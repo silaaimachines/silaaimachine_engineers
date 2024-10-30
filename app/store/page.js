@@ -88,9 +88,9 @@ const Store = () => {
                       )}
                     </div>
                     <div className="rounded-b-2xl w-full">
-                    <BoxReveal boxColor={"#00000000"} duration={0.5}>
-                    <h2 className="text-xs md:text-sm px-3 py-2">{Name}</h2>
-                            </BoxReveal>
+                      <BoxReveal boxColor={"#00000000"} duration={0.5}>
+                        <h2 className="text-xs md:text-sm px-3 py-2">{Name}</h2>
+                      </BoxReveal>
                       <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
                         {DiscountPrice ? (
                           <>
