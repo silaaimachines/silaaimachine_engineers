@@ -60,20 +60,20 @@ const Home = () => {
       <div>
         <Slider sliderList={sliderList} />
       </div>
-      <div className='flex justify-center py-2'>
+      <div className='flex justify-center'>
         <BrandsSlider brandSliderList={brandSliderList} />
       </div>
       <div className='px-2'>
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <FeaturedProducts featuredProductsList={featuredProductsList} />
         </div>
-        <div className='py-5 lg:px-10 md:px-2 sm:px-1'>
+        <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <Image
             src='/Banner1.gif' width={1000} height={500} alt='banner'
             className='w-full h-auto'
           />
         </div>
-        <div className='py-5 lg:px-10 md:px-2 sm:px-1'>
+        <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <Customertype customerTypeList={customerTypeList} />
         </div>
 

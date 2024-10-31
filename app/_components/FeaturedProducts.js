@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import LetterPullup from '@/components/ui/letter-pullup';
+import GradualSpacing from '@/components/ui/gradual-spacing';
+import BoxReveal from '@/components/ui/box-reveal';
 
 
 const FeaturedProducts = ({ featuredProductsList }) => {
@@ -23,8 +24,11 @@ const FeaturedProducts = ({ featuredProductsList }) => {
 
     return (
         <div>
-            <div className="flex items-center gap-1 md:gap-2 py-2 md:py-5">
-            <LetterPullup words={"Featured Products"} delay={0.05} />
+            <div className="flex items-center gap-1 md:gap-2">
+                <GradualSpacing
+                    className="font-display text-center text-lg md:text-2xl font-bold -tracking-widest md:leading-[5rem]"
+                    text="Featured Products"
+                />
             </div>
 
             <div className="grid grid-cols-3 lg:grid-cols-6 gap-1 md:gap-3 lg:gap-5">
@@ -53,22 +57,28 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                                 </div>
                                 <div className="rounded-b-2xl w-full">
                                     <div>
-                                        <h2 className='text-center text-xs md:text-sm py-2'>{Name}</h2>
+                                        <h2 className='text-xs md:text-sm px-3'>{Name}</h2>
                                     </div>
-                                    <div className="text-center flex items-center justify-center gap-1 md:gap-2 lg:gap-3 text-white text-xs md:text-sm bg-theme_color py-2 rounded-b-2xl">
+                                    <div className="text-center flex items-center justify-center gap-1 md:gap-2 lg:gap-3 text-xs md:text-sm py-2 rounded-b-2xl">
                                         {DiscountPrice ? (
                                             <>
-                                                <p className="text-sm font-semibold">
-                                                    {formatPrice(DiscountPrice)}
-                                                </p>
-                                                <p className="text-xs line-through text-gray-300">
-                                                    {formatPrice(BasePrice)}
-                                                </p>
+                                                <BoxReveal boxColor={"#e61a72"} duration={0.5}>
+                                                    <p className="text-sm font-semibold">
+                                                        {formatPrice(DiscountPrice)}
+                                                    </p>
+                                                </BoxReveal>
+                                                <BoxReveal boxColor={"#e61a72"} duration={0.5}>
+                                                    <p className="text-xs line-through">
+                                                        {formatPrice(BasePrice)}
+                                                    </p>
+                                                </BoxReveal>
                                             </>
                                         ) : (
-                                            <p className="font-semibold text-sm text-center">
-                                                {formatPrice(BasePrice)}
-                                            </p>
+                                            <BoxReveal boxColor={"#e61a72"} duration={0.5}>
+                                                <p className="font-semibold text-sm text-center">
+                                                    {formatPrice(BasePrice)}
+                                                </p>
+                                            </BoxReveal>
                                         )}
                                     </div>
                                 </div>

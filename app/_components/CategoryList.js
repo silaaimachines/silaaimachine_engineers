@@ -1,15 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import LetterPullup from '@/components/ui/letter-pullup';
+import GradualSpacing from '@/components/ui/gradual-spacing';
 
 
 const CategoryList = ({ categoryList }) => {
   return (
     <div>
-      <div className="flex items-center gap-1 md:gap-2 py-2 md:py-5">
-      <LetterPullup words={"Shop by Categories"} delay={0.05} />
-        
+      <div className="flex items-center gap-1 md:gap-2">
+        <GradualSpacing
+          className="font-display text-center text-lg md:text-2xl font-bold -tracking-widest md:leading-[5rem]"
+          text="Shop by Categories"
+        />
+
       </div>
 
       <div className="grid grid-cols-3 lg:grid-cols-5 gap-1">
