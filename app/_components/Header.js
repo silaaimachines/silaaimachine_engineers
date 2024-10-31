@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <>
       {/* Desktop Navbar */}
-      <div className='hidden md:flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-10 backdrop-blur-sm'>
+      <div className='hidden md:flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-50 bg-white dark:bg-black'>
         <div>
           <Link href="/">
             <Image src={siteIcon} alt='logo' width={200} height={200} />

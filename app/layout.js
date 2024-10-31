@@ -74,8 +74,6 @@ export default function RootLayout({ children }) {
             </a>
           </div>
           <Header />
-       {/*    <LampDemo/> */}
-         {/*  <Test/> */}
           {children}
           <Footer />
         </ThemeProvider>
