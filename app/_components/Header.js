@@ -112,7 +112,11 @@ const Header = () => {
           <Button variant="outline" as="a" href="cd nextjs_smen">
             <PhoneCall className='h-5 w-5' /> Call Us
           </Button>
-          <Button>Login</Button>
+          <Button asChild>
+            <Link href="/login">
+              Login
+            </Link>
+          </Button>
           <ThemeToggle />
         </div>
       </div>
