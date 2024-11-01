@@ -76,13 +76,13 @@ const Header = () => {
         {/* Navigation Menu */}
         <NavigationMenu>
           <NavigationMenuList>
-            <NavigationMenuItem> 
+            <NavigationMenuItem>
               <Link href="/" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
 
-            <NavigationMenuItem> 
+            <NavigationMenuItem>
               <Link href="/store" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>Store</NavigationMenuLink>
               </Link>
