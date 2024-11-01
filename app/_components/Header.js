@@ -29,7 +29,7 @@ const Header = () => {
         <div className='flex gap-5 items-center'>
           <Link href="/" className='hover:font-semibold hover:underline hover:decoration-theme_color hover:underline-offset-8'>Home</Link>
           <Link href="/store" className='hover:font-semibold hover:underline hover:decoration-theme_color hover:underline-offset-8'>Store</Link>
-          <Link href="/categories" className='hover:font-semibold hover:underline hover:decoration-theme_color hover:underline-offset-8'>Categories</Link>
+         
         </div>
 
         <div className='flex gap-5 items-center'>
@@ -62,7 +62,7 @@ const Header = () => {
             <nav className="flex flex-col gap-3 mt-4">
               <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
               <Link href="/store" onClick={() => setIsMenuOpen(false)}>Store</Link>
-              <Link href="/categories" onClick={() => setIsMenuOpen(false)}>Categories</Link>
+          
               <ThemeToggle />
             </nav>
           </SheetContent>
