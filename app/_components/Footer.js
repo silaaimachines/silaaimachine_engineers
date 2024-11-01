@@ -1,5 +1,4 @@
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'
-import siteIcon from '../public/images/Silaaimachineenginner white.png';
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -9,26 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-5 grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
 
         {/* Column 1: Policies */}
-        <div className="text-center md:text-left">
-          <h2 className="font-semibold text-lg mb-4">Our Policies</h2>
-          <ul className="space-y-2">
-            <li><Link href="/privacy-policy" className="hover:text-pink-500">Privacy Policy</Link></li>
-            <li><a href="#" className="hover:text-pink-500">Terms of Service</a></li>
-            <li><a href="#" className="hover:text-pink-500">Returns & Exchanges</a></li>
-          </ul>
-        </div>
-
-        {/* Column 2: Logo and Slogan */}
         <div className="text-center">
-          <Link href="/" className="flex items-center justify-center mb-4">
-            <Image src={siteIcon} alt="logo" width={200} height={200} />
-          </Link>
-
-          <p className="text-2xl mb-4 text-gray-400 font-bold">Sales Bhi Service Bhi</p>
-        </div>
-
-        {/* Column 3: Pages */}
-        <div className="text-center md:text-left">
           <h2 className="font-semibold text-lg mb-4">Our Pages</h2>
           <ul className="space-y-2">
             <li><a href="#" className="hover:text-pink-500">Home</a></li>
@@ -37,14 +17,34 @@ const Footer = () => {
             <li><Link href="/contact" className="hover:text-pink-500">Contact</Link></li>
           </ul>
         </div>
+
+        {/* Column 2: Logo and Slogan */}
+        <div className="text-center">
+          <Link href="/" className="flex items-center justify-center">
+            <Image src='Silaaimachine Engineers White.svg' alt='logo' width={200} height={200} className="w-[250px] md:w-[300px]" />
+          </Link>
+        </div>
+
+        {/* Column 3: Pages */}
+        <div className="text-center">
+          <h2 className="font-semibold text-lg mb-4">Our Policies</h2>
+          <ul className="space-y-2">
+            <li><Link href="/privacy-policy" className="hover:text-pink-500">Privacy Policy</Link></li>
+            <li><a href="#" className="hover:text-pink-500">Terms of Service</a></li>
+            <li><a href="#" className="hover:text-pink-500">Returns & Exchanges</a></li>
+          </ul>
+        </div>
       </div>
 
       {/* Bottom Section: Social Icons and Copyright */}
       <div className="border-t border-gray-800 mt-10">
-        <div className="container mx-auto px-5 py-6 flex flex-col md:flex-row justify-between items-center">
+        <div className="container mx-auto px-5 py-6 flex-col md:flex-row justify-center items-center">
+
+          {/* Copyright */}
+          <p className="text-gray-400 text-sm text-center py-3">© 2024 SilaaiMachines. All rights reserved.</p>
 
           {/* Social Media Icons */}
-          <div className="flex space-x-4 mb-4 md:mb-0">
+          <div className="flex space-x-4 justify-center items-center py-3">
             <a href="#" className="text-gray-400 hover:text-pink-500">
               <Facebook className="w-5 h-5" />
             </a>
@@ -58,9 +58,6 @@ const Footer = () => {
               <Linkedin className="w-5 h-5" />
             </a>
           </div>
-
-          {/* Copyright */}
-          <p className="text-gray-400 text-sm text-center md:text-left">© 2024 SilaaiMachines. All rights reserved.</p>
         </div>
       </div>
     </footer>

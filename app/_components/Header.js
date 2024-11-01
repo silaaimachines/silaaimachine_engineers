@@ -3,20 +3,32 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Search, PhoneCall, Menu } from 'lucide-react';
-import siteIcon from '../public/images/SilaaimachineLogo.png';
 import Link from 'next/link';
 import ThemeToggle from '../_components/ThemeToggle';
+import { useTheme } from 'next-themes';
 import {
   Sheet,
-  SheetClose,
+  SheetTrigger,
   SheetContent,
   SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+  SheetTitle
+} from "@/components/ui/sheet";
+
 import GlobalApi from '../_utils/GlobalApi';
 
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle
+} from "@/components/ui/navigation-menu";
+
 const Header = () => {
+  const { theme } = useTheme(); // Get the current theme (light or dark)
+  
   const [categoryList, setCategoryList] = useState([]);
 
   useEffect(() => {
@@ -26,8 +38,18 @@ const Header = () => {
   const getCategories = () => {
     GlobalApi.getAllCategories().then(res => {
       setCategoryList(res);
-    })
-  }
+    });
+  };
+
+  // Group categories by Main Category
+  const groupedCategories = categoryList.reduce((acc, category) => {
+    const mainCategory = category.MainCategory;
+    if (!acc[mainCategory]) {
+      acc[mainCategory] = [];
+    }
+    acc[mainCategory].push(category);
+    return acc;
+  }, {});
 
   return (
     <>
@@ -35,20 +57,41 @@ const Header = () => {
       <div className='hidden md:flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-50 bg-white dark:bg-black'>
         <div>
           <Link href="/">
-            <Image src={siteIcon} alt='logo' width={200} height={200} />
+            <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={200} height={200} />
           </Link>
         </div>
 
-        <div className='flex gap-5 items-center'>
-          <Link href="/" className='hover:font-semibold hover:underline hover:decoration-theme_color hover:underline-offset-8'>Home</Link>
-          <Link href="/store" className='hover:font-semibold hover:underline hover:decoration-theme_color hover:underline-offset-8'>Store</Link>
-         
-        </div>
+        {/* Navigation Menu */}
+        <NavigationMenu>
+          <NavigationMenuList>
+            {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
+              <NavigationMenuItem key={mainCategory}>
+                <NavigationMenuTrigger>{mainCategory}</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px]">
+                    {subCategories.map((category) => (
+                      <li key={category.id}>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            href={`/category/${category.slug}`}
+                            className="block p-3 rounded-md hover:bg-gray-200"
+                          >
+                            {category.Name}
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
 
         <div className='flex gap-5 items-center'>
           <Search className='h-5 w-5' />
           <Button variant="outline" as="a" href="cd nextjs_smen">
-            <PhoneCall className='h-5 w-5' />Call Us
+            <PhoneCall className='h-5 w-5' /> Call Us
           </Button>
           <Button>Login</Button>
           <ThemeToggle />
@@ -56,13 +99,13 @@ const Header = () => {
       </div>
 
       {/* Mobile Navbar */}
-      <div className='md:hidden flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-10 backdrop-blur-sm'>
+      <div className='md:hidden flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-50 bg-white dark:bg-black'>
         <div>
           <Link href="/">
-            <Image src={siteIcon} alt='logo' width={100} height={100} />
+            <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={100} height={100} />
           </Link>
         </div>
-        
+
         {/* Mobile Menu Drawer using Sheet */}
         <Sheet>
           <SheetTrigger asChild>
@@ -73,9 +116,22 @@ const Header = () => {
               <SheetTitle className="text-lg font-semibold">Menu</SheetTitle>
             </SheetHeader>
             <nav className="flex flex-col gap-3 mt-4">
-              <Link href="/" onClick={() => setIsMenuOpen(false)}>Home</Link>
-              <Link href="/store" onClick={() => setIsMenuOpen(false)}>Store</Link>
-          
+              <Link href="/">Home</Link>
+              <Link href="/store">Store</Link>
+              {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
+                <div key={mainCategory}>
+                  <h3 className="font-semibold mt-3">{mainCategory}</h3>
+                  <ul className="ml-4">
+                    {subCategories.map((category) => (
+                      <li key={category.id}>
+                        <Link href={`/category/${category.slug}`}>
+                          {category.Name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
               <ThemeToggle />
             </nav>
           </SheetContent>

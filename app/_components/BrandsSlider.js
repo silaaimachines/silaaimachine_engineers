@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 function BrandCard({ logo }) {
     return (
-        <div className={cn("flex items-center justify-center p-4")}>
+        <div className={cn("flex items-center justify-center px-3 md:px-5")}>
             <Image
                 src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + logo}
                 width={75}

@@ -14,7 +14,7 @@ const CategoryList = ({ categoryList }) => {
         />
       </div>
 
-      <div className="grid grid-cols-3 lg:grid-cols-5 gap-1">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-1">
         {categoryList.map((category, index) => (
           <Link key={index} href={`/category/${category.slug}`} passHref>
             <div className="flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl border shrink-0 cursor-pointer hover:border-theme_color w-full h-auto shadow-sm">
