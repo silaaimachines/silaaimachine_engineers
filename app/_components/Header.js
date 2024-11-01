@@ -97,7 +97,7 @@ const Header = () => {
                         <NavigationMenuLink asChild>
                           <Link
                             href={`/category/${category.slug}`}
-                            className="block p-3 rounded-md hover:bg-theme_color hover:text-white text-sm"
+                            className="block p-3 rounded-md hover:bg-theme_color hover:text-white text"
                           >
                             {category.Name}
                           </Link>

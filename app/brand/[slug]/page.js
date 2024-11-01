@@ -102,7 +102,7 @@ export default function BrandPage() {
                   ref={isLastProduct ? lastProductRef : null}
                   className="relative group"
                 >
-                  <div className="relative flex flex-col items-center justify-center border border-gray-300 rounded-2xl transition-all duration-300 ease-in-out bg-white dark:bg-black shadow-sm cursor-pointer">
+                  <div className="relative flex flex-col items-center justify-center border  rounded-2xl transition-all duration-300 ease-in-out bg-white dark:bg-black shadow-sm cursor-pointer">
                     <div className="relative z-10">
                       <div className="relative">
                         {Images && Images[0]?.url && (
@@ -122,7 +122,7 @@ export default function BrandPage() {
                       </div>
                       <div className="rounded-b-2xl w-full">
                         <h2 className="text-xs md:text-sm px-3 py-2">{Name}</h2>
-                        <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-black dark:bg-gray-700 py-2 rounded-b-2xl">
+                        <div className="text-center flex items-center justify-center gap-3 text-xs md:text-sm   py-2 rounded-b-2xl">
                           {DiscountPrice ? (
                             <>
                               <BoxReveal boxColor={"#e61a72"} duration={1}>
@@ -130,7 +130,7 @@ export default function BrandPage() {
                               </BoxReveal>
 
                               <BoxReveal boxColor={"#e61a72"} duration={1}>
-                                <p className="text-xs line-through text-gray-300">{formatPrice(BasePrice)}</p>
+                                <p className="text-xs line-through ">{formatPrice(BasePrice)}</p>
                               </BoxReveal>
                             </>
                           ) : (
