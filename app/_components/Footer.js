@@ -21,7 +21,7 @@ const Footer = () => {
         {/* Column 2: Logo and Slogan */}
         <div className="text-center">
           <Link href="/" className="flex items-center justify-center">
-            <Image src='Silaaimachine Engineers White.svg' alt='logo' width={200} height={200} className="w-[250px] md:w-[300px]" />
+            <Image src='/Silaaimachine Engineers White.svg' alt='logo' width={200} height={200} className="w-[250px] md:w-[300px]" />
           </Link>
         </div>
 
