@@ -16,6 +16,7 @@ import {
   CarouselPrevious,
   CarouselThumbnail,
 } from '@/components/ui/carousel';
+import { Separator } from '@/components/ui/separator';
 
 export default function ProductPage() {
   const params = useParams();
@@ -105,7 +106,26 @@ export default function ProductPage() {
         </div>
         <div className="space-y-4">
           <h1 className="text-lg md:text-2xl font-bold">{product.Name}</h1>
+          <Separator/>
           <p className='text-sm md:text-base font-semibold text-gray-500'>{product.Description}</p>
+          <table className="table-auto w-full text-left">
+            <tbody>
+              <tr>
+                <th className="px-4 py-2 text-sm font-semibold text-gray-700">Category</th>
+                <td className="px-4 py-2">{product.category?.Name || 'N/A'}</td>
+              </tr>
+              <tr>
+                <th className="px-4 py-2 text-sm font-semibold text-gray-700">Brand</th>
+                <td className="px-4 py-2">{product.brand?.Name || 'N/A'}</td>
+              </tr>
+              <tr>
+                <th className="px-4 py-2 text-sm font-semibold text-gray-700">Customer Type</th>
+                <td className="px-4 py-2">{product.customer_type?.Name || 'N/A'}</td>
+              </tr>
+            </tbody>
+          </table>
+
+            <Separator/>
 
           {/* Conditional Price Display */}
           <div className="flex justify-start items-center gap-2 text-xl font-semibold">
