@@ -12,7 +12,6 @@ const CategoryList = ({ categoryList }) => {
           className="font-display text-center text-lg md:text-2xl font-bold -tracking-widest md:leading-[5rem]"
           text="Shop by Categories"
         />
-
       </div>
 
       <div className="grid grid-cols-3 lg:grid-cols-5 gap-1">

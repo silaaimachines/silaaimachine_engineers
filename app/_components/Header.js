@@ -1,6 +1,6 @@
 "use client";
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Search, PhoneCall, Menu } from 'lucide-react';
 import siteIcon from '../public/images/SilaaimachineLogo.png';
@@ -14,8 +14,21 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import GlobalApi from '../_utils/GlobalApi';
 
 const Header = () => {
+  const [categoryList, setCategoryList] = useState([]);
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getCategories = () => {
+    GlobalApi.getAllCategories().then(res => {
+      setCategoryList(res);
+    })
+  }
+
   return (
     <>
       {/* Desktop Navbar */}
