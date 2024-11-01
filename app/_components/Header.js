@@ -121,7 +121,11 @@ const Header = () => {
       <div className='md:hidden flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-50 bg-white dark:bg-black'>
         <div>
           <Link href="/">
-            <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={100} height={100} />
+            {theme == 'dark' ? (
+              <Image src='/Silaaimachine Engineers White.svg' alt='logo' width={100} height={100} />
+            ) : (
+              <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={100} height={100} />
+            )}
           </Link>
         </div>
 
@@ -130,7 +134,7 @@ const Header = () => {
           <SheetTrigger asChild>
             <Menu className='h-8 w-8 cursor-pointer' />
           </SheetTrigger>
-          <SheetContent side="right" className="w-64">
+          <SheetContent side="right" className="w-64 max-h-screen overflow-y-auto">
             <SheetHeader>
               <SheetTitle className="text-lg font-semibold">Menu</SheetTitle>
             </SheetHeader>
