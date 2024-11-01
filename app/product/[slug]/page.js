@@ -13,6 +13,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselThumbnail,
 } from '@/components/ui/carousel';
 
 export default function ProductPage() {
@@ -95,6 +96,7 @@ export default function ProductPage() {
               </CarouselContent>
              <CarouselPrevious/>
              <CarouselNext/>
+             <CarouselThumbnail/>
 
             </Carousel>
           ) : (

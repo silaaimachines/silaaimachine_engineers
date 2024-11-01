@@ -191,4 +191,62 @@ const CarouselNext = React.forwardRef(({ className, variant = "outline", size = 
 })
 CarouselNext.displayName = "CarouselNext"
 
-export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext };
+const CarouselThumbnail = React.forwardRef(({ className, ...props }, ref) => {
+  const { api, orientation } = useCarousel()
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+
+  // Update the selected index when the carousel changes slides
+  const onSelect = React.useCallback(() => {
+    if (api) {
+      setSelectedIndex(api.selectedScrollSnap())
+    }
+  }, [api])
+
+  // Attach the onSelect callback when the component mounts
+  React.useEffect(() => {
+    if (api) {
+      api.on("select", onSelect)
+      return () => {
+        api.off("select", onSelect)
+      }
+    }
+  }, [api, onSelect])
+
+  // Handle thumbnail click to scroll to the selected slide
+  const scrollToSlide = (index) => {
+    api && api.scrollTo(index)
+  }
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "flex items-center justify-center gap-2 mt-4",
+        orientation === "horizontal" ? "flex-row" : "flex-col",
+        className
+      )}
+      {...props}>
+      {api?.slideNodes().map((slide, index) => (
+        <button
+          key={index}
+          className={cn(
+            "w-16 h-16 border border-transparent rounded-lg overflow-hidden focus:outline-none",
+            selectedIndex === index
+              ? "border-primary" // Apply a border to indicate the active thumbnail
+              : "border-gray-300"
+          )}
+          onClick={() => scrollToSlide(index)}
+          aria-label={`Go to slide ${index + 1}`}>
+          <img
+            src={slide.firstChild.getAttribute('src')} // Assuming each slide contains an image
+            alt={`Thumbnail for slide ${index + 1}`}
+            className="object-cover w-full h-full"
+          />
+        </button>
+      ))}
+    </div>
+  )
+})
+CarouselThumbnail.displayName = "CarouselThumbnail"
+
+export { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselThumbnail};
