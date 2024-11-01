@@ -6,6 +6,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BackgroundGradient } from '@/components/ui/background-gradient';
 import BoxReveal from '@/components/ui/box-reveal';
+import GradualSpacing from '@/components/ui/gradual-spacing';
+
+
 
 export default function CustomerTypePage() {
   const params = useParams();
@@ -86,7 +89,13 @@ export default function CustomerTypePage() {
 
   return (
     <div className="p-3 md:p-5">
-      <h2 className="text-xl font-semibold mb-4">{customerType?.Name}</h2>
+  {/*     <h2 className="text-xl font-semibold mb-4">{customerType?.Name}</h2> */}
+  <GradualSpacing
+  className="font-display text-center text-4xl font-bold -tracking-widest text-black dark:text-white md:text-7xl md:leading-[5rem]"
+  text={customerType?.Name || 'No Customer Type Available'} // Fallback to a placeholder text
+/>
+
+
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
         {productList.map((product, index) => {
           const { BasePrice, DiscountPrice, Name, Images, slug } = product;
