@@ -232,7 +232,7 @@ const CarouselThumbnail = React.forwardRef(({ className, ...props }, ref) => {
           className={cn(
             "w-16 h-16 border border-transparent rounded-lg overflow-hidden focus:outline-none",
             selectedIndex === index
-              ? "border-primary" // Apply a border to indicate the active thumbnail
+              ? "border-theme_color" // Apply a border to indicate the active thumbnail
               : "border-gray-300"
           )}
           onClick={() => scrollToSlide(index)}
