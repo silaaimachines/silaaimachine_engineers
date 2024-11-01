@@ -16,6 +16,7 @@ import {
 
 import GlobalApi from '../_utils/GlobalApi';
 
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -30,6 +31,7 @@ const Header = () => {
   const { theme } = useTheme(); // Get the current theme (light or dark)
   
   const [categoryList, setCategoryList] = useState([]);
+  
 
   useEffect(() => {
     getCategories();
@@ -68,14 +70,27 @@ const Header = () => {
         {/* Navigation Menu */}
         <NavigationMenu>
           <NavigationMenuList>
+            <NavigationMenuItem> 
+              <Link href="/" legacyBehavior passHref>
+              < NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</ NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem> 
+              <Link href="/store" legacyBehavior passHref>
+              < NavigationMenuLink className={navigationMenuTriggerStyle()}>Store</ NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
             {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
               <NavigationMenuItem key={mainCategory}>
                 <NavigationMenuTrigger>{mainCategory}</NavigationMenuTrigger>
                 <NavigationMenuContent>
+              
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px]">
                     {subCategories.map((category) => (
                       <li key={category.id}>
                         <NavigationMenuLink asChild>
+                          
                           <Link
                             href={`/category/${category.slug}`}
                             className="block p-3 rounded-md hover:bg-gray-200"
