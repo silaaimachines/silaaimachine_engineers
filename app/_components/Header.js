@@ -57,7 +57,11 @@ const Header = () => {
       <div className='hidden md:flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-50 bg-white dark:bg-black'>
         <div>
           <Link href="/">
+          {theme == 'dark' ? (
+            <Image src='/Silaaimachine Engineers White.svg' alt='logo' width={200} height={200} />
+          ) : (
             <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={200} height={200} />
+          )}
           </Link>
         </div>
 
