@@ -177,11 +177,11 @@ export default function ProductPage() {
                     {/* Product name and price */}
                     <div className="rounded-b-2xl w-full">
                       <h3 className="text-xs md:text-sm px-3 py-2">{relatedProduct.Name}</h3>
-                      <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm  py-2 rounded-b-2xl">
+                      <div className="text-center flex items-center justify-center gap-3  text-xs md:text-sm  py-2 rounded-b-2xl">
                         {relatedProduct.DiscountPrice ? (
                           <>
                             <p className="text-sm font-semibold">{formatPrice(relatedProduct.DiscountPrice)}</p>
-                            <p className="text-xs line-through text-gray-300">{formatPrice(relatedProduct.BasePrice)}</p>
+                            <p className="text-xs line-through ">{formatPrice(relatedProduct.BasePrice)}</p>
                           </>
                         ) : (
                           <p className="text-sm font-semibold text-center">{formatPrice(relatedProduct.BasePrice)}</p>
