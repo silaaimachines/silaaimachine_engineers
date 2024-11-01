@@ -94,8 +94,7 @@ export default function ProductPage() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-             <CarouselPrevious/>
-             <CarouselNext/>
+           
              <CarouselThumbnail/>
 
             </Carousel>
