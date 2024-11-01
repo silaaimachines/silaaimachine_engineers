@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { Button } from "@/components/ui/button";
+import { BackgroundGradient } from '@/components/ui/background-gradient';
 import {
   Carousel,
   CarouselContent,
@@ -80,7 +81,7 @@ export default function ProductPage() {
         <div className="flex justify-center items-center">
           {product.Images && product.Images.length > 0 ? (
             <Carousel className="w-full">
-            
+
               <CarouselContent>
                 {product.Images.map((image, index) => (
                   <CarouselItem key={index} >
@@ -94,8 +95,8 @@ export default function ProductPage() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-           
-             <CarouselThumbnail/>
+
+              <CarouselThumbnail />
 
             </Carousel>
           ) : (
@@ -121,7 +122,7 @@ export default function ProductPage() {
             )}
           </div>
 
-        {/*   <p className="text-sm text-red-500">
+          {/*   <p className="text-sm text-red-500">
             {product.Quantity > 0 ? `In Stock: ${product.Quantity}` : 'Out of Stock'}
           </p> */}
           <div className='flex justify-center items-center gap-2 pb-10'>
@@ -146,48 +147,51 @@ export default function ProductPage() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 sm:gap-2">
           {relatedProducts.map((relatedProduct, index) => (
             <Link key={index} href={`/product/${relatedProduct.slug}`} passHref>
-              <div className="group relative flex flex-col items-center justify-center border border-gray-300 rounded-2xl transition-all duration-300 ease-in-out bg-white dark:bg-black shadow-sm cursor-pointer hover:shadow-lg">
+              <BackgroundGradient>
+                <div className="group relative flex flex-col items-center justify-center border  rounded-2xl transition-all duration-300 ease-in-out bg-white dark:bg-black shadow-sm cursor-pointer hover:shadow-lg">
 
-                {/* Background hover effect */}
-                <div className="absolute -inset-1 bg-theme_color rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                  {/* Background hover effect */}
+                  <div className="absolute -inset-1 bg-theme_color rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition duration-300"></div>
 
-                {/* Main content */}
-                <div className="relative z-10 flex flex-col items-center bg-white dark:bg-black rounded-2xl">
-                  <div className="relative">
-                    {relatedProduct.Images && relatedProduct.Images[0]?.url && (
-                      <Image
-                        src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + relatedProduct.Images[0].url}
-                        width={400}
-                        height={400}
-                        alt={relatedProduct.Name}
-                        className="rounded-t-2xl h-full w-full object-contain p-3"
-                      />
-                    )}
-
-                    {/* Discount badge */}
-                    {relatedProduct.DiscountPrice && (
-                      <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                        {Math.round(((relatedProduct.BasePrice - relatedProduct.DiscountPrice) / relatedProduct.BasePrice) * 100)}% off
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Product name and price */}
-                  <div className="rounded-b-2xl w-full">
-                    <h3 className="text-xs md:text-sm px-3 py-2">{relatedProduct.Name}</h3>
-                    <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm bg-theme_color py-2 rounded-b-2xl">
-                      {relatedProduct.DiscountPrice ? (
-                        <>
-                          <p className="text-sm font-semibold">{formatPrice(relatedProduct.DiscountPrice)}</p>
-                          <p className="text-xs line-through text-gray-300">{formatPrice(relatedProduct.BasePrice)}</p>
-                        </>
-                      ) : (
-                        <p className="text-sm font-semibold text-center">{formatPrice(relatedProduct.BasePrice)}</p>
+                  {/* Main content */}
+                  <div className="relative z-10 flex flex-col items-center bg-white dark:bg-black rounded-2xl">
+                    <div className="relative">
+                      {relatedProduct.Images && relatedProduct.Images[0]?.url && (
+                        <Image
+                          src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + relatedProduct.Images[0].url}
+                          width={400}
+                          height={400}
+                          alt={relatedProduct.Name}
+                          className="rounded-t-2xl h-full w-full object-contain p-3"
+                        />
                       )}
+
+                      {/* Discount badge */}
+                      {relatedProduct.DiscountPrice && (
+                        <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                          {Math.round(((relatedProduct.BasePrice - relatedProduct.DiscountPrice) / relatedProduct.BasePrice) * 100)}% off
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Product name and price */}
+                    <div className="rounded-b-2xl w-full">
+                      <h3 className="text-xs md:text-sm px-3 py-2">{relatedProduct.Name}</h3>
+                      <div className="text-center flex items-center justify-center gap-3 text-white text-xs md:text-sm  py-2 rounded-b-2xl">
+                        {relatedProduct.DiscountPrice ? (
+                          <>
+                            <p className="text-sm font-semibold">{formatPrice(relatedProduct.DiscountPrice)}</p>
+                            <p className="text-xs line-through text-gray-300">{formatPrice(relatedProduct.BasePrice)}</p>
+                          </>
+                        ) : (
+                          <p className="text-sm font-semibold text-center">{formatPrice(relatedProduct.BasePrice)}</p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </BackgroundGradient>
+
             </Link>
           ))}
         </div>
