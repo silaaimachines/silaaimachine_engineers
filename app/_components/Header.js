@@ -16,7 +16,6 @@ import {
 
 import GlobalApi from '../_utils/GlobalApi';
 
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -29,9 +28,13 @@ import {
 
 const Header = () => {
   const { theme } = useTheme(); // Get the current theme (light or dark)
-  
+  const [mounted, setMounted] = useState(false); // Mounted state for hydration
+
+  useEffect(() => {
+    setMounted(true); // Set mounted to true after component mounts
+  }, []);
+
   const [categoryList, setCategoryList] = useState([]);
-  
 
   useEffect(() => {
     getCategories();
@@ -53,17 +56,20 @@ const Header = () => {
     return acc;
   }, {});
 
+  // Ensure the component renders only after mounting to avoid hydration issues
+  if (!mounted) return null;
+
   return (
     <>
       {/* Desktop Navbar */}
       <div className='hidden md:flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-50 bg-white dark:bg-black'>
         <div>
           <Link href="/">
-          {theme == 'dark' ? (
-            <Image src='/Silaaimachine Engineers White.svg' alt='logo' width={200} height={200} />
-          ) : (
-            <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={200} height={200} />
-          )}
+            {theme === 'dark' ? (
+              <Image src='/Silaaimachine Engineers White.svg' alt='logo' width={200} height={200} />
+            ) : (
+              <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={200} height={200} />
+            )}
           </Link>
         </div>
 
@@ -72,25 +78,23 @@ const Header = () => {
           <NavigationMenuList>
             <NavigationMenuItem> 
               <Link href="/" legacyBehavior passHref>
-              < NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</ NavigationMenuLink>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
 
             <NavigationMenuItem> 
               <Link href="/store" legacyBehavior passHref>
-              < NavigationMenuLink className={navigationMenuTriggerStyle()}>Store</ NavigationMenuLink>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Store</NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
               <NavigationMenuItem key={mainCategory}>
                 <NavigationMenuTrigger>{mainCategory}</NavigationMenuTrigger>
                 <NavigationMenuContent>
-              
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px]">
                     {subCategories.map((category) => (
                       <li key={category.id}>
                         <NavigationMenuLink asChild>
-                          
                           <Link
                             href={`/category/${category.slug}`}
                             className="block p-3 rounded-md hover:bg-gray-200"
@@ -125,7 +129,7 @@ const Header = () => {
       <div className='md:hidden flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-50 bg-white dark:bg-black'>
         <div>
           <Link href="/">
-            {theme == 'dark' ? (
+            {theme === 'dark' ? (
               <Image src='/Silaaimachine Engineers White.svg' alt='logo' width={100} height={100} />
             ) : (
               <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={100} height={100} />
