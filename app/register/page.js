@@ -1,7 +1,5 @@
-// components/RegistrationForm.js
-
 import Link from "next/link";
-import { Button } from "@/components/ui/button"; // Adjust the import paths as necessary
+import { Button } from "@/components/ui/button";
 import {
     Card,
     CardContent,

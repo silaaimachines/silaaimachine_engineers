@@ -60,6 +60,14 @@ const getAllBrandSliders = () => fetchAllPaginatedData('/brands');
 const getAllCustomerTypes = () => fetchAllPaginatedData('/customer-types');
 const getAllFeaturedProducts = () => fetchAllPaginatedData('/products', { Featured: true });
 
+const RegisterAccount = (username, email, password) => axiosClient.post("/auth/local/register", {
+    username,
+    email,
+    password
+})
+.then((response) => response.data)
+.catch(() => null);
+
 export default {
     getProducts,
     getProductBySlug,
@@ -72,5 +80,6 @@ export default {
     getCustomerTypeBySlug,
     getProductsForCategories,
     getProductsForCustomerType,
-    getProductsForBrands
+    getProductsForBrands,
+    RegisterAccount
 };
