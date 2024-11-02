@@ -1,4 +1,7 @@
+'use client';
+
 import Link from "next/link";
+import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -11,6 +14,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export default function RegistrationForm() {
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    
     return (
         <div className="py-10 px-5 lg:py-32">
             <Card className="mx-auto max-w-sm">
@@ -23,11 +31,11 @@ export default function RegistrationForm() {
                 <CardContent>
                     <div className="grid gap-4">
                         <div className="grid gap-2">
-                            <Label htmlFor="name">Name</Label>
+                            <Label htmlFor="name">Username</Label>
                             <Input
-                                id="name"
+                                id="username"
                                 type="text"
-                                placeholder="John Doe"
+                                placeholder="Enter your Username"
                                 required
                             />
                         </div>
@@ -36,7 +44,7 @@ export default function RegistrationForm() {
                             <Input
                                 id="email"
                                 type="email"
-                                placeholder="m@example.com"
+                                placeholder="Enter your Email"
                                 required
                             />
                         </div>
