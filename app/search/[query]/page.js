@@ -65,12 +65,6 @@ export default function SearchPage() {
             <Separator />
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
-                {loading && (
-                    <div className="flex justify-center mt-4">
-                        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-theme_color border-solid"></div>
-                    </div>
-                )}
-                {!loading && productList.length === 0 && <div>No products found.</div>}
                 {productList.map((product, index) => {
                     const { BasePrice, DiscountPrice, Name, Images, slug } = product;
                     const discountPercentage = calculateDiscountPercentage(BasePrice, DiscountPrice);
@@ -130,6 +124,15 @@ export default function SearchPage() {
                     );
                 })}
             </div>
+
+            {/* Centered Loading Spinner */}
+            {loading && (
+                <div className="flex justify-center mt-6">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-theme_color border-solid"></div>
+                </div>
+            )}
+
+            {!loading && productList.length === 0 && <div>No products found.</div>}
         </div>
     );
 }
