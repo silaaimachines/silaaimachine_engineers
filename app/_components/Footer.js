@@ -41,7 +41,7 @@ const Footer = () => {
         <div className="container mx-auto px-5 py-6 flex-col md:flex-row justify-center items-center">
 
           {/* Copyright */}
-          <p className="text-gray-400 text-sm text-center py-3">© 2024 SilaaiMachines. All rights reserved.</p>
+          <p className="text-gray-400 text-sm text-center py-3">© 2024 Silaaimachine Engineers. All rights reserved.</p>
 
           {/* Social Media Icons */}
           <div className="flex space-x-4 justify-center items-center py-3">

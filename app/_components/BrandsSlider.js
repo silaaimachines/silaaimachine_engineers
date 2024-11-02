@@ -2,6 +2,7 @@ import React from 'react';
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/ui/marquee";
 import Image from 'next/image';
+import Link from 'next/link';
 
 function BrandCard({ logo }) {
     return (
@@ -22,7 +23,9 @@ function BrandsSlider({ brandSliderList }) {
         <div className='container relative flex items-center justify-center'>
             <Marquee pauseOnHover className="[--duration:20s]">
                 {brandSliderList.map((brand) => (
-                    <BrandCard key={brand?.Name} logo={brand?.Logo?.url} />
+                    <Link href={`/brand/${brand?.slug}`} passHref key={brand?.id}>
+                        <BrandCard logo={brand?.Logo?.url} />
+                    </Link>
                 ))}
             </Marquee>
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
