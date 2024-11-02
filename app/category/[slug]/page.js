@@ -6,8 +6,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BackgroundGradient } from '@/components/ui/background-gradient';
 import BoxReveal from '@/components/ui/box-reveal';
-
-import FlipText from '@/components/ui/flip-text';
 import { Separator } from '@/components/ui/separator';
 
 
