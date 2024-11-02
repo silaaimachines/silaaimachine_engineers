@@ -72,23 +72,24 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="flex gap-5 items-center">
-          {/* Search input with Link */}
+        <div className='w-full mx-10'>
           <div className="flex justify-center items-center gap-2 border rounded-md px-2">
             <Input
               placeholder="Search..."
               className="w-full px-2"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
             <Link href={`/search/${searchQuery}`} passHref>
               <Search className="h-5 w-5 text-gray-500 cursor-pointer" />
             </Link>
           </div>
+        </div>
+        <div className="flex gap-5 items-center">
 
-          <Button variant="outline" as="a" href="cd nextjs_smen">
-            <PhoneCall className="h-5 w-5" /> Call Us
-          </Button>
+
+
+
           <Button asChild>
             <Link href="/login">
               Login

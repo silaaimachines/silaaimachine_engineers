@@ -5,6 +5,14 @@ import Image from 'next/image';
 import { BackgroundGradient } from '@/components/ui/background-gradient';
 import BoxReveal from '@/components/ui/box-reveal';
 import Link from 'next/link';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 
 const Store = () => {
   const [productList, setProductList] = useState([]);
@@ -58,6 +66,20 @@ const Store = () => {
 
   return (
     <div className="p-3 md:p-5">
+      <div>
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Sort By" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="high_to_low">Price: High to Low</SelectItem>
+            <SelectItem value="low_to_high">Price: Low to High</SelectItem>
+            <SelectItem value="discount">Better Discount</SelectItem>
+            <SelectItem value="new_arrival">New Arrival</SelectItem>
+           
+          </SelectContent>
+        </Select>
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center gap-x-3 gap-y-5 py-2 md:py-5">
         {productList.map((product, index) => {
           const { BasePrice, DiscountPrice, Name, Images, slug } = product;
