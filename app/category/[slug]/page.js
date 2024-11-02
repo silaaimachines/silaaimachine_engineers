@@ -70,10 +70,7 @@ export default function CategoryPage() {
   return (
     <div className="p-3 md:p-5">
     
-<FlipText
-  word={category.Name || ''} // Provide a fallback to an empty string if category.Name is undefined
-  className="text-4xl font-bold -tracking-widest text-black dark:text-white md:text-7xl md:leading-[5rem]"
-/>
+ <h2 className="text-xl font-semibold mb-4">{category?.Name}</h2>
 <Separator/>
 
       
