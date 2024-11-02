@@ -89,7 +89,10 @@ export default function CustomerTypePage() {
 
   return (
     <div className="p-3 md:p-5">
+      <div>
       <h2 className="text-xl font-semibold mb-4">{customerType?.Name}</h2>
+      </div>
+    
  
 
 

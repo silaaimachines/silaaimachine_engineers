@@ -33,6 +33,7 @@ const fetchAllPaginatedData = async (endpoint, filters = {}, pageSize = 25) => {
     }
 };
 
+// Existing methods
 const getProducts = (page = 1, pageSize = 25) =>
     axiosClient.get(`/products?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
 
@@ -54,6 +55,10 @@ const getProductsForCustomerType = (slug, page = 1, pageSize = 25) =>
 const getProductsForBrands = (slug, page = 1, pageSize = 25) =>
     axiosClient.get(`/products?filters[brand][slug][$eq]=${slug}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
 
+// New method for searching products
+const searchProducts = (searchTerm, page = 1, pageSize = 25) =>
+    axiosClient.get(`/products?filters[Name][$contains]=${searchTerm}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
+
 const getAllCategories = () => fetchAllPaginatedData('/categories');
 const getAllSliders = () => fetchAllPaginatedData('/sliders');
 const getAllBrandSliders = () => fetchAllPaginatedData('/brands');
@@ -72,5 +77,6 @@ export default {
     getCustomerTypeBySlug,
     getProductsForCategories,
     getProductsForCustomerType,
-    getProductsForBrands
+    getProductsForBrands,
+    searchProducts // Export the new search method
 };

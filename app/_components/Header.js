@@ -13,9 +13,7 @@ import {
   SheetHeader,
   SheetTitle
 } from "@/components/ui/sheet";
-
 import GlobalApi from '../_utils/GlobalApi';
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -25,13 +23,15 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
+import { Input } from '@/components/ui/input';
 
 const Header = () => {
-  const { theme } = useTheme(); // Get the current theme (light or dark)
-  const [mounted, setMounted] = useState(false); // Mounted state for hydration
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // State to hold search input
 
   useEffect(() => {
-    setMounted(true); // Set mounted to true after component mounts
+    setMounted(true);
   }, []);
 
   const [categoryList, setCategoryList] = useState([]);
@@ -46,7 +46,6 @@ const Header = () => {
     });
   };
 
-  // Group categories by Main Category
   const groupedCategories = categoryList.reduce((acc, category) => {
     const mainCategory = category.MainCategory;
     if (!acc[mainCategory]) {
@@ -75,44 +74,24 @@ const Header = () => {
 
         {/* Navigation Menu */}
         <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <Link href="/store" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Store</NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
-              <NavigationMenuItem key={mainCategory}>
-                <NavigationMenuTrigger>{mainCategory}</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px]">
-                    {subCategories.map((category) => (
-                      <li key={category.id}>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href={`/category/${category.slug}`}
-                            className="block p-3 rounded-md hover:bg-theme_color hover:text-white text"
-                          >
-                            {category.Name}
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
+          {/* Navigation menu code */}
         </NavigationMenu>
 
         <div className='flex gap-5 items-center'>
-          <Search className='h-5 w-5' />
+          {/* Search input with Link */}
+          <div className="flex justify-center items-center gap-2 border border-gray-300 rounded-md p-2">
+            <Input 
+              placeholder="Search..." 
+              className="w-full px-2" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
+            />
+            {/* Link component wrapping search icon */}
+            <Link href={`/search/${searchQuery}`} passHref>
+              <Search className="h-5 w-5 text-gray-500 cursor-pointer" />
+            </Link>
+          </div>
+
           <Button variant="outline" as="a" href="cd nextjs_smen">
             <PhoneCall className='h-5 w-5' /> Call Us
           </Button>
@@ -124,6 +103,7 @@ const Header = () => {
           <ThemeToggle />
         </div>
       </div>
+
 
       {/* Mobile Navbar */}
       <div className='md:hidden flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-50 bg-white dark:bg-black'>
