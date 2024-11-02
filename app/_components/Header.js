@@ -23,7 +23,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/search_input';
 
 const Header = () => {
   const { theme } = useTheme();
