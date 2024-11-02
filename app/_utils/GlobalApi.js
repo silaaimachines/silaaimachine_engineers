@@ -86,5 +86,6 @@ export default {
     getProductsForCategories,
     getProductsForCustomerType,
     getProductsForBrands,
-    RegisterAccount
+    RegisterAccount,
+    searchProducts
 };
