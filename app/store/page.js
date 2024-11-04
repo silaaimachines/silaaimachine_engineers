@@ -13,12 +13,12 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-
 const Store = () => {
   const [productList, setProductList] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [loading, setLoading] = useState(false);
+  const [sortOption, setSortOption] = useState(''); // State for sort option
   const observer = useRef();
 
   useEffect(() => {
@@ -64,10 +64,40 @@ const Store = () => {
     }).format(price);
   };
 
+  // Function to get sorted product list based on sortOption
+  const getSortedProducts = (products) => {
+    let sortedProducts = [...products];
+    switch (sortOption) {
+      case 'high_to_low':
+        sortedProducts.sort((a, b) => (b.DiscountPrice || b.BasePrice) - (a.DiscountPrice || a.BasePrice));
+        break;
+      case 'low_to_high':
+        sortedProducts.sort((a, b) => (a.DiscountPrice || a.BasePrice) - (b.DiscountPrice || b.BasePrice));
+        break;
+      case 'discount':
+        sortedProducts.sort((a, b) => {
+          const discountA = calculateDiscountPercentage(a.BasePrice, a.DiscountPrice);
+          const discountB = calculateDiscountPercentage(b.BasePrice, b.DiscountPrice);
+          return discountB - discountA; // Higher discount first
+        });
+        break;
+      case 'new_arrival':
+        // Assuming you want to sort by createdAt, most recent first
+        sortedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        break;
+      default:
+        break;
+    }
+    return sortedProducts;
+  };
+
+  // Get the sorted product list for rendering
+  const sortedProductList = getSortedProducts(productList);
+
   return (
     <div className="p-3 md:p-5">
       <div>
-        <Select>
+        <Select onValueChange={setSortOption}> {/* Update sort option on change */}
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Sort By" />
           </SelectTrigger>
@@ -76,15 +106,14 @@ const Store = () => {
             <SelectItem value="low_to_high">Price: Low to High</SelectItem>
             <SelectItem value="discount">Better Discount</SelectItem>
             <SelectItem value="new_arrival">New Arrival</SelectItem>
-           
           </SelectContent>
         </Select>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-center gap-x-3 gap-y-5 py-2 md:py-5">
-        {productList.map((product, index) => {
+        {sortedProductList.map((product, index) => {
           const { BasePrice, DiscountPrice, Name, Images, slug } = product;
           const discountPercentage = calculateDiscountPercentage(BasePrice, DiscountPrice);
-          const isLastProduct = index === productList.length - 1;
+          const isLastProduct = index === sortedProductList.length - 1;
 
           return (
             <Link key={index} href={`/product/${slug}`} passHref>
@@ -92,7 +121,7 @@ const Store = () => {
                 <div
                   ref={isLastProduct ? lastProductRef : null}
                 >
-                  <div className=" flex flex-col items-center justify-center rounded-2xl border transition-all duration-300 ease-in-out bg-white dark:bg-black cursor-pointer">
+                  <div className="flex flex-col items-center justify-center rounded-2xl border transition-all duration-300 ease-in-out bg-white dark:bg-black cursor-pointer">
                     <div className="relative">
                       {Images && Images[0]?.url && (
                         <Image
@@ -131,7 +160,6 @@ const Store = () => {
                   </div>
                 </div>
               </BackgroundGradient>
-
             </Link>
           );
         })}
