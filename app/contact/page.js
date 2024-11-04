@@ -10,10 +10,16 @@ const center = {
 };
 
 const StoreLocation = () => {
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
-    });
+    const googleMapsApiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+    const { isLoaded } = useJsApiLoader(
+        googleMapsApiKey
+            ? {
+                  id: 'google-map-script',
+                  googleMapsApiKey: googleMapsApiKey,
+              }
+            : null
+    );
 
     const [map, setMap] = useState(null);
     const [selectedMarker, setSelectedMarker] = useState(null);
@@ -21,7 +27,6 @@ const StoreLocation = () => {
     const markers = [
         {
             position: { lat: 22.223337, lng: 84.866342 },
-         
         },
     ];
 
@@ -118,8 +123,6 @@ const StoreLocation = () => {
                 </div>
             </div>
         </div>
-
-
     ) : null;
 };
 

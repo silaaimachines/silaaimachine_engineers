@@ -74,10 +74,10 @@ const Header = () => {
   return (
     <>
       {/* Main sticky header that appears only when scrolling up */}
-      <div className={`sticky top-0 z-50 transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"} bg-white dark:bg-black shadow-sm`}>
-        
+      <div className={`sticky top-0 z-50 transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"} bg-white dark:bg-black`}>
+
         {/* Desktop Header */}
-        <div className="hidden md:flex justify-between items-center p-3 px-5">
+        <div className="hidden md:flex justify-between items-center p-3 px-5 shadow-sm">
           <div>
             <Link href="/">
               {theme === 'dark' ? (
@@ -107,7 +107,7 @@ const Header = () => {
         </div>
 
         {/* Navigation Menu (Below Header) */}
-        <div className="hidden md:flex justify-center">
+        <div className="hidden md:flex justify-center py-2 shadow-sm">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -124,13 +124,13 @@ const Header = () => {
                 <NavigationMenuItem key={mainCategory}>
                   <NavigationMenuTrigger>{mainCategory}</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px]">
+                    <ul className="grid gap-3 p-2 md:w-[400px] lg:w-[500px]">
                       {subCategories.map((category) => (
                         <li key={category.id}>
                           <NavigationMenuLink asChild>
                             <Link
                               href={`/category/${category.slug}`}
-                              className="block p-3 rounded-md hover:bg-theme_color hover:text-white"
+                              className="block p-2 rounded-md hover:bg-theme_color hover:text-white"
                             >
                               {category.Name}
                             </Link>
