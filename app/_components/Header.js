@@ -28,15 +28,13 @@ import { Input } from '@/components/ui/search_input';
 const Header = () => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // State to hold search input
+  const [searchQuery, setSearchQuery] = useState("");
+  const [categoryList, setCategoryList] = useState([]);
+  const [showHeader, setShowHeader] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     setMounted(true);
-  }, []);
-
-  const [categoryList, setCategoryList] = useState([]);
-
-  useEffect(() => {
     getCategories();
   }, []);
 
@@ -55,88 +53,97 @@ const Header = () => {
     return acc;
   }, {});
 
-  // Ensure the component renders only after mounting to avoid hydration issues
+  // Scroll event listener to toggle header visibility based on scroll direction
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY) {
+        setShowHeader(false); // Hide on scroll down
+      } else {
+        setShowHeader(true);  // Show on scroll up
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   if (!mounted) return null;
 
   return (
     <>
-      {/* Desktop Header */}
-      <div className="hidden md:flex justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-50 bg-white dark:bg-black">
-        <div>
-          <Link href="/">
-            {theme === 'dark' ? (
-              <Image src='/Silaaimachine Engineers White.svg' alt='logo' width={200} height={200} />
-            ) : (
-              <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={200} height={200} />
-            )}
-          </Link>
-        </div>
-
-        <div className='w-full mx-10'>
-          <div className="flex justify-center items-center gap-2 border rounded-md px-2">
-            <Input
-              placeholder="Search..."
-              className="w-full px-2"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <Link href={`/search/${searchQuery}`} passHref>
-              <Search className="h-5 w-5 text-gray-500 cursor-pointer" />
+      {/* Main sticky header that appears only when scrolling up */}
+      <div className={`sticky top-0 z-50 transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"} bg-white dark:bg-black shadow-sm`}>
+        
+        {/* Desktop Header */}
+        <div className="hidden md:flex justify-between items-center p-3 px-5">
+          <div>
+            <Link href="/">
+              {theme === 'dark' ? (
+                <Image src='/Silaaimachine Engineers White.svg' alt='logo' width={200} height={200} />
+              ) : (
+                <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={200} height={200} />
+              )}
             </Link>
           </div>
-        </div>
-        <div className="flex gap-5 items-center">
-
-
-
-
-          <Button asChild>
-            <Link href="/login">
-              Login
-            </Link>
-          </Button>
-          <ThemeToggle />
-        </div>
-      </div>
-
-      {/* Navigation Menu (Below Header) */}
-      <div className="hidden md:flex justify-center shadow-sm sticky top-0 z-40 bg-white dark:bg-black">
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
+          <div className="flex gap-5 items-center">
+            <div className="flex justify-center items-center gap-2 border rounded-md px-2">
+              <Input
+                placeholder="Search..."
+                className="w-full px-2"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <Link href={`/search/${searchQuery}`} passHref>
+                <Search className="h-5 w-5 text-gray-500 cursor-pointer" />
               </Link>
-            </NavigationMenuItem>
+            </div>
+            <Button asChild>
+              <Link href="/login">Login</Link>
+            </Button>
+            <ThemeToggle />
+          </div>
+        </div>
 
-            <NavigationMenuItem>
-              <Link href="/store" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>Store</NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
-              <NavigationMenuItem key={mainCategory}>
-                <NavigationMenuTrigger>{mainCategory}</NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px]">
-                    {subCategories.map((category) => (
-                      <li key={category.id}>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            href={`/category/${category.slug}`}
-                            className="block p-3 rounded-md hover:bg-theme_color hover:text-white"
-                          >
-                            {category.Name}
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
+        {/* Navigation Menu (Below Header) */}
+        <div className="hidden md:flex justify-center">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu>
+              <NavigationMenuItem>
+                <Link href="/store" legacyBehavior passHref>
+                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Store</NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
+                <NavigationMenuItem key={mainCategory}>
+                  <NavigationMenuTrigger>{mainCategory}</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px]">
+                      {subCategories.map((category) => (
+                        <li key={category.id}>
+                          <NavigationMenuLink asChild>
+                            <Link
+                              href={`/category/${category.slug}`}
+                              className="block p-3 rounded-md hover:bg-theme_color hover:text-white"
+                            >
+                              {category.Name}
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
       </div>
 
       {/* Mobile Navbar */}
@@ -188,7 +195,7 @@ const Header = () => {
             placeholder="Search..."
             className="w-full px-2"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)} // Update state on input change
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <Link href={`/search/${searchQuery}`} passHref>
             <Search className="h-5 w-5 text-gray-500 cursor-pointer" />
