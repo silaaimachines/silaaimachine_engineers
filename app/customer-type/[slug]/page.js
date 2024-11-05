@@ -8,8 +8,6 @@ import { BackgroundGradient } from '@/components/ui/background-gradient';
 import BoxReveal from '@/components/ui/box-reveal';
 import GradualSpacing from '@/components/ui/gradual-spacing';
 
-
-
 export default function CustomerTypePage() {
   const params = useParams();
   const [productList, setProductList] = useState([]);
@@ -19,8 +17,6 @@ export default function CustomerTypePage() {
   const [loading, setLoading] = useState(true);
 
   const observer = useRef();
-
-
 
   useEffect(() => {
 
@@ -58,8 +54,6 @@ export default function CustomerTypePage() {
     }
   };
 
-
-
   const lastProductRef = useCallback((node) => {
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver((entries) => {
@@ -85,17 +79,11 @@ export default function CustomerTypePage() {
     }).format(price);
   };
 
-
-
   return (
     <div className="p-3 md:p-5">
       <div>
-      <h2 className="text-xl font-semibold mb-4">{customerType?.Name}</h2>
+        <h2 className="text-xl font-semibold mb-4">{customerType?.Name}</h2>
       </div>
-    
- 
-
-
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
         {productList.map((product, index) => {
           const { BasePrice, DiscountPrice, Name, Images, slug } = product;

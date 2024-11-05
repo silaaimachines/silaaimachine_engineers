@@ -15,9 +15,9 @@ const StoreLocation = () => {
     const { isLoaded } = useJsApiLoader(
         googleMapsApiKey
             ? {
-                  id: 'google-map-script',
-                  googleMapsApiKey: googleMapsApiKey,
-              }
+                id: 'google-map-script',
+                googleMapsApiKey: googleMapsApiKey,
+            }
             : null
     );
 

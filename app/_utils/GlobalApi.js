@@ -70,8 +70,8 @@ const RegisterAccount = (username, email, password) => axiosClient.post("/auth/l
     email,
     password
 })
-.then((response) => response.data)
-.catch(() => null);
+    .then((response) => response.data)
+    .catch(() => null);
 
 export default {
     getProducts,

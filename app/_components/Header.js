@@ -77,7 +77,7 @@ const Header = () => {
       <div className={`sticky top-0 z-50 transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"} bg-white dark:bg-black`}>
 
         {/* Desktop Header */}
-        <div className="hidden md:flex justify-between items-center p-3 px-5 shadow-sm">
+        <div className="hidden lg:flex justify-between items-center p-3 px-5 shadow-sm">
           <div>
             <Link href="/">
               {theme === 'dark' ? (
@@ -87,6 +87,45 @@ const Header = () => {
               )}
             </Link>
           </div>
+
+          <div>
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <Link href="/" legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/store" legacyBehavior passHref>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>Store</NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+                {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
+                  <NavigationMenuItem key={mainCategory}>
+                    <NavigationMenuTrigger>{mainCategory}</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid gap-3 p-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                        {subCategories.map((category) => (
+                          <li key={category.id}>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                href={`/category/${category.slug}`}
+                                className="block p-2 rounded-md hover:bg-theme_color hover:text-white"
+                              >
+                                {category.Name}
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+
           <div className="flex gap-5 items-center">
             <div className="flex justify-center items-center gap-2 border rounded-md px-2">
               <Input
@@ -105,49 +144,10 @@ const Header = () => {
             <ThemeToggle />
           </div>
         </div>
-
-        {/* Navigation Menu (Below Header) */}
-        <div className="hidden md:flex justify-center py-2 shadow-sm">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/store" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Store</NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
-                <NavigationMenuItem key={mainCategory}>
-                  <NavigationMenuTrigger>{mainCategory}</NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid gap-3 p-2 md:w-[400px] lg:w-[500px]">
-                      {subCategories.map((category) => (
-                        <li key={category.id}>
-                          <NavigationMenuLink asChild>
-                            <Link
-                              href={`/category/${category.slug}`}
-                              className="block p-2 rounded-md hover:bg-theme_color hover:text-white"
-                            >
-                              {category.Name}
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
       </div>
 
       {/* Mobile Navbar */}
-      <div className="md:hidden flex flex-col justify-between items-center p-3 px-5 shadow-sm sticky top-0 z-50 bg-white dark:bg-black">
+      <div className={`lg:hidden flex flex-col justify-between items-center p-3 px-5 shadow-sm bg-white dark:bg-black sticky top-0 z-50 transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"}`}>
         <div className="w-full flex justify-between items-center">
           <Link href="/">
             {theme === 'dark' ? (
@@ -190,7 +190,7 @@ const Header = () => {
         </div>
 
         {/* Search Input (Below Top Header) */}
-        <div className="flex w-full mt-3 items-center gap-2 border rounded-md px-2">
+        <div className="flex w-full mt-3 justify-between items-center gap-2 border rounded-md px-2">
           <Input
             placeholder="Search..."
             className="w-full px-2"

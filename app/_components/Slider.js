@@ -26,8 +26,6 @@ function Slider({ sliderList }) {
         <div className="space-y-4">
           {/* Image skeleton */}
           <Skeleton className="h-[200px] md:h-[300px] lg:h-[400px] w-full rounded-lg" />
-
-          
         </div>
       ) : (
         <Carousel

@@ -8,7 +8,7 @@ const Customertype = ({ customerTypeList }) => {
   return (
     <div>
       <div className="flex items-center gap-1 md:gap-2">
-      <GradualSpacing
+        <GradualSpacing
           className="font-display text-center text-lg md:text-2xl font-bold -tracking-widest md:leading-[5rem]"
           text="Shop by Customer Type"
         />
