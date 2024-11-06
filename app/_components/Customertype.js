@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import GradualSpacing from '@/components/ui/gradual-spacing';
 
-
 const Customertype = ({ customerTypeList }) => {
   return (
     <div>
@@ -14,24 +13,26 @@ const Customertype = ({ customerTypeList }) => {
         />
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-1">
-        {customerTypeList.slice(0, 6).map((customer_type, index) => (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1">
+        {customerTypeList.map((customer_type, index) => (
           <Link key={index} href={`/customer-type/${customer_type.slug}`} passHref>
-            <div className="flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl border shrink-0 cursor-pointer hover:border-theme_color w-full h-auto shadow-sm">
+            <div className="flex flex-col items-center justify-center transition duration-300 ease-in-out rounded-2xl border shrink-0 cursor-pointer hover:border-theme_color w-full h-auto shadow-sm relative">
               <div className="relative">
                 {customer_type?.Image?.url && (
                   <Image
                     src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + customer_type.Image.url}
-                    width={200}
-                    height={200}
+                    width={1000}
+                    height={1000}
                     alt={customer_type?.Image?.alternativeText || 'Customer Type Image'}
-                    className="object-contain rounded-t-2xl w-full h-full "
+                    className="object-cover rounded-2xl w-full h-auto "
                   />
                 )}
+                <div className='absolute inset-0 flex items-center justify-center'>
+                <h2 className="w-full p-3 backdrop-blur-sm bg-black bg-opacity-30  text-center text-white text-2xl md:text-4xl font-semibold">{customer_type?.Name}</h2>
+                </div>
+               
               </div>
-              <div className="w-full bg-theme_color rounded-b-2xl">
-                <h2 className="text-center text-sm py-2 text-white">{customer_type?.Name}</h2>
-              </div>
+              
             </div>
           </Link>
         ))}
