@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Search, PhoneCall, Menu } from 'lucide-react';
+import { Search, PhoneCall, Menu, User } from 'lucide-react';
 import Link from 'next/link';
 import ThemeToggle from '../_components/ThemeToggle';
 import { useTheme } from 'next-themes';
@@ -139,7 +139,7 @@ const Header = () => {
               </Link>
             </div>
             <Button asChild>
-              <Link href="/login">Login</Link>
+              <Link href="/login"><User/></Link>
             </Button>
             <ThemeToggle />
           </div>
