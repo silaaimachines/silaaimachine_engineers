@@ -85,9 +85,9 @@ export default function BrandPage() {
           <Image
             src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + brand.Banner.url}
             alt="Banner"
-            width={800}
-            height={200}
-            className="rounded-lg w-full object-cover"
+            width={1000}
+            height={1000}
+            className="rounded-2xl w-full object-cover"
           />
         </div>
       )}
