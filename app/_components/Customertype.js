@@ -28,7 +28,7 @@ const Customertype = ({ customerTypeList }) => {
                   />
                 )}
                 <div className="absolute inset-0 flex items-end justify-center">
-                  <h2 className="w-full p-3 backdrop-blur-lg backdrop:rounded-b-2xl text-center text-white text-lg md:text-2xl font-semibold">
+                  <h2 className="w-full p-3 backdrop-blur-sm backdrop:rounded-b-2xl text-center text-white text-lg md:text-2xl font-semibold">
                     {customer_type?.Name}
                   </h2>
                 </div>
