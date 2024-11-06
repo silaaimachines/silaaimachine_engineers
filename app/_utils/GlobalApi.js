@@ -43,6 +43,9 @@ const getProductBySlug = (slug) =>
 const getCategoryBySlug = (slug) =>
     axiosClient.get(`/categories?filters[slug][$eq]=${slug}&populate=*`);
 
+const getBrandBySlug = (slug) =>
+    axiosClient.get(`/brands?filters[slug][$eq]=${slug}&populate=*`);
+
 const getCustomerTypeBySlug = (slug) =>
     axiosClient.get(`/customer-types?filters[slug][$eq]=${slug}&populate=*`);
 
@@ -87,5 +90,6 @@ export default {
     getProductsForCustomerType,
     getProductsForBrands,
     RegisterAccount,
-    searchProducts
+    searchProducts,
+    getBrandBySlug
 };

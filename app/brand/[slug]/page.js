@@ -24,7 +24,7 @@ export default function BrandPage() {
 
   const fetchBrandDetails = async () => {
     try {
-      const response = await GlobalApi.getProductsForBrands(params.slug);
+      const response = await GlobalApi.getBrandBySlug(params.slug);
       if (response.data.data.length) {
         setBrand(response.data.data[0]);
       } else {
@@ -82,7 +82,7 @@ export default function BrandPage() {
     <div className="p-3 md:p-5">
       {brand.Banner && (
         <div className="mb-4">
-          <Image 
+          <Image
             src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + brand.Banner.url}
             alt="Banner"
             width={800}
@@ -91,7 +91,7 @@ export default function BrandPage() {
           />
         </div>
       )}
-      
+
       <h2 className="text-xl font-semibold mb-4">{brand?.Name || 'Brand'}</h2>
 
       {noProducts ? (

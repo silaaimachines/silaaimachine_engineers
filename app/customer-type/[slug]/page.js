@@ -6,24 +6,34 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BackgroundGradient } from '@/components/ui/background-gradient';
 import BoxReveal from '@/components/ui/box-reveal';
-import GradualSpacing from '@/components/ui/gradual-spacing';
 
 export default function CustomerTypePage() {
   const params = useParams();
-  const [productList, setProductList] = useState([]);
   const [customerType, setCustomerType] = useState({});
+  const [productList, setProductList] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
-
+  const [noProducts, setNoProducts] = useState(false);
   const observer = useRef();
 
   useEffect(() => {
-
     getProductList(page);
     fetchCustomerTypeDetails();
-
   }, [params.slug, page]);
+
+  const fetchCustomerTypeDetails = async () => {
+    try {
+      const response = await GlobalApi.getCustomerTypeBySlug(params.slug);
+      if (response.data.data.length) {
+        setCustomerType(response.data.data[0]);
+      } else {
+        console.error('No customer type found');
+      }
+    } catch (error) {
+      console.error('Error fetching customer type details:', error);
+    }
+  };
 
   const getProductList = async (currentPage) => {
     setLoading(true);
@@ -39,19 +49,6 @@ export default function CustomerTypePage() {
       setLoading(false);
     }
 
-  };
-
-  const fetchCustomerTypeDetails = async () => {
-    try {
-      const response = await GlobalApi.getProductsForCustomerType(params.slug);
-      if (response.data.data.length) {
-        setCustomerType(response.data.data[0]);
-      } else {
-        console.error('No customer type found');
-      }
-    } catch (error) {
-      console.error('Error fetching customer type details:', error);
-    }
   };
 
   const lastProductRef = useCallback((node) => {
