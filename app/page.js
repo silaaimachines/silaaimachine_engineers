@@ -56,16 +56,22 @@ const Home = () => {
         <BrandsSlider brandSliderList={brandSliderList} />
       </div>
 
-      <div className='px-2'>
+      <div>
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <FeaturedProducts featuredProductsList={featuredProductsList} />
+        </div>
+
+        <div className='py-5'>
+          <Image src='/Banner4.png' alt='Banner' width={2500} height={2500} className='w-full h-auto' />
         </div>
 
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <Customertype customerTypeList={customerTypeList} />
         </div>
 
-       
+        <div className='py-5'>
+          <Image src='/Banner2.png' alt='Banner' width={2500} height={2500} className='w-full h-auto' />
+        </div>
       </div>
     </div>
   );
