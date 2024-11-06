@@ -70,20 +70,6 @@ const Home = () => {
         </div>
 
         <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
-          <Image
-            src='/Banner1.png' width={1000} height={500} alt='banner'
-            className='w-full h-auto'
-          />
-        </div>
-
-        <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
-          <Image
-            src='/Banner2.png' width={1000} height={500} alt='banner'
-            className='w-full h-auto'
-          />
-        </div>
-
-        <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
           <Customertype customerTypeList={customerTypeList} />
         </div>
 
