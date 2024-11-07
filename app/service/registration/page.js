@@ -62,29 +62,26 @@ const ServiceRegistration = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-     
-        const sanitizedCustomerNumber = formData.customerNumber.replace(/['"]/g, "");
         // Check for "Others" selection and override with the other field values
         const updatedFormData = {
             ...formData,
             serviceType: formData.serviceType === "others" ? formData.serviceTypeOther : formData.serviceType,
             machineType: formData.machineType === "others" ? formData.machineTypeOther : formData.machineType,
             machineBrand: formData.machineBrand === "others" ? formData.machineBrandOther : formData.machineBrand,
-            customerNumber: sanitizedCustomerNumber, // Use sanitized value here
         };
     
         const jsonData = {
             data: {
                 ChooseService: updatedFormData.service,
                 CustomerName: updatedFormData.customerName,
-                CustomerNumber: updatedFormData.customerNumber,
+                CustomerNumber: Number(updatedFormData.customerNumber),
                 CustomerAddress: updatedFormData.customerAddress,
                 ServiceType: updatedFormData.serviceType,
                 MachineType: updatedFormData.machineType,
                 MachineBrand: updatedFormData.machineBrand,
                 ModelNumber: updatedFormData.modelNumber,
                 EngineNumber: updatedFormData.engineNumber,
-                DueDate: date ? format(date, "MM-dd-yyyy") : null,
+                DueDate: date ? date : null,
                 Problem: updatedFormData.problem,
                 Notes: updatedFormData.notes,
             },
