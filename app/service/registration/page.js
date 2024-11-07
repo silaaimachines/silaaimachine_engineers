@@ -1,11 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
-
-
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
+import GlobalApi from "@/app/_utils/GlobalApi";
 import {
     Select,
     SelectContent,
@@ -17,12 +16,11 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar"
-import { CalendarIcon } from "lucide-react"
-import { format } from "date-fns"
+import { Calendar } from "@/components/ui/calendar";
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
 
 const ServiceRegistration = () => {
-
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
     const [otherFields, setOtherFields] = useState({
@@ -30,7 +28,21 @@ const ServiceRegistration = () => {
         machineBrand: false,
         serviceType: false,
     });
-    const [date, setDate] = React.useState()
+    const [date, setDate] = useState(null);
+    const [formData, setFormData] = useState({
+        service: "",
+        customerName: "",
+        customerNumber: "",
+        customerAddress: "",
+        serviceType: "",
+        machineType: "",
+        machineBrand: "",
+        modelNumber: "",
+        engineNumber: "",
+        dueDate: "",
+        problem: "",
+        notes: "",
+    });
 
     const handleSelectChange = (field, value) => {
         setOtherFields((prev) => ({
@@ -39,21 +51,74 @@ const ServiceRegistration = () => {
         }));
     };
 
-    return (
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
 
-        <form>
-            <div className=" flex items-center  justify-center underline font-bold text-2xl pt-3 md:text-4xl ">
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+     
+        const sanitizedCustomerNumber = formData.customerNumber.replace(/['"]/g, "");
+        // Check for "Others" selection and override with the other field values
+        const updatedFormData = {
+            ...formData,
+            serviceType: formData.serviceType === "others" ? formData.serviceTypeOther : formData.serviceType,
+            machineType: formData.machineType === "others" ? formData.machineTypeOther : formData.machineType,
+            machineBrand: formData.machineBrand === "others" ? formData.machineBrandOther : formData.machineBrand,
+            customerNumber: sanitizedCustomerNumber, // Use sanitized value here
+        };
+    
+        const jsonData = {
+            data: {
+                ChooseService: updatedFormData.service,
+                CustomerName: updatedFormData.customerName,
+                CustomerNumber: updatedFormData.customerNumber,
+                CustomerAddress: updatedFormData.customerAddress,
+                ServiceType: updatedFormData.serviceType,
+                MachineType: updatedFormData.machineType,
+                MachineBrand: updatedFormData.machineBrand,
+                ModelNumber: updatedFormData.modelNumber,
+                EngineNumber: updatedFormData.engineNumber,
+                DueDate: date ? format(date, "MM-dd-yyyy") : null,
+                Problem: updatedFormData.problem,
+                Notes: updatedFormData.notes,
+            },
+
+        };
+        console.log(JSON.stringify(jsonData, null, 2));
+    
+        try {
+            // Send data to the API
+            const response = await GlobalApi.postServiceRegistrationData(jsonData);
+    
+            // Log the response from the API
+            console.log("Service registration successful:", response);
+        } catch (error) {
+            console.error("Error during service registration:", error);
+        }
+    };
+    
+    
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <div className="flex items-center justify-center underline font-bold text-2xl pt-3 md:text-4xl">
                 <h5>Service Registration</h5>
             </div>
             <div className="max-w-2xl mx-auto p-6 space-y-6 rounded-lg shadow-lg">
-
-
-
-
                 {/* Choose Service */}
                 <div className="space-y-4">
                     <Label>Choose Service</Label>
-                    <Select>
+                    <Select
+                        name="service"
+                        value={formData.service}
+                        onValueChange={(value) => handleChange({ target: { name: "service", value } })}
+                    >
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select a service" />
                         </SelectTrigger>
@@ -72,28 +137,55 @@ const ServiceRegistration = () => {
                         <Label>Customer Name </Label>
                         <Label className="text-red-500">*</Label>
                     </div>
-                    <Input type="text" className="w-full" required/>
+                    <Input
+                        type="text"
+                        name="customerName"
+                        value={formData.customerName}
+                        onChange={handleChange}
+                        className="w-full"
+                        required
+                    />
                 </div>
 
                 {/* Customer Number */}
                 <div className="space-y-4">
                     <Label>Customer Number</Label>
-                    <Input type="tel" className="w-full" />
+                    <Input
+                        type="tel"
+                        name="customerNumber"
+                        value={formData.customerNumber}
+                        onChange={handleChange}
+                        className="w-full"
+                        onInput={(e) => {
+                            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                        }}
+                    />
                 </div>
 
                 {/* Customer Address */}
                 <div className="space-y-4">
                     <Label>Customer Address</Label>
                     <Textarea
-                        className="w-full p-3 border rounded-lg text-gray-700  resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        name="customerAddress"
+                        value={formData.customerAddress}
+                        onChange={handleChange}
+                        className="w-full p-3 border rounded-lg text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter address here..."
                         rows={4}
                     />
                 </div>
+
                 {/* Service Type Select */}
                 <div className="space-y-4">
                     <Label>Service Type</Label>
-                    <Select onValueChange={(value) => handleSelectChange("serviceType", value)}>
+                    <Select
+                        name="serviceType"
+                        value={formData.serviceType}
+                        onValueChange={(value) => {
+                            handleChange({ target: { name: "serviceType", value } });
+                            handleSelectChange("serviceType", value);
+                        }}
+                    >
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select service type" />
                         </SelectTrigger>
@@ -110,14 +202,28 @@ const ServiceRegistration = () => {
                         </SelectContent>
                     </Select>
                     {otherFields.serviceType && (
-                        <Input type="text" placeholder="Specify service type" className="w-full mt-2" />
+                        <Input
+                            type="text"
+                            name="serviceTypeOther"
+                            placeholder="Specify service type"
+                            value={formData.serviceTypeOther || ""}
+                            onChange={handleChange}
+                            className="w-full mt-2"
+                        />
                     )}
                 </div>
 
                 {/* Machine Type Select */}
                 <div className="space-y-4">
                     <Label>Machine Type</Label>
-                    <Select onValueChange={(value) => handleSelectChange("machineType", value)}>
+                    <Select
+                        name="machineType"
+                        value={formData.machineType}
+                        onValueChange={(value) => {
+                            handleChange({ target: { name: "machineType", value } });
+                            handleSelectChange("machineType", value);
+                        }}
+                    >
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select machine type" />
                         </SelectTrigger>
@@ -136,14 +242,28 @@ const ServiceRegistration = () => {
                         </SelectContent>
                     </Select>
                     {otherFields.machineType && (
-                        <Input type="text" placeholder="Specify machine type" className="w-full mt-2" />
+                        <Input
+                            type="text"
+                            name="machineTypeOther"
+                            placeholder="Specify machine type"
+                            value={formData.machineTypeOther || ""}
+                            onChange={handleChange}
+                            className="w-full mt-2"
+                        />
                     )}
                 </div>
 
                 {/* Machine Brand Select */}
                 <div className="space-y-4">
                     <Label>Machine Brand</Label>
-                    <Select onValueChange={(value) => handleSelectChange("machineBrand", value)}>
+                    <Select
+                        name="machineBrand"
+                        value={formData.machineBrand}
+                        onValueChange={(value) => {
+                            handleChange({ target: { name: "machineBrand", value } });
+                            handleSelectChange("machineBrand", value);
+                        }}
+                    >
                         <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select machine brand" />
                         </SelectTrigger>
@@ -162,23 +282,42 @@ const ServiceRegistration = () => {
                         </SelectContent>
                     </Select>
                     {otherFields.machineBrand && (
-                        <Input type="text" placeholder="Specify machine brand" className="w-full mt-2" />
+                        <Input
+                            type="text"
+                            name="machineBrandOther"
+                            placeholder="Specify machine brand"
+                            value={formData.machineBrandOther || ""}
+                            onChange={handleChange}
+                            className="w-full mt-2"
+                        />
                     )}
                 </div>
 
-                {/* Model Name */}
+                {/* Model Number */}
                 <div className="space-y-4">
                     <Label>Model Number</Label>
-                    <Input type="text" className="w-full" />
+                    <Input
+                        type="text"
+                        name="modelNumber"
+                        value={formData.modelNumber}
+                        onChange={handleChange}
+                        className="w-full"
+                    />
                 </div>
 
-                {/* engine Number */}
+                {/* Engine Number */}
                 <div className="space-y-4">
                     <Label>Engine Number</Label>
-                    <Input type="text" className="w-full" />
+                    <Input
+                        type="text"
+                        name="engineNumber"
+                        value={formData.engineNumber}
+                        onChange={handleChange}
+                        className="w-full"
+                    />
                 </div>
 
-                {/* due date */}
+                {/* Due Date */}
                 <div className="space-y-4">
                     <Label>Due Date</Label>
                     <Popover>
@@ -204,25 +343,35 @@ const ServiceRegistration = () => {
                         </PopoverContent>
                     </Popover>
                 </div>
+
                 {/* Problem */}
                 <div className="space-y-4">
                     <Label>Problem</Label>
-                    <Input type="text" className="w-full" />
+                    <Input
+                        type="text"
+                        name="problem"
+                        value={formData.problem}
+                        onChange={handleChange}
+                        className="w-full"
+                    />
                 </div>
-                {/* Notes*/}
+
+                {/* Notes */}
                 <div className="space-y-4">
                     <Label>Notes</Label>
                     <Textarea
-                        className="w-full p-3 border rounded-lg text-gray-700  resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        name="notes"
+                        value={formData.notes}
+                        onChange={handleChange}
+                        className="w-full p-3 border rounded-lg text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter additional notes here..."
                         rows={4}
                     />
-
                 </div>
-                <div className=" flex justify-center items-center">
+
+                <div className="flex justify-center items-center">
                     <Button type="submit">Submit</Button>
                 </div>
-
             </div>
         </form>
     );

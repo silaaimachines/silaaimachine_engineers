@@ -61,12 +61,17 @@ const getProductsForBrands = (slug, page = 1, pageSize = 25) =>
 // New method for searching products
 const searchProducts = (searchTerm, page = 1, pageSize = 25) =>
     axiosClient.get(`/products?filters[Name][$contains]=${searchTerm}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
-
+ 
 const getAllCategories = () => fetchAllPaginatedData('/categories');
 const getAllSliders = () => fetchAllPaginatedData('/sliders');
 const getAllBrandSliders = () => fetchAllPaginatedData('/brands');
 const getAllCustomerTypes = () => fetchAllPaginatedData('/customer-types');
 const getAllFeaturedProducts = () => fetchAllPaginatedData('/products', { Featured: true });
+
+
+const postServiceRegistrationData=()=>axiosClient.post('/servicings')
+
+
 
 const RegisterAccount = (username, email, password) => axiosClient.post("/auth/local/register", {
     username,
@@ -91,5 +96,6 @@ export default {
     getProductsForBrands,
     RegisterAccount,
     searchProducts,
-    getBrandBySlug
+    getBrandBySlug,
+    postServiceRegistrationData
 };
