@@ -19,10 +19,13 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
+import { ServiceRegistrationDialog } from "../components/ServiceRegistrationSuccessDialog";
 
 const ServiceRegistration = () => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [responseData, setResponseData] = useState(null);
     const [otherFields, setOtherFields] = useState({
         machineType: false,
         machineBrand: false,
@@ -69,7 +72,7 @@ const ServiceRegistration = () => {
             machineType: formData.machineType === "others" ? formData.machineTypeOther : formData.machineType,
             machineBrand: formData.machineBrand === "others" ? formData.machineBrandOther : formData.machineBrand,
         };
-    
+
         const jsonData = {
             data: {
                 ChooseService: updatedFormData.service,
@@ -88,19 +91,22 @@ const ServiceRegistration = () => {
 
         };
         console.log(JSON.stringify(jsonData, null, 2));
-    
+
         try {
             // Send data to the API
             const response = await GlobalApi.postServiceRegistrationData(jsonData);
-    
+
+            setResponseData(response.data.data);
+            setDialogOpen(true);
+
             // Log the response from the API
             console.log("Service registration successful:", response);
         } catch (error) {
             console.error("Error during service registration:", error);
         }
     };
-    
-    
+
+
 
     return (
         <form onSubmit={handleSubmit}>
@@ -370,6 +376,12 @@ const ServiceRegistration = () => {
                     <Button type="submit">Submit</Button>
                 </div>
             </div>
+
+            <ServiceRegistrationDialog
+                dialogOpen={dialogOpen}
+                setDialogOpen={setDialogOpen}
+                responseData={responseData}
+            />
         </form>
     );
 };
