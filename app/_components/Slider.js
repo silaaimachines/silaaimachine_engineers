@@ -62,29 +62,6 @@ function Slider({ sliderList }) {
           </CarouselContent>
         </Carousel>
       )}
-      <div className='flex justify-center bg-gray-50 dark:bg-gray-900 gap-10 md:gap-24 lg:gap-60 lg:py-5 md:py-3 py-2 px-2'>
-        <div className='flex items-center gap-2'>
-          <ShieldCheck className='w-5 md:w-7 h-auto' />
-          <div className='flex flex-col'>
-            <h2 className='text-xs font-bold'>1-Year</h2>
-            <h2 className='text-xs'>Warranty</h2>
-          </div>
-        </div>
-        <div className='flex items-center gap-2'>
-          <Truck className='w-5 md:w-7 h-auto' />
-          <div className='flex flex-col'>
-            <h2 className='text-xs font-bold'>Free</h2>
-            <h2 className='text-xs'>Delivery</h2>
-          </div>
-        </div>
-        <div className='flex items-center gap-2'>
-          <Headset className='w-5 md:w-7 h-auto' />
-          <div className='flex flex-col'>
-            <h2 className='text-xs font-bold'>24x7</h2>
-            <h2 className='text-xs'>Support</h2>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }

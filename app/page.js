@@ -52,12 +52,12 @@ const Home = () => {
         <Slider sliderList={sliderList} />
       </div>
 
-      <div className='flex justify-center'>
+      <div className='flex justify-center relative md:-top-2 backdrop-blur-sm'>
         <BrandsSlider brandSliderList={brandSliderList} />
       </div>
 
       <div>
-        <div className='py-2 lg:px-10 md:px-2 sm:px-1'>
+        <div className='lg:px-10 md:px-2 sm:px-1'>
           <FeaturedProducts featuredProductsList={featuredProductsList} />
         </div>
 
