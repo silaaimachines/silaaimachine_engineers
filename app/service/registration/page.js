@@ -172,7 +172,7 @@ const ServiceRegistration = () => {
                         name="customerAddress"
                         value={formData.customerAddress}
                         onChange={handleChange}
-                        className="w-full p-3 border rounded-lg text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-3 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter address here..."
                         rows={4}
                     />
@@ -366,7 +366,7 @@ const ServiceRegistration = () => {
                         name="notes"
                         value={formData.notes}
                         onChange={handleChange}
-                        className="w-full p-3 border rounded-lg text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full p-3 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter additional notes here..."
                         rows={4}
                     />
