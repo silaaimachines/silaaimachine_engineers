@@ -27,20 +27,7 @@ export default function SearchPage() {
         }
     }, [searchTerm]);
 
-    const fetchFilteredProducts = async (term, currentPage) => {
-        setLoading(true);
-        try {
-            const response = await GlobalApi.searchProducts(term, currentPage);
-            setProductList((prev) => [...prev, ...response.data.data]);
-            if (response.data.meta.pagination) {
-                setTotalPages(response.data.meta.pagination.pageCount);
-            }
-        } catch (error) {
-            console.error('Error fetching filtered products:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
+          
 
     const lastProductRef = useCallback(
         (node) => {
