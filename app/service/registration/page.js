@@ -21,11 +21,12 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import { ServiceDetailsDialog } from "../components/ServiceDetailsDialog";
 
 const ServiceRegistration = () => {
+  const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [responseData, setResponseData] = useState(null);
   const [otherFields, setOtherFields] = useState({
@@ -68,6 +69,8 @@ const ServiceRegistration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     const updatedFormData = {
       ...formData,
       customerType:
@@ -136,6 +139,8 @@ const ServiceRegistration = () => {
       console.log("Service registration successful:", response);
     } catch (error) {
       console.error("Error during service registration:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -448,8 +453,16 @@ const ServiceRegistration = () => {
           />
         </div>
 
-        <div className="flex justify-center items-center">
-          <Button type="submit">Submit</Button>
+        {/* Submit Button */}
+        <div className="flex justify-center">
+          {loading ? (
+            <Button disabled>
+              <Loader2 className="animate-spin" />
+              Submitting...
+            </Button>
+          ) : (
+            <Button type="submit">Submit</Button> // show normal button
+          )}
         </div>
       </div>
 
