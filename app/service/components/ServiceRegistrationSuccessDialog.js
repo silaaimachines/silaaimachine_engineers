@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 export function ServiceRegistrationDialog({ dialogOpen, setDialogOpen, responseData }) {
@@ -15,6 +16,7 @@ export function ServiceRegistrationDialog({ dialogOpen, setDialogOpen, responseD
           <div>Customer ID: {responseData.CustomerID}</div>
           <div>Customer Name: {responseData.CustomerName}</div>
         </div>
+        <Button>Print</Button>
       </DialogContent>
     </Dialog>
   );
