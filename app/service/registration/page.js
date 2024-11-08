@@ -19,7 +19,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
-import { ServiceRegistrationDialog } from "../components/ServiceRegistrationSuccessDialog";
+import { ServiceDetailsDialog } from "../components/ServiceDetailsDialog";
 
 
 
@@ -132,8 +132,8 @@ const ServiceRegistration = () => {
                         </SelectTrigger>
                         <SelectContent>
                             <SelectGroup>
-                                <SelectItem value="home">Home Service</SelectItem>
-                                <SelectItem value="store">Store Service</SelectItem>
+                                <SelectItem value="Home Service">Home Service</SelectItem>
+                                <SelectItem value="Store Service">Store Service</SelectItem>
                             </SelectGroup>
                         </SelectContent>
                     </Select>
@@ -382,7 +382,7 @@ const ServiceRegistration = () => {
                 </div>
             </div>
 
-            <ServiceRegistrationDialog
+            <ServiceDetailsDialog
                 dialogOpen={dialogOpen}
                 setDialogOpen={setDialogOpen}
                 responseData={responseData}
