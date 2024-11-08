@@ -14,7 +14,7 @@ export function ServiceDetailsDialog({ dialogOpen, setDialogOpen, responseData }
       doc.write(`
         <html>
           <head>
-            <title>Print Service Registration</title>
+            <title>Service Details</title>
             <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
             <style>
               html, body {
