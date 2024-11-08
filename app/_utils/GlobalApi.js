@@ -1,5 +1,7 @@
 const { default: axios } = require("axios");
 
+const API_TOKEN = '2c9f7d746f20fc218cba9cc814cda9c79e7514a1c05de5d6f02dbbab11300d35515453f569c45fc0b4da864fff3ccccb7e7bdd2433e8bc5474e6096882dd19f31573b5d9e5fac3349cfdcf0d627dd790ae71704e1edc6ffbc20c2ee468e1e4b596cef1e7daefbbb9f2f0a909618a48fa00610541145b7b39040cb421d10b588d';  // Bearer token
+
 const axiosClient = axios.create({
     baseURL: 'http://192.168.29.181:1337/api'
 });
@@ -61,7 +63,14 @@ const getProductsForBrands = (slug, page = 1, pageSize = 25) =>
 // New method for searching products
 const searchProducts = (searchTerm, page = 1, pageSize = 25) =>
     axiosClient.get(`/products?filters[Name][$contains]=${searchTerm}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`);
- 
+
+const searchJobDetails = (searchType, searchTerm, page = 1, pageSize = 25) =>
+    axiosClient.get(`/servicings?filters[${searchType}][$contains]=${searchTerm}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`, {
+        headers: {
+            Authorization: `Bearer ${API_TOKEN}`,
+        }
+    });
+
 const getAllCategories = () => fetchAllPaginatedData('/categories');
 const getAllSliders = () => fetchAllPaginatedData('/sliders');
 const getAllBrandSliders = () => fetchAllPaginatedData('/brands');
@@ -72,9 +81,9 @@ const getAllFeaturedProducts = () => fetchAllPaginatedData('/products', { Featur
 const postServiceRegistrationData = (jsonData) =>
     axiosClient.post('/servicings', jsonData, {
         headers: {
-            Authorization: `Bearer ${'2c9f7d746f20fc218cba9cc814cda9c79e7514a1c05de5d6f02dbbab11300d35515453f569c45fc0b4da864fff3ccccb7e7bdd2433e8bc5474e6096882dd19f31573b5d9e5fac3349cfdcf0d627dd790ae71704e1edc6ffbc20c2ee468e1e4b596cef1e7daefbbb9f2f0a909618a48fa00610541145b7b39040cb421d10b588d'}`,  // Add token if needed
+            Authorization: `Bearer ${API_TOKEN}`,
         }
-    });    
+    });
 
 const RegisterAccount = (username, email, password) => axiosClient.post("/auth/local/register", {
     username,
@@ -100,5 +109,7 @@ export default {
     RegisterAccount,
     searchProducts,
     getBrandBySlug,
-    postServiceRegistrationData
+    postServiceRegistrationData,
+    searchJobDetails
+
 };
