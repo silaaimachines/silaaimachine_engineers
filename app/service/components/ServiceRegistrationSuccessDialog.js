@@ -1,53 +1,116 @@
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
-export function ServiceRegistrationDialog({ dialogOpen, setDialogOpen, responseData, formData }) {
-  if (!responseData || !formData) return null; // Do not render if there's no data
+export function ServiceRegistrationDialog({ dialogOpen, setDialogOpen, responseData }) {
+  const iframeRef = useRef();
+
+  if (!responseData) return null; // Do not render if there's no data
 
   const handlePrint = () => {
-    const printContent = `
-      <div>
-        <h2>Service Registration Successful</h2>
-        <p>Details for the registered service:</p>
-        <h3>User-Entered Data</h3>
-        <div>Service: ${formData.service}</div>
-        <div>Customer Name: ${formData.customerName}</div>
-        <div>Customer Number: ${formData.customerNumber}</div>
-        <div>Customer Address: ${formData.customerAddress}</div>
-        <div>Service Type: ${formData.serviceType}</div>
-        <div>Machine Type: ${formData.machineType}</div>
-        <div>Machine Brand: ${formData.machineBrand}</div>
-        <div>Model Number: ${formData.modelNumber}</div>
-        <div>Engine Number: ${formData.engineNumber}</div>
-        <div>Due Date: ${formData.dueDate || "N/A"}</div>
-        <div>Problem: ${formData.problem}</div>
-        <div>Notes: ${formData.notes}</div>
-
-        <h3>API Response Data</h3>
-        <div>Job Number: ${responseData.JobNumber}</div>
-        <div>Customer ID: ${responseData.CustomerID}</div>
-        <div>Customer Name: ${responseData.CustomerName}</div>
-      </div>
-    `;
-    const printWindow = window.open('', '_blank');
-    printWindow.document.write(`
-      <html>
-        <head>
-          <title>Print Service Registration Details</title>
-          <style>
-            body { font-family: Arial, sans-serif; padding: 20px; }
-            h2, h3 { margin-top: 0; }
-            h3 { margin-bottom: 10px; }
-          </style>
-        </head>
-        <body>
-          ${printContent}
-        </body>
-      </html>
-    `);
-    printWindow.document.close();
-    printWindow.print();
-  };
+    if (iframeRef.current) {
+      const doc = iframeRef.current.contentWindow.document;
+      doc.open();
+      doc.write(`
+        <html>
+          <head>
+            <title>Print Service Registration</title>
+            <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+            <style>
+              html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+              }
+              body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 16px;
+              }
+              table {
+                width: 100%;
+                height: 100%;
+                border-collapse: collapse;
+              }
+              th, td {
+                padding: 8px;
+                border: 1px solid #e2e8f0;
+                text-align: left;
+              }
+            </style>
+          </head>
+          <body>
+            
+            <table class="w-full h-full border">
+              <tbody>
+              <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Job Number</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.JobNumber}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Customer ID</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.CustomerID}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Chosen Service</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.ChooseService}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Customer Name</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.CustomerName}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Customer Number</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.CustomerNumber}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Service Type</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.ServiceType || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Machine Type</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.MachineType || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Machine Brand</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.MachineBrand || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Model Number</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.ModelNumber || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Engine Number</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.EngineNumber || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Problem</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.Problem || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Notes</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.Notes || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Due Date</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.DueDate || "N/A"}</td>
+                </tr>
+                <tr>
+                  <th class="px-4 py-2 font-semibold border-b">Service Status</th>
+                  <td class="px-4 py-2 border-l border-b">${responseData.ServiceStatus || "N/A"}</td>
+                </tr>
+              </tbody>
+            </table>
+          </body>
+        </html>
+      `);
+      doc.close();
+      iframeRef.current.contentWindow.focus();
+      iframeRef.current.contentWindow.print();
+    }
+  };  
 
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -57,7 +120,6 @@ export function ServiceRegistrationDialog({ dialogOpen, setDialogOpen, responseD
           <DialogDescription>Details for the registered service:</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          
           <h3>API Response Data</h3>
           <div>Job Number: {responseData.JobNumber}</div>
           <div>Customer ID: {responseData.CustomerID}</div>
@@ -65,6 +127,9 @@ export function ServiceRegistrationDialog({ dialogOpen, setDialogOpen, responseD
         </div>
         <Button onClick={handlePrint}>Print</Button>
       </DialogContent>
+
+      {/* Hidden iframe for direct printing */}
+      <iframe ref={iframeRef} style={{ display: "none" }}></iframe>
     </Dialog>
   );
 }
