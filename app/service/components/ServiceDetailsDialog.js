@@ -1,8 +1,28 @@
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
-export function ServiceDetailsDialog({ dialogOpen, setDialogOpen, responseData }) {
+export function ServiceDetailsDialog({
+  dialogOpen,
+  setDialogOpen,
+  responseData,
+}) {
   const iframeRef = useRef();
 
   if (!responseData) return null; // Do not render if there's no data
@@ -138,17 +158,38 @@ export function ServiceDetailsDialog({ dialogOpen, setDialogOpen, responseData }
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Service Registration Successful</DialogTitle>
-          <DialogDescription>Details for the registered service:</DialogDescription>
+          <DialogTitle>Service Details</DialogTitle>
+          <DialogDescription>Details for the Service</DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <h3>API Response Data</h3>
-          <div>Job Number: {responseData.JobNumber}</div>
-          <div>Customer ID: {responseData.CustomerID}</div>
-          <div>Customer Name: {responseData.CustomerName}</div>
+          <div>
+            <p className="text-center">Job Number: </p>
+            <p className="text-xl font-bold text-center">
+              {responseData.JobNumber}
+            </p>
+          </div>
+          <Table>
+            <TableCaption>Customer Information</TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Field</TableHead>
+                <TableHead>Details</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell className="font-medium">Customer ID</TableCell>
+                <TableCell>{responseData.CustomerID}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Customer Name</TableCell>
+                <TableCell>{responseData.CustomerName}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </div>
         <Button onClick={handlePrint}>Print</Button>
-        <Button >View</Button>
+        <Button>View</Button>
       </DialogContent>
 
       {/* Hidden iframe for direct printing */}
