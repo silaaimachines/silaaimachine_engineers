@@ -52,7 +52,7 @@ const Home = () => {
         <Slider sliderList={sliderList} />
       </div>
 
-      <div className='flex justify-center relative md:-top-2 backdrop-blur-sm'>
+      <div className='flex justify-center relative md:-top-1 backdrop-blur-sm'>
         <BrandsSlider brandSliderList={brandSliderList} />
       </div>
 
