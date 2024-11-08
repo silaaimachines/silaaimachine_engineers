@@ -21,6 +21,9 @@ import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { ServiceRegistrationDialog } from "../components/ServiceRegistrationSuccessDialog";
 
+
+
+
 const ServiceRegistration = () => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
@@ -31,6 +34,7 @@ const ServiceRegistration = () => {
         machineBrand: false,
         serviceType: false,
     });
+    
     const [date, setDate] = useState(null);
     const [formData, setFormData] = useState({
         service: "",
@@ -363,7 +367,7 @@ const ServiceRegistration = () => {
                 <div className="space-y-4">
                     <Label>Notes</Label>
                     <Textarea
-                        name="notes"
+                        name="notes"    
                         value={formData.notes}
                         onChange={handleChange}
                         className="w-full p-3 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -381,6 +385,7 @@ const ServiceRegistration = () => {
                 dialogOpen={dialogOpen}
                 setDialogOpen={setDialogOpen}
                 responseData={responseData}
+                formData={formData}
             />
         </form>
     );
