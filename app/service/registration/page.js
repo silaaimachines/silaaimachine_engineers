@@ -48,7 +48,7 @@ const ServiceRegistration = () => {
         engineNumber: "",
         dueDate: "",
         problem: "",
-        notes: "",
+        notes: ""
     });
 
     const handleSelectChange = (field, value) => {
@@ -91,6 +91,7 @@ const ServiceRegistration = () => {
                 DueDate: date ? date : null,
                 Problem: updatedFormData.problem,
                 Notes: updatedFormData.notes,
+                ServiceStatus: "Pending"
             },
 
         };
@@ -385,7 +386,6 @@ const ServiceRegistration = () => {
                 dialogOpen={dialogOpen}
                 setDialogOpen={setDialogOpen}
                 responseData={responseData}
-                formData={formData}
             />
         </form>
     );
