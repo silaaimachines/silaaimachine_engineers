@@ -148,6 +148,7 @@ export function ServiceDetailsDialog({ dialogOpen, setDialogOpen, responseData }
           <div>Customer Name: {responseData.CustomerName}</div>
         </div>
         <Button onClick={handlePrint}>Print</Button>
+        <Button >View</Button>
       </DialogContent>
 
       {/* Hidden iframe for direct printing */}
