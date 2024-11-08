@@ -192,8 +192,14 @@ export function ServiceDetailsDialog({
             </TableBody>
           </Table>
         </div>
-        <Button onClick={handlePrint}>Print</Button>
-        <Button>View</Button>
+        <div className="flex justify-center gap-2 items-center">
+          <Button onClick={handlePrint} className="w-full">
+            Print
+          </Button>
+          <Button onClick={viewJobDetails} className="w-full">
+            View
+          </Button>
+        </div>
       </DialogContent>
 
       {/* Hidden iframe for direct printing */}
