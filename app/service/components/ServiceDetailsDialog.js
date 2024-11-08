@@ -188,8 +188,10 @@ export function ServiceDetailsDialog({
             </TableBody>
           </Table>
         </div>
-        <Button onClick={handlePrint}>Print</Button>
-        <Button>View</Button>
+        <div className="flex justify-center gap-4">
+          <Button onClick={handlePrint}>Print</Button>
+          <Button>View</Button>
+        </div>
       </DialogContent>
 
       {/* Hidden iframe for direct printing */}

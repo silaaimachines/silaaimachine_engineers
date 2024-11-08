@@ -115,23 +115,45 @@ const ServiceRegistration = () => {
       setResponseData(response.data.data);
       setDialogOpen(true);
 
-      // Generate WhatsApp message text
-      const message = encodeURIComponent(`Service Registration Details:
-    - Service: ${updatedFormData.service}
-    - Customer Name: ${updatedFormData.customerName}
-    - Address: ${updatedFormData.customerAddress}
-    - Customer Type: ${updatedFormData.customerType}
-    - Service Type: ${updatedFormData.serviceType}
-    - Machine Type: ${updatedFormData.machineType}
-    - Machine Brand: ${updatedFormData.machineBrand}
-    - Model Number: ${updatedFormData.modelNumber}
-    - Engine Number: ${updatedFormData.engineNumber}
-    - Due Date: ${date ? format(date, "dd/MM/yyyy") : "N/A"}
-    - Problem: ${updatedFormData.problem}
-    - Notes: ${updatedFormData.notes}`);
+      // Generate WhatsApp message text dynamically
+      const messageParts = [
+        `Service Registration Details:`,
+        responseData.JobNumber ? `- Job Number: ${responseData.JobNumber}` : "",
+        responseData.CustomerID
+          ? `- Customer ID: ${responseData.CustomerID}`
+          : "",
+        updatedFormData.service
+          ? `- Chosen Service: ${updatedFormData.service}`
+          : "",
+        updatedFormData.customerName
+          ? `- Name: ${updatedFormData.customerName}`
+          : "",
+        updatedFormData.serviceType
+          ? `- Service Type: ${updatedFormData.serviceType}`
+          : "",
+        updatedFormData.machineType
+          ? `- Machine Type: ${updatedFormData.machineType}`
+          : "",
+        updatedFormData.machineBrand
+          ? `- Machine Brand: ${updatedFormData.machineBrand}`
+          : "",
+        updatedFormData.modelNumber
+          ? `- Model Number: ${updatedFormData.modelNumber}`
+          : "",
+        updatedFormData.engineNumber
+          ? `- Engine Number: ${updatedFormData.engineNumber}`
+          : "",
+        date ? `- Due Date: ${format(date, "dd/MM/yyyy")}` : "",
+        updatedFormData.problem ? `- Problem: ${updatedFormData.problem}` : "",
+        updatedFormData.notes ? `- Notes: ${updatedFormData.notes}` : "",
+      ]
+        .filter(Boolean)
+        .join("\n");
 
-      // Construct WhatsApp URL
-      const whatsappUrl = `https://wa.me/${updatedFormData.customerNumber}?text=${message}`;
+      // Encode message and construct WhatsApp URL
+      const whatsappUrl = `https://wa.me/${
+        updatedFormData.customerNumber
+      }?text=${encodeURIComponent(messageParts)}`;
 
       // Open WhatsApp in a new tab
       window.open(whatsappUrl, "_blank");
@@ -458,7 +480,6 @@ const ServiceRegistration = () => {
           {loading ? (
             <Button disabled>
               <Loader2 className="animate-spin" />
-              Submitting...
             </Button>
           ) : (
             <Button type="submit">Submit</Button> // show normal button
