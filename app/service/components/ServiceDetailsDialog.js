@@ -17,6 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Separator } from "@/components/ui/separator";
 
 export function ServiceDetailsDialog({
   dialogOpen,
@@ -160,10 +161,13 @@ export function ServiceDetailsDialog({
 
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent>
         <DialogHeader>
-          <DialogTitle>Service Details</DialogTitle>
-          <DialogDescription>Details for the Service</DialogDescription>
+          <DialogTitle className="text-center">Service Details</DialogTitle>
+          <DialogDescription className="text-center">
+            Details for the Service
+          </DialogDescription>
+          <Separator />
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div>
