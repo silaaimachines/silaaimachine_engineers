@@ -24,14 +24,58 @@ const Page = () => {
   const handleGenerateBill = () => {
     const amountToPay = totalAmount - discountAmount;
 
-  const billContent = `
+    const billContent = `
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th, td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+      }
+    </style>
     <h2>Payment Details</h2>
-    <p><strong>Total Amount:</strong> ${totalAmount}</p>
-    <p><strong>Discount Amount:</strong> ${discountAmount}</p>
-    <p><strong>Amount to Pay:</strong> ${amountToPay}</p>
-    <p><strong>Paid in Cash:</strong> ${paidInCash}</p>
-    <p><strong>Paid Online:</strong> ${paidOnline}</p>
-    <p><strong>Due Date:</strong> ${date ? format(date, "PPP") : 'N/A'}</p>
+    <table>
+      <tr>
+        <th>Total Amount</th>
+        <td>${totalAmount}</td>
+      </tr>
+      <tr>
+        <th>Discount Amount</th>
+        <td>${discountAmount}</td>
+      </tr>
+      <tr>
+        <th>Amount to Pay</th>
+        <td>${amountToPay}</td>
+      </tr>
+      <tr>
+        <th>Paid in Cash</th>
+        <td>${paidInCash}</td>
+      </tr>
+      <tr>
+        <th>Paid Online</th>
+        <td>${paidOnline}</td>
+      </tr>
+      <tr>
+        <th>Due Date</th>
+        <td>${date ? format(date, "PPP") : 'N/A'}</td>
+      </tr>
+    </table>
   `;
 
   const printWindow = window.open('', '', 'height=600,width=800');
