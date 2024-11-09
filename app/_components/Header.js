@@ -1,19 +1,19 @@
 "use client";
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Search, PhoneCall, Menu, User } from 'lucide-react';
-import Link from 'next/link';
-import ThemeToggle from '../_components/ThemeToggle';
-import { useTheme } from 'next-themes';
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Search, PhoneCall, Menu, User } from "lucide-react";
+import Link from "next/link";
+import ThemeToggle from "../_components/ThemeToggle";
+import { useTheme } from "next-themes";
 import {
   Sheet,
   SheetTrigger,
   SheetContent,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
-import GlobalApi from '../_utils/GlobalApi';
+import GlobalApi from "../_utils/GlobalApi";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,9 +21,9 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Input } from '@/components/ui/search_input';
+import { Input } from "@/components/ui/search_input";
 
 const Header = () => {
   const { theme } = useTheme();
@@ -39,7 +39,7 @@ const Header = () => {
   }, []);
 
   const getCategories = () => {
-    GlobalApi.getAllCategories().then(res => {
+    GlobalApi.getAllCategories().then((res) => {
       setCategoryList(res);
     });
   };
@@ -60,7 +60,7 @@ const Header = () => {
       if (currentScrollY > lastScrollY) {
         setShowHeader(false); // Hide on scroll down
       } else {
-        setShowHeader(true);  // Show on scroll up
+        setShowHeader(true); // Show on scroll up
       }
       setLastScrollY(currentScrollY);
     };
@@ -74,16 +74,29 @@ const Header = () => {
   return (
     <>
       {/* Main sticky header that appears only when scrolling up */}
-      <div className={`sticky top-0 z-50 transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"} bg-white dark:bg-black`}>
-
+      <div
+        className={`sticky top-0 z-50 transition-transform duration-300 ${
+          showHeader ? "translate-y-0" : "-translate-y-full"
+        } backdrop-blur-2xl`}
+      >
         {/* Desktop Header */}
         <div className="hidden lg:flex justify-between items-center p-3 px-5 shadow-sm">
           <div>
             <Link href="/">
-              {theme === 'dark' ? (
-                <Image src='/Silaaimachine Engineers White.svg' alt='logo' width={200} height={200} />
+              {theme === "dark" ? (
+                <Image
+                  src="/Silaaimachine Engineers White.svg"
+                  alt="logo"
+                  width={200}
+                  height={200}
+                />
               ) : (
-                <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={200} height={200} />
+                <Image
+                  src="/Silaaimachine Engineers Black.svg"
+                  alt="logo"
+                  width={200}
+                  height={200}
+                />
               )}
             </Link>
           </div>
@@ -93,35 +106,47 @@ const Header = () => {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <Link href="/" legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Home
+                    </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/store" legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>Store</NavigationMenuLink>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      Store
+                    </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
-                  <NavigationMenuItem key={mainCategory}>
-                    <NavigationMenuTrigger>{mainCategory}</NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className="grid gap-3 p-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                        {subCategories.map((category) => (
-                          <li key={category.id}>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                href={`/category/${category.slug}`}
-                                className="block p-2 rounded-md hover:bg-theme_color hover:text-white"
-                              >
-                                {category.Name}
-                              </Link>
-                            </NavigationMenuLink>
-                          </li>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                ))}
+                {Object.entries(groupedCategories).map(
+                  ([mainCategory, subCategories]) => (
+                    <NavigationMenuItem key={mainCategory}>
+                      <NavigationMenuTrigger>
+                        {mainCategory}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid gap-3 p-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                          {subCategories.map((category) => (
+                            <li key={category.id}>
+                              <NavigationMenuLink asChild>
+                                <Link
+                                  href={`/category/${category.slug}`}
+                                  className="block p-2 rounded-md hover:bg-theme_color hover:text-white"
+                                >
+                                  {category.Name}
+                                </Link>
+                              </NavigationMenuLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  )
+                )}
               </NavigationMenuList>
             </NavigationMenu>
           </div>
@@ -139,7 +164,9 @@ const Header = () => {
               </Link>
             </div>
             <Button asChild>
-              <Link href="/login"><User/></Link>
+              <Link href="/login">
+                <User />
+              </Link>
             </Button>
             <ThemeToggle />
           </div>
@@ -147,13 +174,27 @@ const Header = () => {
       </div>
 
       {/* Mobile Navbar */}
-      <div className={`lg:hidden flex flex-col justify-between items-center p-3 px-5 shadow-sm bg-white dark:bg-black sticky top-0 z-50 transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"}`}>
+      <div
+        className={`lg:hidden flex flex-col justify-between items-center p-3 px-5 shadow-sm backdrop-blur-xl sticky top-0 z-50 transition-transform duration-300 ${
+          showHeader ? "translate-y-0" : "-translate-y-full"
+        }`}
+      >
         <div className="w-full flex justify-between items-center">
           <Link href="/">
-            {theme === 'dark' ? (
-              <Image src='/Silaaimachine Engineers White.svg' alt='logo' width={100} height={100} />
+            {theme === "dark" ? (
+              <Image
+                src="/Silaaimachine Engineers White.svg"
+                alt="logo"
+                width={100}
+                height={100}
+              />
             ) : (
-              <Image src='/Silaaimachine Engineers Black.svg' alt='logo' width={100} height={100} />
+              <Image
+                src="/Silaaimachine Engineers Black.svg"
+                alt="logo"
+                width={100}
+                height={100}
+              />
             )}
           </Link>
 
@@ -162,27 +203,32 @@ const Header = () => {
             <SheetTrigger asChild>
               <Menu className="h-8 w-8 cursor-pointer" />
             </SheetTrigger>
-            <SheetContent side="right" className="w-64 max-h-screen overflow-y-auto">
+            <SheetContent
+              side="right"
+              className="w-64 max-h-screen overflow-y-auto"
+            >
               <SheetHeader>
                 <SheetTitle className="text-lg font-semibold">Menu</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-3 mt-4">
                 <Link href="/">Home</Link>
                 <Link href="/store">Store</Link>
-                {Object.entries(groupedCategories).map(([mainCategory, subCategories]) => (
-                  <div key={mainCategory}>
-                    <h3 className="font-semibold mt-3">{mainCategory}</h3>
-                    <ul className="ml-4">
-                      {subCategories.map((category) => (
-                        <li key={category.id}>
-                          <Link href={`/category/${category.slug}`}>
-                            {category.Name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                {Object.entries(groupedCategories).map(
+                  ([mainCategory, subCategories]) => (
+                    <div key={mainCategory}>
+                      <h3 className="font-semibold mt-3">{mainCategory}</h3>
+                      <ul className="ml-4">
+                        {subCategories.map((category) => (
+                          <li key={category.id}>
+                            <Link href={`/category/${category.slug}`}>
+                              {category.Name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )
+                )}
                 <ThemeToggle />
               </nav>
             </SheetContent>
@@ -190,7 +236,7 @@ const Header = () => {
         </div>
 
         {/* Search Input (Below Top Header) */}
-        <div className="flex w-full mt-3 justify-between items-center gap-2 border rounded-md px-2">
+        <div className="flex w-full mt-3 justify-between items-center gap-2 rounded-md px-2 dark:border-black bg-white dark:bg-black">
           <Input
             placeholder="Search..."
             className="w-full px-2"
@@ -198,7 +244,7 @@ const Header = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <Link href={`/search/${searchQuery}`} passHref>
-            <Search className="h-5 w-5 text-gray-500 cursor-pointer" />
+            <Search className="h-5 w-5 cursor-pointer" />
           </Link>
         </div>
       </div>
