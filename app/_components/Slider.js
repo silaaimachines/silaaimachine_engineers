@@ -11,20 +11,6 @@ import { Headset, ShieldCheck, Truck } from "lucide-react";
 import Link from "next/link";
 import { Skeleton } from "@/components/ui/skeleton"; // Adjust import path if necessary
 
-function BrandCard({ logo }) {
-  return (
-    <div className={cn("flex items-center justify-center px-3 md:px-5 py-3")}>
-      <Image
-        src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + logo}
-        width={75}
-        height={50}
-        alt="Brand Logo"
-        className="w-[50px] md:w-[75px] h-auto"
-      />
-    </div>
-  );
-}
-
 function Slider({ sliderList }) {
   const [loading, setLoading] = useState(true);
 
@@ -35,7 +21,7 @@ function Slider({ sliderList }) {
   }, [sliderList]);
 
   return (
-    <div className="relative md:-top-5">
+    <div className="relative lg:-top-10">
       {" "}
       {/* Apply relative positioning here */}
       {loading ? (
