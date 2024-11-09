@@ -12,36 +12,86 @@ import { CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Separator } from '@radix-ui/react-dropdown-menu'
 
 const Page = () => {
   const [date, setDate] = useState(null);
+  const [totalAmount, setTotalAmount] = useState('');
+  const [discountAmount, setDiscountAmount] = useState('');
+  const [paidInCash, setPaidInCash] = useState('');
+  const [paidOnline, setPaidOnline] = useState('');
+
+  const handleGenerateBill = () => {
+    const amountToPay = totalAmount - discountAmount;
+
+  const billContent = `
+    <h2>Payment Details</h2>
+    <p><strong>Total Amount:</strong> ${totalAmount}</p>
+    <p><strong>Discount Amount:</strong> ${discountAmount}</p>
+    <p><strong>Amount to Pay:</strong> ${amountToPay}</p>
+    <p><strong>Paid in Cash:</strong> ${paidInCash}</p>
+    <p><strong>Paid Online:</strong> ${paidOnline}</p>
+    <p><strong>Due Date:</strong> ${date ? format(date, "PPP") : 'N/A'}</p>
+  `;
+
+  const printWindow = window.open('', '', 'height=600,width=800');
+  printWindow.document.write('<html><head><title>Bill</title></head><body>');
+  printWindow.document.write(billContent);
+  printWindow.document.write('</body></html>');
+  printWindow.document.close();
+  printWindow.print();
+};
 
   return (
-    <div className="p-6 max-w-md mx-auto bg-white rounded-lg shadow-md space-y-6">
-      <h2 className="text-xl font-semibold text-gray-800">Payment Details</h2>
+    <div className="p-6 max-w-md mx-auto  rounded-lg shadow-md space-y-6">
+      <h2 className="text-xl font-semibold">Payment Details</h2>
 
       <div className="space-y-4">
-        <Input 
-          type="number" 
-          placeholder="Total amount" 
+        <h1>Total Amount</h1>
+        <Input
+          type="number"
+          placeholder="Total amount"
+          value={totalAmount}
+          onChange={(e) => setTotalAmount(e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <Input 
-          type="number" 
-          placeholder="Discount amount" 
+        <h1>Discount Amount</h1>
+        <Input
+          type="number"
+          placeholder="Discount amount"
+          value={discountAmount}
+          onChange={(e) => setDiscountAmount(e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <Input 
-          type="number" 
-          placeholder="Paid in cash" 
+        <h1>Amount to pay</h1>
+        <Input
+          type="number"
+          placeholder="Amount to pay"
+          value={totalAmount - discountAmount}
+          readOnly
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <Input 
-          type="number" 
-          placeholder="Paid online" 
+        <Separator/>
+        <h1>Paid in Cash</h1>
+        <Input
+          type="number"
+          placeholder="Paid in cash"
+          value={paidInCash}
+          onChange={(e) => setPaidInCash(e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        <h1>Paid Online</h1>
+        <Input
+          type="number"
+          placeholder="Paid online"
+          value={paidOnline}
+          onChange={(e) => setPaidOnline(e.target.value)}
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+
+
       </div>
+
 
       {/* Due Date */}
       <div className="space-y-2">
@@ -70,8 +120,12 @@ const Page = () => {
           </PopoverContent>
         </Popover>
       </div>
+
+      <Button onClick={handleGenerateBill} className="mt-4">
+        Generate Bill
+      </Button>
     </div>
   )
 }
 
-export default Page
+export default Page;
