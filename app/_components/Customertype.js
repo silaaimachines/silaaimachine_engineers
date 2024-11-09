@@ -7,11 +7,8 @@ const Customertype = ({ customerTypeList }) => {
   return (
     <div>
       <div className="flex items-center gap-1 md:gap-2">
-        <GradualSpacing
-          className="font-display text-center text-lg md:text-2xl font-bold -tracking-widest md:leading-[5rem]"
-          text="Shop by Customer Type"
-        />
-      </div>
+                <h1 className='font-bold w-full text-center px-2 py-1 md:py-2 text-4xl'>What are you looking for?</h1>
+            </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1">
         {customerTypeList.map((customer_type, index) => (
