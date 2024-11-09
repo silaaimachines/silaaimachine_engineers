@@ -152,7 +152,7 @@ const Header = () => {
           </div>
 
           <div className="flex gap-5 items-center">
-            <div className="flex justify-center items-center gap-2 border rounded-md px-2">
+            <div className="flex justify-center items-center gap-2 border border-black dark:border-white rounded-md px-2">
               <Input
                 placeholder="Search..."
                 className="w-full px-2"
@@ -160,7 +160,7 @@ const Header = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               <Link href={`/search/${searchQuery}`} passHref>
-                <Search className="h-5 w-5 text-gray-500 cursor-pointer" />
+                <Search className="h-5 w-5 dark:text-white  text-black cursor-pointer" />
               </Link>
             </div>
             <Button asChild>
