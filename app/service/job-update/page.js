@@ -3,6 +3,15 @@ import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Command,
   CommandEmpty,
   CommandGroup,
@@ -27,6 +36,8 @@ const JobUpdatePage = () => {
   const [responseData, setResponseData] = useState(null);
   const [itemsData, setItemsData] = useState([]);
   const [selectedItem, setSelectedItem] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
 
   const [formData, setFormData] = useState({
     jobNumber: "",
@@ -145,19 +156,55 @@ const JobUpdatePage = () => {
           <Label htmlFor="serviceType" className="text-gray-700 font-medium">
             Service Type
           </Label>
-          {/* Replace this with the actual Service Type select component */}
+          <Select
+            value={formData.serviceType}
+            onValueChange={(value) => {
+              handleChange({ target: { name: "serviceType", value } });
+              handleSelectChange("serviceType", value);
+            }}
+          >
+            <SelectTrigger className="w-full mt-1">
+              <SelectValue placeholder="Select Service Type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Service Type</SelectLabel>
+                <SelectItem value="checking">Checking</SelectItem>
+                <SelectItem value="freeService">Free Service</SelectItem>
+                <SelectItem value="standardService">
+                  Standard Service
+                </SelectItem>
+                <SelectItem value="fullService">Full Service</SelectItem>
+                <SelectItem value="fullServiceWash">
+                  Full Service & Wash
+                </SelectItem>
+                <SelectItem value="overOil">Over Oil & Checking</SelectItem>
+                <SelectItem value="others">Others</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          {otherFields.serviceType && (
+            <Input
+              type="text"
+              name="serviceTypeOther"
+              placeholder="Specify service type"
+              value={formData.serviceTypeOther}
+              onChange={handleChange}
+              className="w-full mt-2"
+            />
+          )}
         </div>
 
         <div>
           <Label htmlFor="items" className="text-gray-700 font-medium">
             Select Item
           </Label>
-          <Popover>
+          <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
                 role="combobox"
-                aria-expanded={false}
+                aria-expanded={open}
                 className="w-full justify-between mt-1"
               >
                 {selectedItem
@@ -175,7 +222,7 @@ const JobUpdatePage = () => {
                     {itemsData.map((item) => (
                       <CommandItem
                         key={item.id}
-                        value={item.id.toString()}
+                        value={item.ItemName.toString()}
                         onSelect={() => {
                           setSelectedItem(item.id);
                           setFormData((prev) => ({
