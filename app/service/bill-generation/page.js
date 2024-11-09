@@ -1,96 +1,115 @@
-"use client"
-import React, { useState } from 'react'
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+"use client";
+import React, { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
-import { Calendar } from "@/components/ui/calendar"
-import { CalendarIcon } from "lucide-react"
-import { format } from "date-fns"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Separator } from '@radix-ui/react-dropdown-menu'
+} from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import GlobalApi from "@/app/_utils/GlobalApi";
 
 const Page = () => {
   const [date, setDate] = useState(null);
-  const [totalAmount, setTotalAmount] = useState('');
-  const [discountAmount, setDiscountAmount] = useState('');
-  const [paidInCash, setPaidInCash] = useState('');
-  const [paidOnline, setPaidOnline] = useState('');
+  const [totalAmount, setTotalAmount] = useState("");
+  const [discountAmount, setDiscountAmount] = useState("");
+  const [paidInCash, setPaidInCash] = useState("");
+  const [paidOnline, setPaidOnline] = useState("");
+  const [responseData, setResponseData] = useState(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    jobNumber: "",
+  });
+
+  console.log("Job Details", responseData);
 
   const handleGenerateBill = () => {
     const amountToPay = totalAmount - discountAmount;
 
     const billContent = `
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-      }
-      h2 {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-      }
-      th, td {
-        padding: 12px;
-        border: 1px solid #ddd;
-        text-align: left;
-      }
-      th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-      }
-    </style>
-    <h2>Payment Details</h2>
-    <table>
-      <tr>
-        <th>Total Amount</th>
-        <td>${totalAmount}</td>
-      </tr>
-      <tr>
-        <th>Discount Amount</th>
-        <td>${discountAmount}</td>
-      </tr>
-      <tr>
-        <th>Amount to Pay</th>
-        <td>${amountToPay}</td>
-      </tr>
-      <tr>
-        <th>Paid in Cash</th>
-        <td>${paidInCash}</td>
-      </tr>
-      <tr>
-        <th>Paid Online</th>
-        <td>${paidOnline}</td>
-      </tr>
-      <tr>
-        <th>Due Date</th>
-        <td>${date ? format(date, "PPP") : 'N/A'}</td>
-      </tr>
-    </table>
-  `;
+      <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h2 { text-align: center; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #f2f2f2; font-weight: bold; }
+      </style>
+      <h2>Payment Details</h2>
+      <table>
+        <tr><th>Total Amount</th><td>${totalAmount}</td></tr>
+        <tr><th>Discount Amount</th><td>${discountAmount}</td></tr>
+        <tr><th>Amount to Pay</th><td>${amountToPay}</td></tr>
+        <tr><th>Paid in Cash</th><td>${paidInCash}</td></tr>
+        <tr><th>Paid Online</th><td>${paidOnline}</td></tr>
+        <tr><th>Due Date</th><td>${date ? format(date, "PPP") : "N/A"}</td></tr>
+      </table>
+    `;
 
-  const printWindow = window.open('', '', 'height=600,width=800');
-  printWindow.document.write('<html><head><title>Bill</title></head><body>');
-  printWindow.document.write(billContent);
-  printWindow.document.write('</body></html>');
-  printWindow.document.close();
-  printWindow.print();
-};
+    const printWindow = window.open("", "", "height=600,width=800");
+    printWindow.document.write("<html><head><title>Bill</title></head><body>");
+    printWindow.document.write(billContent);
+    printWindow.document.close();
+    printWindow.print();
+  };
+
+  const fetchDetail = async () => {
+    if (!formData.jobNumber) {
+      alert("Please enter a job number.");
+      return;
+    }
+    try {
+      const response = await GlobalApi.searchJobDetails(
+        "JobNumber",
+        formData.jobNumber
+      );
+      setResponseData(response.data.data[0]);
+      setDialogOpen(true);
+      console.log("Job Details", response);
+    } catch (error) {
+      console.error("Error fetching job details:", error);
+      alert("Failed to fetch job details.");
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   return (
-    <div className="p-6 max-w-md mx-auto  rounded-lg shadow-md space-y-6">
+    <div className="p-6 max-w-md mx-auto rounded-lg shadow-md space-y-6">
       <h2 className="text-xl font-semibold">Payment Details</h2>
 
       <div className="space-y-4">
+        <div className="mb-4">
+          <Label htmlFor="jobNumber" className="text-gray-700 font-medium">
+            Job Number
+          </Label>
+          <Input
+            type="text"
+            id="jobNumber"
+            placeholder="Enter Job Number"
+            name="jobNumber"
+            value={formData.jobNumber}
+            onChange={handleChange}
+            className="mt-1"
+          />
+        </div>
+        <div className="flex justify-center items-center mb-6">
+          <Button onClick={fetchDetail} className="px-6 py-2">
+            Fetch Detail
+          </Button>
+        </div>
+        <Separator />
         <h1>Total Amount</h1>
         <Input
           type="number"
@@ -115,7 +134,7 @@ const Page = () => {
           readOnly
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <Separator/>
+        <Separator />
         <h1>Paid in Cash</h1>
         <Input
           type="number"
@@ -132,10 +151,7 @@ const Page = () => {
           onChange={(e) => setPaidOnline(e.target.value)}
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-
-
       </div>
-
 
       {/* Due Date */}
       <div className="space-y-2">
@@ -169,7 +185,7 @@ const Page = () => {
         Generate Bill
       </Button>
     </div>
-  )
-}
+  );
+};
 
 export default Page;
