@@ -26,10 +26,7 @@ const FeaturedProducts = ({ featuredProductsList }) => {
     return (
         <div>
             <div className="flex items-center gap-1 md:gap-2">
-                <GradualSpacing
-                    className="font-display text-center text-lg md:text-2xl font-bold -tracking-widest md:leading-[5rem]"
-                    text="Featured Products"
-                />
+                <h1 className='font-bold px-2 py-1 md:py-2 md:text-lg'>Featured Products</h1>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-1 md:gap-3 lg:gap-5">
