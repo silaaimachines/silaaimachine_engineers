@@ -35,9 +35,8 @@ const JobUpdatePage = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [responseData, setResponseData] = useState(null);
   const [itemsData, setItemsData] = useState([]);
-  const [selectedItem, setSelectedItem] = useState("");
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+  const [selectedItems, setSelectedItems] = useState([{ id: "", name: "" }]);
+  const [openIndex, setOpenIndex] = useState(-1);
 
   const [formData, setFormData] = useState({
     jobNumber: "",
@@ -47,7 +46,6 @@ const JobUpdatePage = () => {
     machineTypeOther: "",
     machineBrand: "",
     machineBrandOther: "",
-    itemName: "", // Add field for item name
   });
 
   const [otherFields, setOtherFields] = useState({
@@ -121,9 +119,20 @@ const JobUpdatePage = () => {
         formData.machineBrand === "others"
           ? formData.machineBrandOther
           : formData.machineBrand,
+      items: selectedItems.map((item) => item.name), // add items to formData
     };
 
     console.log("Updated Form Data", updatedFormData);
+  };
+
+  const addItemSelector = () => {
+    setSelectedItems([...selectedItems, { id: "", name: "" }]);
+  };
+
+  const handleItemSelect = (index, item) => {
+    const newItems = [...selectedItems];
+    newItems[index] = { id: item.id, name: item.ItemName };
+    setSelectedItems(newItems);
   };
 
   return (
@@ -152,6 +161,7 @@ const JobUpdatePage = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Service Type Selection */}
         <div>
           <Label htmlFor="serviceType" className="text-gray-700 font-medium">
             Service Type
@@ -195,58 +205,67 @@ const JobUpdatePage = () => {
           )}
         </div>
 
+        {/* Dynamically added item selectors */}
         <div>
           <Label htmlFor="items" className="text-gray-700 font-medium">
-            Select Item
+            Select Items
           </Label>
-          <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-              <Button
-                variant="outline"
-                role="combobox"
-                aria-expanded={open}
-                className="w-full justify-between mt-1"
-              >
-                {selectedItem
-                  ? itemsData.find((item) => item.id === selectedItem)?.ItemName
-                  : "Select Item"}
-                <ChevronsUpDown className="opacity-50" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-full p-0">
-              <Command>
-                <CommandInput placeholder="Search item..." />
-                <CommandList>
-                  <CommandEmpty>No items found.</CommandEmpty>
-                  <CommandGroup>
-                    {itemsData.map((item) => (
-                      <CommandItem
-                        key={item.id}
-                        value={item.ItemName.toString()}
-                        onSelect={() => {
-                          setSelectedItem(item.id);
-                          setFormData((prev) => ({
-                            ...prev,
-                            itemName: item.ItemName, // Save selected item name to formData
-                          }));
-                        }}
-                      >
-                        {item.ItemName}
-                        <Check
-                          className={cn(
-                            "ml-auto",
-                            selectedItem === item.id
-                              ? "opacity-100"
-                              : "opacity-0"
-                          )}
-                        />
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+          {selectedItems.map((selectedItem, index) => (
+            <Popover
+              key={index}
+              open={openIndex === index}
+              onOpenChange={() => setOpenIndex(index)}
+            >
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  aria-expanded={openIndex === index}
+                  className="w-full justify-between mt-1"
+                >
+                  {selectedItem.name || "Select Item"}
+                  <ChevronsUpDown className="opacity-50" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-full p-0">
+                <Command>
+                  <CommandInput placeholder="Search item..." />
+                  <CommandList>
+                    <CommandEmpty>No items found.</CommandEmpty>
+                    <CommandGroup>
+                      {itemsData.map((item) => (
+                        <CommandItem
+                          key={item.id}
+                          value={item.ItemName}
+                          onSelect={() => {
+                            handleItemSelect(index, item);
+                            setOpenIndex(false);
+                          }}
+                        >
+                          {item.ItemName}
+                          <Check
+                            className={cn(
+                              "ml-auto",
+                              selectedItem.id === item.id
+                                ? "opacity-100"
+                                : "opacity-0"
+                            )}
+                          />
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
+          ))}
+          <Button
+            type="button"
+            onClick={addItemSelector}
+            className="mt-2 w-full"
+          >
+            Add Item
+          </Button>
         </div>
 
         <div>
