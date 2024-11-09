@@ -49,10 +49,10 @@ const Home = () => {
     <div>
       {/* Main Page Content */}
       <div>
-        <Slider sliderList={sliderList} className="relative md:-top-1" />
+        <Slider sliderList={sliderList} />
       </div>
 
-      <div className="flex justify-center">
+      <div className=" relative lg:-top-12 flex justify-center backdrop-blur-lg">
         <BrandsSlider brandSliderList={brandSliderList} />
       </div>
 
