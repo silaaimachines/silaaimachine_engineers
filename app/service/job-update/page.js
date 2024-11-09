@@ -179,17 +179,19 @@ const JobUpdatePage = () => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Service Type</SelectLabel>
-                <SelectItem value="checking">Checking</SelectItem>
-                <SelectItem value="freeService">Free Service</SelectItem>
-                <SelectItem value="standardService">
+                <SelectItem value="Checking">Checking</SelectItem>
+                <SelectItem value="Free Service">Free Service</SelectItem>
+                <SelectItem value="Standard Service">
                   Standard Service
                 </SelectItem>
-                <SelectItem value="fullService">Full Service</SelectItem>
-                <SelectItem value="fullServiceWash">
+                <SelectItem value="Full Service">Full Service</SelectItem>
+                <SelectItem value="Full Service & Wash">
                   Full Service & Wash
                 </SelectItem>
-                <SelectItem value="overOil">Over Oil & Checking</SelectItem>
-                <SelectItem value="others">Others</SelectItem>
+                <SelectItem value="Over Oil & Checking">
+                  Over Oil & Checking
+                </SelectItem>
+                <SelectItem value="Others">Others</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
