@@ -33,6 +33,7 @@ import { cn } from "@/lib/utils";
 
 const JobUpdatePage = () => {
   const [loading, setLoading] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [responseData, setResponseData] = useState(null);
   const [itemsData, setItemsData] = useState([]);
@@ -86,7 +87,7 @@ const JobUpdatePage = () => {
         formData.jobNumber
       );
       setResponseData(response.data.data[0]);
-      setJobId(response.data.data[0].id);
+      setJobId(response.data.data[0].documentId);
       console.log(response.data.data[0]);
       setDialogOpen(true);
     } catch (error) {
@@ -106,9 +107,10 @@ const JobUpdatePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitLoading(true);
 
-    if (!formData.jobNumber || !formData.serviceType) {
-      alert("Please fill in all required fields.");
+    if (!formData.jobNumber) {
+      alert("Please enter a job number.");
       return;
     }
 
@@ -145,6 +147,9 @@ const JobUpdatePage = () => {
       setLoading(false);
     } catch (error) {
       alert("Failed to submit job update.");
+      console.log(error);
+    } finally {
+      setSubmitLoading(false);
     }
   };
 
