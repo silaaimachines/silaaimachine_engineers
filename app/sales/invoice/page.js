@@ -3,14 +3,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import React, { useState, useEffect } from "react";
 import { Label } from "@/components/ui/label";
-import { Loader2 } from "lucide-react";
+import { Loader2, PlusCircle, Trash2 } from "lucide-react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon, PlusCircle, Trash2 } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -82,8 +82,35 @@ const page = () => {
     }));
   };
 
+  // Validate the form
+  const validateForm = () => {
+    if (
+      !formData.invoiceNumber ||
+      !date ||
+      !formData.name ||
+      !formData.phoneNumber ||
+      !formData.address ||
+      formData.particulars.length === 0
+    ) {
+      return false;
+    }
+
+    // Ensure each particular item has valid values
+    for (let item of formData.particulars) {
+      if (!item.particular || !item.quantity || !item.ratePerUnit) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      alert("Please fill in all fields and add at least one particular.");
+      return;
+    }
     setLoading(true);
 
     // Format particulars as a single string
@@ -133,6 +160,7 @@ const page = () => {
             value={formData.invoiceNumber}
             onChange={(e) => handleChange(e)}
             className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            required
           />
         </div>
 
@@ -173,6 +201,7 @@ const page = () => {
             value={formData.name}
             onChange={(e) => handleChange(e)}
             className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            required
           />
         </div>
 
@@ -186,6 +215,7 @@ const page = () => {
             value={formData.phoneNumber}
             onChange={(e) => handleChange(e)}
             className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            required
           />
         </div>
 
@@ -198,6 +228,7 @@ const page = () => {
             value={formData.address}
             onChange={(e) => handleChange(e)}
             className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            required
           />
         </div>
 
@@ -222,6 +253,7 @@ const page = () => {
                     value={item.particular}
                     onChange={(e) => handleChange(e, index)}
                     className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+                    required
                   />
                 </TableCell>
                 <TableCell>
@@ -232,6 +264,7 @@ const page = () => {
                     value={item.quantity}
                     onChange={(e) => handleChange(e, index)}
                     className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+                    required
                   />
                 </TableCell>
                 <TableCell>
@@ -242,6 +275,7 @@ const page = () => {
                     value={item.ratePerUnit}
                     onChange={(e) => handleChange(e, index)}
                     className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+                    required
                   />
                 </TableCell>
                 <TableCell>
@@ -249,6 +283,7 @@ const page = () => {
                     type="button"
                     variant="ghost"
                     onClick={() => removeParticularRow(index)}
+                    disabled={formData.particulars.length === 1}
                   >
                     <Trash2 className="text-red-500" />
                   </Button>
@@ -258,23 +293,24 @@ const page = () => {
           </TableBody>
         </Table>
 
+        {/* Add Particular Button */}
         <Button
           type="button"
           variant="outline"
           onClick={addParticularRow}
-          className="w-full flex items-center justify-center mt-4"
+          className="w-full"
         >
           <PlusCircle className="mr-2" />
-          Add Another Particular
+          Add Particular
         </Button>
 
-        {/* Total Amount Display */}
-        <div className="mt-4">
+        {/* Total Amount */}
+        <div>
           <Label>Total Amount</Label>
           <Input
-            type="text"
-            name="totalAmount"
-            value={totalAmount.toFixed(2)}
+            type="number"
+            placeholder="Total Amount"
+            value={totalAmount}
             readOnly
             className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
           />
@@ -287,7 +323,9 @@ const page = () => {
               <Loader2 className="animate-spin" />
             </Button>
           ) : (
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={!validateForm()}>
+              Submit
+            </Button>
           )}
         </div>
       </div>
