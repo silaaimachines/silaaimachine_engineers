@@ -119,22 +119,27 @@ const JobUpdatePage = () => {
         formData.serviceType === "others"
           ? formData.serviceTypeOther
           : formData.serviceType,
-      items: selectedItems.map((item) => item.name),
+      items: selectedItems.map((item) => item.name).join(","),
     };
 
     const jsonData = {
       data: {
-        ChooseServiceGiven: updatedFormData.chooseService,
-        ServiceTypeGiven: updatedFormData.serviceType,
-        ExtraWork: formData.message,
-        ItemsUsed: updatedFormData.items,
+        ChooseServiceGiven: updatedFormData.chooseService
+          ? updatedFormData.chooseService
+          : null,
+        ServiceTypeGiven: updatedFormData.serviceType
+          ? updatedFormData.serviceType
+          : null,
+        ExtraWork: formData.message ? formData.message : null,
+        ItemsUsed: updatedFormData.items ? updatedFormData.items : null,
       },
     };
 
     try {
       console.log("formData", formData);
       console.log("UpdatedFormData", updatedFormData);
-      console.log("selected", selectedItems);
+      console.log("JSON Data:", jsonData);
+      console.log(updatedFormData.items);
       const response = await GlobalApi.putServiceJobUpdateByJobNumber(
         jsonData,
         JobId
