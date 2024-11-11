@@ -25,7 +25,7 @@ import {
   TableHead,
 } from "@/components/ui/table";
 
-const page = () => {
+const AddInvoicePage = () => {
   const [date, setDate] = useState(null);
   const [loading, setLoading] = useState(false);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -333,4 +333,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default AddInvoicePage;
