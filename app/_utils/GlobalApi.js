@@ -91,8 +91,16 @@ const getAllBrandSliders = () => fetchAllPaginatedData("/brands");
 const getAllCustomerTypes = () => fetchAllPaginatedData("/customer-types");
 const getAllFeaturedProducts = () =>
   fetchAllPaginatedData("/products", { Featured: true });
+const getAllProducts = () => fetchAllPaginatedData("/products");
 
 const getAllItems = () => fetchAllPaginatedData("/items");
+
+const postSalesInvoiceData = (jsonData) =>
+  axiosClient.post("/invoices", jsonData, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`,
+    },
+  });
 
 const postServiceRegistrationData = (jsonData) =>
   axiosClient.post("/servicings", jsonData, {
@@ -139,4 +147,6 @@ export default {
   searchJobDetails,
   getAllItems,
   putServiceJobUpdateByJobNumber,
+  getAllProducts,
+  postSalesInvoiceData,
 };
