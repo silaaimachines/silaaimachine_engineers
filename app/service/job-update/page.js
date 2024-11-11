@@ -44,7 +44,6 @@ const JobUpdatePage = () => {
     jobNumber: "",
     chooseService: "",
     serviceType: "",
-    itemName: "",
   });
 
   const [otherFields, setOtherFields] = useState({
@@ -119,7 +118,7 @@ const JobUpdatePage = () => {
         formData.serviceType === "others"
           ? formData.serviceTypeOther
           : formData.serviceType,
-      items: selectedItems.map((item) => item.name).join(","),
+      items: selectedItems.map((item) => item.name).join(", "),
     };
 
     const jsonData = {
@@ -136,10 +135,8 @@ const JobUpdatePage = () => {
     };
 
     try {
-      console.log("formData", formData);
       console.log("UpdatedFormData", updatedFormData);
       console.log("JSON Data:", jsonData);
-      console.log(updatedFormData.items);
       const response = await GlobalApi.putServiceJobUpdateByJobNumber(
         jsonData,
         JobId
