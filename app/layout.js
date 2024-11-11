@@ -73,8 +73,8 @@ const montserrat = localFont({
 
 export const metadata = {
   title: {
-    defalut: "Silaaimachine Engineers",
-    template: "%s- Silaaimachine Engineers",
+    default: "Silaaimachine Engineers",
+    template: "%s | Silaaimachine Engineers",
   },
   description: "Sales Bhi... Service Bhi...",
 };

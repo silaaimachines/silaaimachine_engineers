@@ -87,6 +87,7 @@ export default function BrandPage() {
   };
 
   /* const metadata = setPageMetadata(brand?.Name); */
+  const metadata = setPageMetadata(brand?.Name);
 
   return (
     <div className="p-3 md:p-5">
