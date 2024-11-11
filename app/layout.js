@@ -4,8 +4,6 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
-import Test from "./_components/Test";
-import LampDemo from "@/components/ui/lamp";
 
 const montserrat = localFont({
   src: [
@@ -77,6 +75,7 @@ export const metadata = {
     template: "%s | Silaaimachine Engineers",
   },
   description: "Sales Bhi... Service Bhi...",
+  keywords: " Silaaimachine Engineers, Sewing Machine, usha",
 };
 
 export default function RootLayout({ children }) {
@@ -116,7 +115,9 @@ export default function RootLayout({ children }) {
             </a>
           </div>
           <Header />
+
           {children}
+
           <Footer />
         </ThemeProvider>
       </body>

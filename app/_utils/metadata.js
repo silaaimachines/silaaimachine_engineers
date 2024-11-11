@@ -1,5 +1,5 @@
 export const setPageMetadata = (title) => {
   return {
-    title: title || "",
+    title: title || " gugkug",
   };
 };
