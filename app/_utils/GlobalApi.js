@@ -100,6 +100,14 @@ const postServiceRegistrationData = (jsonData) =>
       Authorization: `Bearer ${API_TOKEN}`,
     },
   });
+const putServiceJobUpdateByJobNumber = (jsonData, JobId) =>
+  axiosClient.put(`/servicings/${JobId}`, jsonData, {
+    headers: {
+      Authorization: `Bearer ${API_TOKEN}`,
+    },
+  });
+
+axiosClient.put;
 
 const RegisterAccount = (username, email, password) =>
   axiosClient
@@ -130,4 +138,5 @@ export default {
   postServiceRegistrationData,
   searchJobDetails,
   getAllItems,
+  putServiceJobUpdateByJobNumber,
 };

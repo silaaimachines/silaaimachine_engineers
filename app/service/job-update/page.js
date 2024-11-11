@@ -38,6 +38,7 @@ const JobUpdatePage = () => {
   const [itemsData, setItemsData] = useState([]);
   const [selectedItems, setSelectedItems] = useState([{ id: "", name: "" }]);
   const [openIndex, setOpenIndex] = useState(-1);
+  const [JobId, setJobId] = useState("");
 
   const [formData, setFormData] = useState({
     jobNumber: "",
@@ -86,6 +87,8 @@ const JobUpdatePage = () => {
         formData.jobNumber
       );
       setResponseData(response.data.data[0]);
+      setJobId(response.data.data[0].id);
+      console.log(response.data.data[0]);
       setDialogOpen(true);
     } catch (error) {
       alert("Failed to fetch job details.");
@@ -105,6 +108,11 @@ const JobUpdatePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!formData.jobNumber || !formData.serviceType) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
     const updatedFormData = {
       ...formData,
       serviceType:
@@ -116,18 +124,26 @@ const JobUpdatePage = () => {
 
     const jsonData = {
       data: {
-        ChooseService: updatedFormData.chooseService,
-        ServiceType: updatedFormData.serviceType,
+        ChooseServiceGiven: updatedFormData.chooseService,
+        ServiceTypeGiven: updatedFormData.serviceType,
+        ExtraWork: formData.message,
+        ItemsUsed: updatedFormData.items,
       },
     };
 
     try {
-      const response = await GlobalApi.postServiceRegistrationData(jsonData);
+      console.log("formData", formData);
+      console.log("UpdatedFormData", updatedFormData);
+      console.log("selected", selectedItems);
+      const response = await GlobalApi.putServiceJobUpdateByJobNumber(
+        jsonData,
+        JobId
+      );
+      console.log(response);
+      setLoading(false);
     } catch (error) {
       alert("Failed to submit job update.");
     }
-
-    console.log("Updated Form Data", updatedFormData);
   };
 
   const addItemSelector = () => {
@@ -142,7 +158,7 @@ const JobUpdatePage = () => {
 
   return (
     <div className="max-w-lg mx-auto p-6 rounded-lg shadow-lg mt-8">
-      <h1 className="text-2xl font-bold text-center mb-6 underline text-lg md:text-2xl">
+      <h1 className="text-2xl font-bold text-center mb-6 underline  md:text-2xl">
         Job Update
       </h1>
 
