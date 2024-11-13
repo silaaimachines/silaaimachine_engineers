@@ -3,7 +3,7 @@ export default function robots() {
     rules: {
       userAgent: "*",
       allow: "*",
-      disallow: ["/service/*"],
+      disallow: ["/service/*", "/sales/* "],
     },
     sitemap: "https://silaaimachines.com/sitemap.xml",
   };
