@@ -7,7 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import BoxReveal from "@/components/ui/box-reveal";
-import { setPageMetadata } from "@/app/_utils/metadata";
 
 export default function BrandPage() {
   const params = useParams();
