@@ -7,7 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import BoxReveal from "@/components/ui/box-reveal";
-import { setPageMetadata } from "@/app/_utils/metadata";
 
 export default function BrandPage() {
   const params = useParams();
@@ -85,9 +84,6 @@ export default function BrandPage() {
       maximumFractionDigits: 0,
     }).format(price);
   };
-
-  /* const metadata = setPageMetadata(brand?.Name); */
-  const metadata = setPageMetadata(brand?.Name);
 
   return (
     <div className="p-3 md:p-5">
