@@ -86,9 +86,6 @@ export default function BrandPage() {
     }).format(price);
   };
 
-  /* const metadata = setPageMetadata(brand?.Name); */
-  const metadata = setPageMetadata(brand?.Name);
-
   return (
     <div className="p-3 md:p-5">
       {brand.Banner && (
