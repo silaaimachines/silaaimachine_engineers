@@ -70,12 +70,17 @@ const montserrat = localFont({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://silaaimachines.com"), 
   title: {
     default: "Silaaimachine Engineers",
     template: "%s | Silaaimachine Engineers",
   },
   description: "Sales Bhi... Service Bhi...",
-  keywords: " Silaaimachine Engineers, Sewing Machine, usha",
+  keywords: "Silaaimachine Engineers, Sewing Machine, usha",
+  openGraph: {
+    description: "SSales Bhi... SeService Bhi...", 
+    images: [""]
+  }
 };
 
 export default function RootLayout({ children }) {
