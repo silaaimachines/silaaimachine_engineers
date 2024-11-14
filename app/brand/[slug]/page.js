@@ -11,8 +11,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
         .join(" ")
     : "";
 
-  console.log(title);
-
   return {
     title: `${title} Sewing Machine & Accessories`,
   };
