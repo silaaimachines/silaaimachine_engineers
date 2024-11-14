@@ -26,8 +26,8 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-pink-500">
-                Contact
+              <Link href="/contact-us" className="hover:text-pink-500">
+                Contact Us
               </Link>
             </li>
           </ul>
