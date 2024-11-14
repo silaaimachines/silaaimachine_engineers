@@ -4,9 +4,10 @@ const nextConfig = {
   images: {
     domains: [
       "silaaimachines.com",
+      "admin.silaaimachines.com",
       "localhost",
-      "192.168.29.181",
       "192.168.29.15",
+      "192.168.29.181",
     ],
   },
   /* output: "export", */
