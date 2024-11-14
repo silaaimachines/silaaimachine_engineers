@@ -70,17 +70,28 @@ const montserrat = localFont({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://silaaimachines.com"), 
+  metadataBase: new URL("https://silaaimachines.com"),
+
   title: {
-    default: "Silaaimachine Engineers",
+    default: "Silaaimachine Engineers | Service Bhi Sales Bhi",
     template: "%s | Silaaimachine Engineers",
   },
-  description: "Sales Bhi... Service Bhi...",
-  keywords: "Silaaimachine Engineers, Sewing Machine, usha",
+
+  description:
+    "At Silaaimachine Engineers, we believe in offering more than just great products – that's why we say, 'Service bhi, Sales bhi.' Whether you're looking for home sewing machines or industrial-grade equipment, we provide high-quality options from trusted brands like Singer, Brother, Usha, Jack, Juki, etc. Shop with us for the best deals, expert advice, and after-sales support that ensures you get the most out of your sewing experience.",
+
+  keywords:
+    "Silaaimachine Engineers, Sewing Machine, sewing machines online, buy sewing machines India, best sewing machines for home use, automatic sewing machines, industrial sewing machines, sewing machine sale India, sewing machine price India, domestic sewing machines, heavy-duty sewing machines, portable sewing machines, buy Singer sewing machine, Usha sewing machines India, Jack sewing machines India, Juki sewing machines India, Brother sewing machine online, sewing machine accessories, affordable sewing machines, sewing machine for beginners, electric sewing machine online, sewing machine for tailoring, online fabric sewing machine, best sewing machine brands in India, sewing machine repair services India, buy embroidery sewing machine, quilting sewing machines India, handheld sewing machines India",
+
   openGraph: {
-    description: "SSales Bhi... SeService Bhi...", 
-    images: [""]
-  }
+    title: "Silaaimachine Engineers | Service Bhi Sales Bhi",
+    type: "website",
+    url: "https://silaaimachines.com",
+    siteName: "Silaaimachine Engineers",
+    description:
+      "At Silaaimachine Engineers, we believe in offering more than just great products – that's why we say, 'Service bhi, Sales bhi.' Whether you're looking for home sewing machines or industrial-grade equipment, we provide high-quality options from trusted brands like Singer, Brother, Usha, Jack, Juki, etc. Shop with us for the best deals, expert advice, and after-sales support that ensures you get the most out of your sewing experience.",
+    images: [""],
+  },
 };
 
 export default function RootLayout({ children }) {

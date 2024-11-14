@@ -8,6 +8,10 @@ import Link from "next/link";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import BoxReveal from "@/components/ui/box-reveal";
 
+export const metadata = {
+  title: "Brand Page",
+};
+
 export default function BrandPage() {
   const params = useParams();
   const [productList, setProductList] = useState([]);
