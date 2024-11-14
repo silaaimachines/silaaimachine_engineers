@@ -4,7 +4,7 @@ const API_TOKEN =
   "2c9f7d746f20fc218cba9cc814cda9c79e7514a1c05de5d6f02dbbab11300d35515453f569c45fc0b4da864fff3ccccb7e7bdd2433e8bc5474e6096882dd19f31573b5d9e5fac3349cfdcf0d627dd790ae71704e1edc6ffbc20c2ee468e1e4b596cef1e7daefbbb9f2f0a909618a48fa00610541145b7b39040cb421d10b588d"; // Bearer token
 
 const axiosClient = axios.create({
-  baseURL: "http://192.168.29.181:1337/api",
+  baseURL: `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api`,
 });
 
 const fetchAllPaginatedData = async (endpoint, filters = {}, pageSize = 25) => {
