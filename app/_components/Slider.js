@@ -43,6 +43,7 @@ function Slider({ sliderList }) {
                 {slider.SliderURL ? (
                   <Link href={slider.SliderURL}>
                     <Image
+                    unoptimized
                       src={
                         process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
                         slider?.Image?.url
@@ -55,6 +56,7 @@ function Slider({ sliderList }) {
                   </Link>
                 ) : (
                   <Image
+                    unoptimized
                     src={
                       process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
                       slider?.Image?.url

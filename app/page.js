@@ -67,6 +67,7 @@ const Home = () => {
 
         <div className="py-5">
           <Image
+            unoptimized
             src="/Banner1.png"
             alt="Banner"
             width={2500}

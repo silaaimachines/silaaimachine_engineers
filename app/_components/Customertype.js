@@ -23,6 +23,7 @@ const Customertype = ({ customerTypeList }) => {
               <div className="relative group">
                 {customer_type?.Image?.url && (
                   <Image
+                    unoptimized
                     src={
                       process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
                       customer_type.Image.url

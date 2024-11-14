@@ -37,6 +37,7 @@ const Footer = () => {
         <div className="text-center">
           <Link href="/" className="flex items-center justify-center">
             <Image
+              unoptimized
               src="/Silaaimachine Engineers White.svg"
               alt="logo"
               width={200}

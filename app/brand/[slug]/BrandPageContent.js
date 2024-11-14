@@ -89,6 +89,7 @@ const BrandPageContent = () => {
       {brand.Banner && (
         <div className="mb-4">
           <Image
+            unoptimized
             src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + brand.Banner.url}
             alt="Banner"
             width={1000}
@@ -124,6 +125,7 @@ const BrandPageContent = () => {
                         <div className="relative">
                           {Images && Images[0]?.url && (
                             <Image
+                              unoptimized
                               src={
                                 process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
                                 Images[0].url

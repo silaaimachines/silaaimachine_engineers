@@ -91,6 +91,7 @@ export default function ProductPage() {
                   {product.Images.map((image, index) => (
                     <CarouselItem key={index}>
                       <Image
+                        unoptimized
                         src={
                           process.env.NEXT_PUBLIC_BACKEND_BASE_URL + image.url
                         }
@@ -175,6 +176,7 @@ export default function ProductPage() {
                 >
                   Buy Now
                   <Image
+                    unoptimized
                     src="/amazon-icon-dark.svg"
                     width={15}
                     height={15}
@@ -188,6 +190,7 @@ export default function ProductPage() {
                 >
                   Buy Now
                   <Image
+                    unoptimized
                     src="/amazon-icon-dark.svg"
                     width={15}
                     height={15}
@@ -211,6 +214,7 @@ export default function ProductPage() {
                 >
                   Buy Now
                   <Image
+                    unoptimized
                     src="/flipkart-icon.svg"
                     width={15}
                     height={15}
@@ -224,6 +228,7 @@ export default function ProductPage() {
                 >
                   Buy Now
                   <Image
+                    unoptimized
                     src="/flipkart-icon.svg"
                     width={15}
                     height={15}
@@ -250,6 +255,7 @@ export default function ProductPage() {
                       {relatedProduct.Images &&
                         relatedProduct.Images[0]?.url && (
                           <Image
+                            unoptimized
                             src={
                               process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
                               relatedProduct.Images[0].url

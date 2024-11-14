@@ -87,6 +87,7 @@ export default function SearchPage() {
                       <div className="relative">
                         {Images && Images[0]?.url && (
                           <Image
+                            unoptimized
                             src={`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}${Images[0].url}`}
                             width={400}
                             height={400}

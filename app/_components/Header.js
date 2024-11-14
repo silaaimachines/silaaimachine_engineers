@@ -85,6 +85,7 @@ const Header = () => {
             <Link href="/">
               {theme === "dark" ? (
                 <Image
+                  unoptimized
                   src="/Silaaimachine Engineers White.svg"
                   alt="logo"
                   width={200}
@@ -92,6 +93,7 @@ const Header = () => {
                 />
               ) : (
                 <Image
+                  unoptimized
                   src="/Silaaimachine Engineers Black.svg"
                   alt="logo"
                   width={200}
@@ -183,6 +185,7 @@ const Header = () => {
           <Link href="/">
             {theme === "dark" ? (
               <Image
+                unoptimized
                 src="/Silaaimachine Engineers White.svg"
                 alt="logo"
                 width={100}
@@ -190,6 +193,7 @@ const Header = () => {
               />
             ) : (
               <Image
+                unoptimized
                 src="/Silaaimachine Engineers Black.svg"
                 alt="logo"
                 width={100}
