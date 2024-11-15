@@ -15,16 +15,16 @@ const Footer = () => {
                 Home
               </Link>
             </li>
-            <li>
+            {/*  <li>
               <Link href="#" className="hover:text-pink-500">
                 About Us
               </Link>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <Link href="#" className="hover:text-pink-500">
                 Services
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/contact-us" className="hover:text-pink-500">
                 Contact Us
@@ -57,15 +57,15 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:text-pink-500">
+              <Link href="/terms-of-service" className="hover:text-pink-500">
                 Terms of Service
               </Link>
             </li>
-            <li>
+            {/*  <li>
               <Link href="#" className="hover:text-pink-500">
                 Returns & Exchanges
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
