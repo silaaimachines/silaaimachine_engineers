@@ -38,7 +38,7 @@ const Footer = () => {
           <Link href="/" className="flex items-center justify-center">
             <Image
               unoptimized
-              src="/Silaaimachine Engineers White.svg"
+              src="/Silaaimachine Engineers White.webp"
               alt="logo"
               width={200}
               height={200}
