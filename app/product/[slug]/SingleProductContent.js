@@ -23,7 +23,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Separator } from "@/components/ui/separator";
+import { remark } from "remark";
+import html from "remark-html";
 
 export default function ProductPage() {
   const params = useParams();
@@ -31,6 +32,7 @@ export default function ProductPage() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [formattedDescription, setFormattedDescription] = useState("");
 
   const { theme } = useTheme(); // Get the current theme (light or dark)
 
@@ -43,6 +45,14 @@ export default function ProductPage() {
           const fetchedProduct = response.data.data[0];
           setProduct(fetchedProduct);
           console.log(product);
+
+          // Format the product description
+          if (fetchedProduct.Description) {
+            const processedDescription = await remark()
+              .use(html)
+              .process(fetchedProduct.Description);
+            setFormattedDescription(processedDescription.toString());
+          }
 
           // Fetch related products by category and exclude the current product
           if (fetchedProduct.category && fetchedProduct.category.slug) {
@@ -288,9 +298,10 @@ export default function ProductPage() {
         <h1 className="text-sm md:text-lg font-bold text-center py-2 md:py-5">
           Product Description
         </h1>
-        <div className="text-sm md:text-md">
-          <p>{product.Description}</p>
-        </div>
+        <div
+          className="prose max-w-none" // Use Tailwind Typography for styled markdown
+          dangerouslySetInnerHTML={{ __html: formattedDescription }}
+        ></div>
       </div>
 
       {/* Related Products */}
