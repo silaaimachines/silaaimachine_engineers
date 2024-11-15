@@ -26,7 +26,6 @@ const termPage = () => {
         </p>
         <br />
         <p>
-          {" "}
           You can contact us by email at support@silaaimachines.com or by mail
           to Bisra road, Near Sani mandir, Rourkele, Odisha 769001, India.
         </p>
