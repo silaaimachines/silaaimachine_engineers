@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
 
-export default function ProductPageContent() {
+export default function ProductPage() {
   const params = useParams();
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);

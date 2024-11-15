@@ -80,17 +80,21 @@ const Footer = () => {
 
           {/* Social Media Icons */}
           <div className="flex space-x-4 justify-center items-center py-3">
-            <Link href="#" className="text-gray-400 hover:text-pink-500">
+            <Link
+              href="https://www.facebook.com/SilaaimachineEngineers"
+              className="text-gray-400 hover:text-pink-500"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Facebook className="w-5 h-5" />
             </Link>
-            <Link href="#" className="text-gray-400 hover:text-pink-500">
-              <Twitter className="w-5 h-5" />
-            </Link>
-            <Link href="#" className="text-gray-400 hover:text-pink-500">
+            <Link
+              href="https://www.instagram.com/silaaimachines.com_rkl"
+              className="text-gray-400 hover:text-pink-500"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Instagram className="w-5 h-5" />
-            </Link>
-            <Link href="#" className="text-gray-400 hover:text-pink-500">
-              <Linkedin className="w-5 h-5" />
             </Link>
           </div>
         </div>
