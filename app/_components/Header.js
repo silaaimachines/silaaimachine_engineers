@@ -86,7 +86,7 @@ const Header = () => {
               {theme === "dark" ? (
                 <Image
                   unoptimized
-                  src="/Silaaimachine Engineers White.svg"
+                  src="/white logo.webp"
                   alt="logo"
                   width={200}
                   height={200}
@@ -94,7 +94,7 @@ const Header = () => {
               ) : (
                 <Image
                   unoptimized
-                  src="/Silaaimachine Engineers Black.svg"
+                  src="/Black logo.webp"
                   alt="logo"
                   width={200}
                   height={200}
