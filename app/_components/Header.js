@@ -131,7 +131,7 @@ const Header = () => {
                         {mainCategory}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className="grid gap-3 p-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                        <ul className="p-2 px-5 md:w-[400px] lg:w-[500px]">
                           {subCategories.map((category) => (
                             <li key={category.id}>
                               <NavigationMenuLink asChild>
