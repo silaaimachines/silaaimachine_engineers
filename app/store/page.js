@@ -144,17 +144,24 @@ const Store = () => {
                   <div className="flex flex-col items-center justify-center rounded-2xl border transition-all duration-300 ease-in-out bg-white dark:bg-black cursor-pointer">
                     <div className="relative">
                       {Images && Images[0]?.url && (
-                        <Image
-                          unoptimized
-                          src={
-                            process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
-                            Images[0].url
-                          }
-                          width={400}
-                          height={400}
-                          alt={Name}
-                          className="rounded-t-2xl h-full w-full object-contain p-3"
-                        />
+                        <div
+                          className="rounded-t-2xl"
+                          style={{
+                            backgroundImage: `url('/ProductBackgroundImage.webp')`,
+                          }}
+                        >
+                          <Image
+                            unoptimized
+                            src={
+                              process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
+                              Images[0].url
+                            }
+                            width={400}
+                            height={400}
+                            alt={Name}
+                            className="rounded-t-2xl h-full w-full object-contain p-3"
+                          />
+                        </div>
                       )}
                       {DiscountPrice && (
                         <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full">

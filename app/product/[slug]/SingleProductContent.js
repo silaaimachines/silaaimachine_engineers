@@ -14,9 +14,19 @@ import {
   CarouselItem,
   CarouselThumbnail,
 } from "@/components/ui/carousel";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Separator } from "@/components/ui/separator";
+import ReactMarkdown from "react-markdown";
 
-export default function ProductPageContent() {
+export default function ProductPage() {
   const params = useParams();
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -33,6 +43,7 @@ export default function ProductPageContent() {
         if (response) {
           const fetchedProduct = response.data.data[0];
           setProduct(fetchedProduct);
+          console.log(product);
 
           // Fetch related products by category and exclude the current product
           if (fetchedProduct.category && fetchedProduct.category.slug) {
@@ -90,16 +101,23 @@ export default function ProductPageContent() {
                 <CarouselContent>
                   {product.Images.map((image, index) => (
                     <CarouselItem key={index}>
-                      <Image
-                        unoptimized
-                        src={
-                          process.env.NEXT_PUBLIC_BACKEND_BASE_URL + image.url
-                        }
-                        alt={`${product.Name} image ${index + 1}`}
-                        width={500}
-                        height={500}
-                        className="object-cover w-full h-auto rounded-2xl"
-                      />
+                      <div
+                        className="relative w-full h-auto rounded-2xl overflow-hidden bg-cover bg-center"
+                        style={{
+                          backgroundImage: `url('/ProductBackgroundImage.webp')`,
+                        }}
+                      >
+                        <Image
+                          unoptimized
+                          src={
+                            process.env.NEXT_PUBLIC_BACKEND_BASE_URL + image.url
+                          }
+                          alt={`${product.Name} image ${index + 1}`}
+                          width={500}
+                          height={500}
+                          className="object-contain w-full h-auto"
+                        />
+                      </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
@@ -139,27 +157,52 @@ export default function ProductPageContent() {
             )}
           </div>
 
-          <Separator />
-          <p className="text-sm md:text-base font-semibold">
-            {product.Description}
-          </p>
-
-          <table className="table-auto w-full text-left">
-            <tbody>
-              <tr>
-                <th className="py-2 text-sm font-semibold">Category</th>
-                <td className="py-2">{product.category?.Name || "N/A"}</td>
-              </tr>
-              <tr>
-                <th className="py-2 text-sm font-semibold">Brand</th>
-                <td className="py-2">{product.brand?.Name || "N/A"}</td>
-              </tr>
-              <tr>
-                <th className="py-2 text-sm font-semibold">Customer Type</th>
-                <td className="py-2">{product.customer_type?.Name || "N/A"}</td>
-              </tr>
-            </tbody>
-          </table>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Attribute</TableHead>
+                <TableHead className="text-right">Value</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell className="font-medium">Brand</TableCell>
+                <TableCell className="text-right">
+                  {product.brand?.Name || "N/A"}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Customer Type</TableCell>
+                <TableCell className="text-right">
+                  {product.customer_type?.Name || "N/A"}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Category</TableCell>
+                <TableCell className="text-right">
+                  {product.category?.Name || "N/A"}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Color</TableCell>
+                <TableCell className="text-right">
+                  {product.Color || "N/A"}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Dimension</TableCell>
+                <TableCell className="text-right">
+                  {product.Dimension || "N/A"}
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Material</TableCell>
+                <TableCell className="text-right">
+                  {product.Material || "N/A"}
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
 
           <div className="flex justify-center items-center gap-2 w-full">
             {/* Amazon Button */}
@@ -241,9 +284,21 @@ export default function ProductPageContent() {
         </div>
       </div>
 
+      {/* Description */}
+      <div>
+        <h1 className="text-sm md:text-lg font-bold text-center py-2 md:py-5">
+          Product Description
+        </h1>
+        <div className="text-sm md:text-md">
+          <ReactMarkdown>{product.Description}</ReactMarkdown>
+        </div>
+      </div>
+
       {/* Related Products */}
-      <div className="space-y-4">
-        <h2 className="text-xl font-bold">Related Products</h2>
+      <div className="space-y-4 py-5">
+        <h2 className="text-sm md:text-lg font-bold text-center py-2 md:py-5">
+          Related Products
+        </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 sm:gap-2">
           {relatedProducts.map((relatedProduct, index) => (
             <Link key={index} href={`/product/${relatedProduct.slug}`} passHref>
