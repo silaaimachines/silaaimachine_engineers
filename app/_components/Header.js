@@ -86,7 +86,7 @@ const Header = () => {
               {theme === "dark" ? (
                 <Image
                   unoptimized
-                  src="/white logo.webp"
+                  src="/Silaaimachine Engineers White.webp"
                   alt="logo"
                   width={200}
                   height={200}
@@ -94,7 +94,7 @@ const Header = () => {
               ) : (
                 <Image
                   unoptimized
-                  src="/Black logo.webp"
+                  src="/Silaaimachine Engineers Black.webp"
                   alt="logo"
                   width={200}
                   height={200}
@@ -186,7 +186,7 @@ const Header = () => {
             {theme === "dark" ? (
               <Image
                 unoptimized
-                src="/Silaaimachine Engineers White.svg"
+                src="/Silaaimachine Engineers White.webp"
                 alt="logo"
                 width={100}
                 height={100}
@@ -194,7 +194,7 @@ const Header = () => {
             ) : (
               <Image
                 unoptimized
-                src="/Silaaimachine Engineers Black.svg"
+                src="/Silaaimachine Engineers Black.webp"
                 alt="logo"
                 width={100}
                 height={100}
