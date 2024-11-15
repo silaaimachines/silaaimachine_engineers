@@ -290,7 +290,7 @@ export default function ProductPage() {
           Product Description
         </h1>
         <div className="text-sm md:text-md">
-          <ReactMarkdown>{product.Description}</ReactMarkdown>
+          <p>{product.Description}</p>
         </div>
       </div>
 
