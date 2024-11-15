@@ -64,17 +64,6 @@ const Home = () => {
         <div className="py-2 lg:px-10 md:px-2 sm:px-1">
           <Customertype customerTypeList={customerTypeList} />
         </div>
-
-        <div className="py-5">
-          <Image
-            unoptimized
-            src="/Banner1.png"
-            alt="Banner"
-            width={2500}
-            height={2500}
-            className="w-full h-auto"
-          />
-        </div>
       </div>
     </div>
   );
