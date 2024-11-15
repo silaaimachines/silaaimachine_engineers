@@ -24,7 +24,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Separator } from "@/components/ui/separator";
-import ReactMarkdown from "react-markdown";
 
 export default function ProductPage() {
   const params = useParams();
