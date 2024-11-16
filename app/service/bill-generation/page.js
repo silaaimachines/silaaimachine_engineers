@@ -27,8 +27,6 @@ const Page = () => {
     jobNumber: "",
   });
 
-  console.log("Job Details", responseData);
-
   const handleGenerateBill = () => {
     const amountToPay = totalAmount - discountAmount;
 
@@ -70,9 +68,7 @@ const Page = () => {
       );
       setResponseData(response.data.data[0]);
       setDialogOpen(true);
-      console.log("Job Details", response);
     } catch (error) {
-      console.error("Error fetching job details:", error);
       alert("Failed to fetch job details.");
     }
   };

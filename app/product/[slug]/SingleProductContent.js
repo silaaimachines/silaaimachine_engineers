@@ -44,7 +44,6 @@ export default function ProductPage() {
         if (response) {
           const fetchedProduct = response.data.data[0];
           setProduct(fetchedProduct);
-          console.log(product);
 
           // Format the product description
           if (fetchedProduct.Description) {

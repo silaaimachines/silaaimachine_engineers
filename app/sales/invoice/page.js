@@ -135,9 +135,7 @@ const AddInvoicePage = () => {
 
     try {
       const response = await GlobalApi.postSalesInvoiceData(jsonData);
-      console.log("Form submitted successfully:", response);
     } catch (error) {
-      console.error("Error submitting form:", error);
     } finally {
       setLoading(false);
     }

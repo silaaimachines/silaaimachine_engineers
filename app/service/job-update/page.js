@@ -88,7 +88,7 @@ const JobUpdatePage = () => {
       );
       setResponseData(response.data.data[0]);
       setJobId(response.data.data[0].documentId);
-      console.log(response.data.data[0]);
+
       setDialogOpen(true);
     } catch (error) {
       alert("Failed to fetch job details.");
@@ -137,17 +137,14 @@ const JobUpdatePage = () => {
     };
 
     try {
-      console.log("UpdatedFormData", updatedFormData);
-      console.log("JSON Data:", jsonData);
       const response = await GlobalApi.putServiceJobUpdateByJobNumber(
         jsonData,
         JobId
       );
-      console.log(response);
+
       setLoading(false);
     } catch (error) {
       alert("Failed to submit job update.");
-      console.log(error);
     } finally {
       setSubmitLoading(false);
     }

@@ -36,7 +36,6 @@ export default function SearchPageContent() {
         setTotalPages(response.data.meta.pagination.pageCount);
       }
     } catch (error) {
-      console.error("Error fetching filtered products:", error);
     } finally {
       setLoading(false);
     }

@@ -31,9 +31,7 @@ const BrandPageContent = () => {
       } else {
         setNoProducts(true);
       }
-    } catch (error) {
-      console.error("Error fetching brand details:", error);
-    }
+    } catch (error) {}
   };
 
   const getProductList = async (currentPage) => {
@@ -51,7 +49,6 @@ const BrandPageContent = () => {
         setNoProducts(true);
       }
     } catch (error) {
-      console.error("Error fetching products:", error);
     } finally {
       setLoading(false);
     }
