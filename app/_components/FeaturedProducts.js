@@ -1,11 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import GradualSpacing from "@/components/ui/gradual-spacing";
 import BoxReveal from "@/components/ui/box-reveal";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
+import { useTheme } from "next-themes";
 
 const FeaturedProducts = ({ featuredProductsList }) => {
+  const { theme } = useTheme();
+
   // Helper function to calculate discount percentage
   const calculateDiscountPercentage = (basePrice, discountPrice) => {
     if (!basePrice || !discountPrice) return 0;
@@ -47,7 +49,10 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                       <div
                         className="rounded-t-2xl"
                         style={{
-                          backgroundImage: `url('/ProductBackgroundImage.webp')`,
+                          backgroundImage:
+                            theme === "dark"
+                              ? `url('/DarkThemeBackgroundImage.webp')`
+                              : `url('/LightThemeBackgroundImage.webp')`,
                         }}
                       >
                         <Image
