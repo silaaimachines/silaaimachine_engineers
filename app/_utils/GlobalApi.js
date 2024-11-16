@@ -50,6 +50,9 @@ const getCategoryBySlug = (slug) =>
 const getBrandBySlug = (slug) =>
   axiosClient.get(`/brands?filters[slug][$eq]=${slug}&populate=*`);
 
+const getTagsBySlug = (slug) =>
+  axiosClient.get(`/tags?filters[slug][$eq]=${slug}&populate=*`);
+
 const getCustomerTypeBySlug = (slug) =>
   axiosClient.get(`/customer-types?filters[slug][$eq]=${slug}&populate=*`);
 
@@ -66,6 +69,10 @@ const getProductsForCustomerType = (slug, page = 1, pageSize = 25) =>
 const getProductsForBrands = (slug, page = 1, pageSize = 25) =>
   axiosClient.get(
     `/products?filters[brand][slug][$eq]=${slug}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+  );
+const getProductsForTags = (slug, page = 1, pageSize = 25) =>
+  axiosClient.get(
+    `/products?filters[tags][slug][$eq]=${slug}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
   );
 
 // New method for searching products
@@ -148,4 +155,6 @@ export default {
   putServiceJobUpdateByJobNumber,
   getAllProducts,
   postSalesInvoiceData,
+  getProductsForTags,
+  getTagsBySlug,
 };

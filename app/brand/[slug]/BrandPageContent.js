@@ -31,7 +31,9 @@ const BrandPageContent = () => {
       } else {
         setNoProducts(true);
       }
-    } catch (error) {}
+    } catch (error) {
+      ("");
+    }
   };
 
   const getProductList = async (currentPage) => {
