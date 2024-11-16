@@ -76,7 +76,7 @@ export const metadata = {
 
   title: {
     default: "Silaaimachine Engineers | Service Bhi Sales Bhi",
-    template: "%s | Silaaimachine Engineers",
+    template: "%s - Silaaimachine Engineers",
   },
 
   description:
@@ -92,7 +92,10 @@ export const metadata = {
     siteName: "Silaaimachine Engineers",
     description:
       "At Silaaimachine Engineers, we believe in offering more than just great products – that's why we say, 'Service bhi, Sales bhi.' Whether you're looking for home sewing machines or industrial-grade equipment, we provide high-quality options from trusted brands like Singer, Brother, Usha, Jack, Juki, etc. Shop with us for the best deals, expert advice, and after-sales support that ensures you get the most out of your sewing experience.",
-    images: [""],
+  },
+
+  twitter: {
+    card: "summary_large_image",
   },
 };
 

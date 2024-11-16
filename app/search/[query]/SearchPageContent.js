@@ -7,8 +7,10 @@ import Link from "next/link";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import BoxReveal from "@/components/ui/box-reveal";
 import { Separator } from "@/components/ui/separator";
+import { useTheme } from "next-themes";
 
 export default function SearchPageContent() {
+  const { theme } = useTheme();
   const params = useParams();
   const [productList, setProductList] = useState([]);
   const [page, setPage] = useState(1);
@@ -65,7 +67,7 @@ export default function SearchPageContent() {
       </h2>
       <Separator />
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-start gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
         {productList.map((product, index) => {
           const { BasePrice, DiscountPrice, Name, Images, slug } = product;
           const discountPercentage = calculateDiscountPercentage(
@@ -85,14 +87,24 @@ export default function SearchPageContent() {
                     <div className="relative z-10">
                       <div className="relative">
                         {Images && Images[0]?.url && (
-                          <Image
-                            unoptimized
-                            src={`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}${Images[0].url}`}
-                            width={400}
-                            height={400}
-                            alt={Name}
-                            className="rounded-t-2xl h-full w-full object-contain p-3"
-                          />
+                          <div
+                            className="relative w-full h-auto rounded-2xl overflow-hidden bg-cover bg-center"
+                            style={{
+                              backgroundImage:
+                                theme === "dark"
+                                  ? `url('/DarkThemeBackgroundImage.webp')`
+                                  : `url('/LightThemeBackgroundImage.webp')`,
+                            }}
+                          >
+                            <Image
+                              unoptimized
+                              src={`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}${Images[0].url}`}
+                              width={400}
+                              height={400}
+                              alt={Name}
+                              className="rounded-t-2xl h-full w-full object-contain p-3"
+                            />
+                          </div>
                         )}
                         {DiscountPrice && (
                           <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full">

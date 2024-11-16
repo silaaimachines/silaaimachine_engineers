@@ -6,8 +6,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import BoxReveal from "@/components/ui/box-reveal";
+import { useTheme } from "next-themes";
 
 export default function CustomerTypeContent() {
+  const { theme } = useTheme();
   const params = useParams();
   const [customerType, setCustomerType] = useState({});
   const [productList, setProductList] = useState([]);
@@ -105,7 +107,10 @@ export default function CustomerTypeContent() {
                           <div
                             className="rounded-t-2xl"
                             style={{
-                              backgroundImage: `url('/ProductBackgroundImage.webp')`,
+                              backgroundImage:
+                                theme === "dark"
+                                  ? `url('/DarkThemeBackgroundImage.webp')`
+                                  : `url('/LightThemeBackgroundImage.webp')`,
                             }}
                           >
                             <Image

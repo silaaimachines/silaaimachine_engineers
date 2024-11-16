@@ -12,8 +12,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTheme } from "next-themes";
 
 export default function StoreContentPage() {
+  const { theme } = useTheme();
   const [productList, setProductList] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
@@ -147,7 +149,10 @@ export default function StoreContentPage() {
                         <div
                           className="rounded-t-2xl"
                           style={{
-                            backgroundImage: `url('/ProductBackgroundImage.webp')`,
+                            backgroundImage:
+                              theme === "dark"
+                                ? `url('/DarkThemeBackgroundImage.webp')`
+                                : `url('/LightThemeBackgroundImage.webp')`,
                           }}
                         >
                           <Image

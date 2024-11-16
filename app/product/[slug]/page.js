@@ -12,7 +12,13 @@ export async function generateMetadata({ params, searchParams }, parent) {
     : "";
 
   return {
-    title: `${title}`,
+    title: `Buy ${title}`,
+
+    openGraph: {
+      title: `Buy ${title}`,
+      url: `https://silaaimachines.com/product/${slug}`,
+      siteName: "Silaaimachine Engineers",
+    },
   };
 }
 

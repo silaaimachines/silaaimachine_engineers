@@ -34,7 +34,7 @@ export default function ProductPage() {
   const [error, setError] = useState(null);
   const [formattedDescription, setFormattedDescription] = useState("");
 
-  const { theme } = useTheme(); // Get the current theme (light or dark)
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -112,7 +112,10 @@ export default function ProductPage() {
                       <div
                         className="relative w-full h-auto rounded-2xl overflow-hidden bg-cover bg-center"
                         style={{
-                          backgroundImage: `url('/ProductBackgroundImage.webp')`,
+                          backgroundImage:
+                            theme === "dark"
+                              ? `url('/DarkThemeBackgroundImage.webp')`
+                              : `url('/LightThemeBackgroundImage.webp')`,
                         }}
                       >
                         <Image

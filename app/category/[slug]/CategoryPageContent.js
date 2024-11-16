@@ -7,8 +7,10 @@ import Link from "next/link";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import BoxReveal from "@/components/ui/box-reveal";
 import { Separator } from "@/components/ui/separator";
+import { useTheme } from "next-themes";
 
 export default function CategoryPageContent() {
+  const { theme } = useTheme();
   const params = useParams();
   const [category, setCategory] = useState({});
   const [products, setProducts] = useState([]);
@@ -100,7 +102,10 @@ export default function CategoryPageContent() {
                             <div
                               className="rounded-t-2xl"
                               style={{
-                                backgroundImage: `url('/ProductBackgroundImage.webp')`,
+                                backgroundImage:
+                                  theme === "dark"
+                                    ? `url('/DarkThemeBackgroundImage.webp')`
+                                    : `url('/LightThemeBackgroundImage.webp')`,
                               }}
                             >
                               <Image

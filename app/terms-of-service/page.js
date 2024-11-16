@@ -1,6 +1,16 @@
 import React from "react";
 
-const termPage = () => {
+export const metadata = {
+  title: "Terms of Service",
+
+  openGraph: {
+    title: "Terms of Service",
+    url: `https://silaaimachines.com/terms-of-service`,
+    siteName: "Silaaimachine Engineers",
+  },
+};
+
+export default function termPage() {
   return (
     <div>
       <h1 className="text-2xl md:text-4xl font-semibold text-center mb-5 bg-black text-white w-full py-10 md:py-20">
@@ -1002,6 +1012,4 @@ const termPage = () => {
       </div>
     </div>
   );
-};
-
-export default termPage;
+}

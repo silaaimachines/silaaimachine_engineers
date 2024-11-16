@@ -2,10 +2,9 @@ import React from "react";
 
 export const metadata = {
   title: "Privacy Policy",
-  description: "",
 };
 
-const PrivacyPolicy = () => {
+export default function PrivacyPolicy() {
   return (
     <div className="privacy-policy ">
       <h1 className="text-2xl md:text-4xl font-semibold text-center mb-5 bg-black text-white w-full py-10 md:py-20">
@@ -779,6 +778,4 @@ const PrivacyPolicy = () => {
       </div>
     </div>
   );
-};
-
-export default PrivacyPolicy;
+}

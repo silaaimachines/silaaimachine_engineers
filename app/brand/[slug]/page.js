@@ -13,6 +13,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
   return {
     title: `${title} Sewing Machine & Accessories`,
+
+    openGraph: {
+      title: `${title} Sewing Machine & Accessories`,
+      url: `https://silaaimachines.com/brand/${slug}`,
+      siteName: "Silaaimachine Engineers",
+    },
   };
 }
 

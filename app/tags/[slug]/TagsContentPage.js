@@ -7,8 +7,10 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import BoxReveal from "@/components/ui/box-reveal";
+import { useTheme } from "next-themes";
 
 export default function TagsPageContent() {
+  const { theme } = useTheme();
   const params = useParams();
   const [tags, setTags] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -114,7 +116,10 @@ export default function TagsPageContent() {
                             <div
                               className="rounded-t-2xl"
                               style={{
-                                backgroundImage: `url('/ProductBackgroundImage.webp')`,
+                                backgroundImage:
+                                  theme === "dark"
+                                    ? `url('/DarkThemeBackgroundImage.webp')`
+                                    : `url('/LightThemeBackgroundImage.webp')`,
                               }}
                             >
                               <Image
