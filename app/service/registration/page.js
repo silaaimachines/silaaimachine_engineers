@@ -157,10 +157,7 @@ const ServiceRegistration = () => {
 
       // Open WhatsApp in a new tab
       window.open(whatsappUrl, "_blank");
-
-      console.log("Service registration successful:", response);
     } catch (error) {
-      console.error("Error during service registration:", error);
     } finally {
       setLoading(false);
     }

@@ -31,7 +31,6 @@ const fetchAllPaginatedData = async (endpoint, filters = {}, pageSize = 25) => {
 
     return allData;
   } catch (error) {
-    console.error(`Error fetching data from ${endpoint}:`, error);
     return [];
   }
 };

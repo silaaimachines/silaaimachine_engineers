@@ -29,9 +29,7 @@ export default function CategoryPageContent() {
       if (response.data.data.length) {
         setCategory(response.data.data[0]);
       }
-    } catch (error) {
-      console.error("Error fetching category details:", error);
-    }
+    } catch (error) {}
   };
 
   const fetchProducts = async (currentPage) => {
@@ -51,7 +49,6 @@ export default function CategoryPageContent() {
         setTotalPages(response.data.meta.pagination.pageCount);
       }
     } catch (error) {
-      console.error("Error fetching products:", error);
     } finally {
       setLoading(false);
     }

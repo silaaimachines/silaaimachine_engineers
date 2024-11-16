@@ -28,11 +28,8 @@ export default function CustomerTypeContent() {
       if (response.data.data.length) {
         setCustomerType(response.data.data[0]);
       } else {
-        console.error("No customer type found");
       }
-    } catch (error) {
-      console.error("Error fetching customer type details:", error);
-    }
+    } catch (error) {}
   };
 
   const getProductList = async (currentPage) => {
@@ -47,7 +44,6 @@ export default function CustomerTypeContent() {
         setTotalPages(response.data.meta.pagination.pageCount);
       }
     } catch (error) {
-      console.error("Error fetching products:", error);
     } finally {
       setLoading(false);
     }
