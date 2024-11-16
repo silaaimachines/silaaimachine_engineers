@@ -77,7 +77,7 @@ export default function CategoryPageContent() {
       {!loading && noProducts ? (
         <p className="text-center py-5">No products found</p>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-center gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 items-start gap-3 md:gap-4 lg:gap-6 py-2 md:py-5">
           {products.map((product, index) => {
             const { BasePrice, DiscountPrice, Name, Images, slug } = product;
             const discountPercentage = calculateDiscountPercentage(
