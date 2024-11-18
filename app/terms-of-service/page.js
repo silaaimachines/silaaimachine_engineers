@@ -24,15 +24,16 @@ export default function termPage() {
           AGREEMENT TO OUR LEGAL TERMS
         </h1>
         <p>
-          We are Silaaimachine Engineers ('Company', 'we', 'us', or 'our'), a
-          company registered in India at Bisra road, Near Sani mandir, Rourkele,
-          Odisha 769001.{" "}
+          We are Silaaimachine Engineers (&aposCompany&apos, &aposwe&apos,
+          &aposus&apos, or &aposour&apos), a company registered in India at
+          Bisra road, Near Sani mandir, Rourkele, Odisha 769001.{" "}
         </p>
         <br />
         <p>
-          We operate the website https://silaaimachines.com (the 'Site'), as
-          well as any other related products and services that refer or link to
-          these legal terms (the 'Legal Terms') (collectively, the 'Services').
+          We operate the website https://silaaimachines.com (the
+          &aposSite&apos), as well as any other related products and services
+          that refer or link to these legal terms (the &aposLegal Terms&apos)
+          (collectively, the &aposServices&apos).
         </p>
         <br />
         <p>
@@ -42,7 +43,7 @@ export default function termPage() {
         <br />
         <p>
           These Legal Terms constitute a legally binding agreement made between
-          you, whether personally or on behalf of an entity ('you'), and
+          you, whether personally or on behalf of an entity (&aposyou&apos), and
           Silaaimachine Engineers, concerning your access to and use of the
           Services. You agree that by accessing the Services, you have read,
           understood, and agreed to be bound by all of these Legal Terms. IF YOU
@@ -56,14 +57,14 @@ export default function termPage() {
           the Services from time to time are hereby expressly incorporated
           herein by reference. We reserve the right, in our sole discretion, to
           make changes or modifications to these Legal Terms at any time and for
-          any reason. We will alert you about any changes by updating the 'Last
-          updated' date of these Legal Terms, and you waive any right to receive
-          specific notice of each such change. It is your responsibility to
-          periodically review these Legal Terms to stay informed of updates. You
-          will be subject to, and will be deemed to have been made aware of and
-          to have accepted, the changes in any revised Legal Terms by your
-          continued use of the Services after the date such revised Legal Terms
-          are posted.
+          any reason. We will alert you about any changes by updating the
+          &aposLast updated&apos date of these Legal Terms, and you waive any
+          right to receive specific notice of each such change. It is your
+          responsibility to periodically review these Legal Terms to stay
+          informed of updates. You will be subject to, and will be deemed to
+          have been made aware of and to have accepted, the changes in any
+          revised Legal Terms by your continued use of the Services after the
+          date such revised Legal Terms are posted.
         </p>
         <br />
         <p>
@@ -91,7 +92,7 @@ export default function termPage() {
             or regulations or subject us to any registration requirement within
             that jurisdiction or country.
           </p>
-          <p className="">
+          <p className="mb-4">
             If you choose to access the Services from outside our intended
             operational locations, you do so on your own initiative and are
             solely responsible for ensuring compliance with local laws, where
@@ -121,27 +122,27 @@ export default function termPage() {
             <li>Website designs</li>
             <li>
               Audio, video, text, photographs, and graphics (collectively, the
-              "Content")
+              &quot;Content&quot;)
             </li>
           </ul>
           <p className=" mb-4">
             Additionally, the trademarks, service marks, and logos contained in
-            the Services (the "Marks") are also our property or licensed to us.
-            The Content and Marks are protected by copyright, trademark laws,
-            and other intellectual property laws worldwide.
+            the Services (the &quot;Marks&quot;) are also our property or
+            licensed to us. The Content and Marks are protected by copyright,
+            trademark laws, and other intellectual property laws worldwide.
           </p>
           <p className=" mb-4">
-            The Content and Marks are provided in or through the Services "AS
-            IS" for your personal, non-commercial use or internal business
-            purposes only.
+            The Content and Marks are provided in or through the Services
+            &quot;AS IS&quot; for your personal, non-commercial use or internal
+            business purposes only.
           </p>
 
           {/* Subsection: Your Use of Our Services */}
           <h3 className="text-xl font-medium mb-2">Your Use of Our Services</h3>
           <p className=" mb-4">
             Subject to your compliance with these Legal Terms, including the
-            "Prohibited Activities" section below, we grant you a non-exclusive,
-            non-transferable, revocable license to:
+            &quot;Prohibited Activities&quot; section below, we grant you a
+            non-exclusive, non-transferable, revocable license to:
           </p>
           <ul className="list-disc list-inside  mb-4">
             <li>Access the Services</li>
@@ -189,8 +190,8 @@ export default function termPage() {
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4">Your Submissions</h2>
           <p className=" mb-4">
-            Please review this section and the "Prohibited Activities" section
-            carefully prior to using our Services to understand:
+            Please review this section and the &quot;Prohibited Activities&quot;
+            section carefully prior to using our Services to understand:
           </p>
           <ul className="list-disc list-inside  mb-4">
             <li>The rights you give us when you post or upload any content.</li>
@@ -199,9 +200,9 @@ export default function termPage() {
           <h3 className="text-xl font-medium mb-2">Submissions</h3>
           <p className=" mb-4">
             By directly sending us any question, comment, suggestion, idea,
-            feedback, or other information about the Services ("Submissions"),
-            you agree to assign to us all intellectual property rights in such
-            Submission. You agree that:
+            feedback, or other information about the Services
+            (&quot;Submissions&quot;), you agree to assign to us all
+            intellectual property rights in such Submission. You agree that:
           </p>
           <ul className="list-disc list-inside  mb-4">
             <li>
@@ -216,9 +217,9 @@ export default function termPage() {
           </p>
           <ul className="list-disc list-inside  mb-4">
             <li>
-              Confirm that you have read and agree with our "Prohibited
-              Activities" section and will not post, send, publish, upload, or
-              transmit any Submission that is illegal, harassing, hateful,
+              Confirm that you have read and agree with our &quot;Prohibited
+              Activities&quot; section and will not post, send, publish, upload,
+              or transmit any Submission that is illegal, harassing, hateful,
               defamatory, obscene, or otherwise harmful or inappropriate.
             </li>
             <li>
@@ -234,7 +235,7 @@ export default function termPage() {
               information.
             </li>
           </ul>
-          <p className="">
+          <p className=" mb-4">
             You are solely responsible for your Submissions and expressly agree
             to reimburse us for any losses we may incur as a result of your
             breach of:
@@ -282,7 +283,7 @@ export default function termPage() {
               regulation.
             </li>
           </ul>
-          <p className="">
+          <p className=" mb-4">
             If you provide any information that is untrue, inaccurate, not
             current, or incomplete, we have the right to suspend or terminate
             your account and refuse any and all current or future use of the
@@ -292,7 +293,7 @@ export default function termPage() {
         {/* User Registration Section */}
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4">User Registration</h2>
-          <p className="">
+          <p className=" mb-4">
             You may be required to register to use the Services. You agree to
             keep your password confidential and will be responsible for all use
             of your account and password. We reserve the right to remove,
@@ -305,7 +306,7 @@ export default function termPage() {
         {/* Products Section */}
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4">Products</h2>
-          <p className="">
+          <p className="mb-4">
             We make every effort to display as accurately as possible the
             colours, features, specifications, and details of the products
             available on the Services. However, we do not guarantee that the
@@ -314,7 +315,7 @@ export default function termPage() {
             and your electronic display may not accurately reflect the actual
             colours and details of the products.
           </p>
-          <p className="">
+          <p className="mb-4">
             All products are subject to availability, and we cannot guarantee
             that items will be in stock. We reserve the right to discontinue any
             products at any time for any reason. Prices for all products are
@@ -353,7 +354,7 @@ export default function termPage() {
             mistakes in pricing, even if we have already requested or received
             payment.
           </p>
-          <p className="">
+          <p className=" mb-4">
             We reserve the right to refuse any order placed through the
             Services. We may, in our sole discretion, limit or cancel quantities
             purchased per person, per household, or per order. These
@@ -368,7 +369,7 @@ export default function termPage() {
         {/* Return Policy Section */}
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4">Return Policy</h2>
-          <p className="">
+          <p className=" mb-4">
             Please review our Return Policy posted on the Services prior to
             making any purchases.
           </p>
@@ -456,10 +457,11 @@ export default function termPage() {
             The Services does not offer users to submit or post content. We may
             provide you with the opportunity to create, submit, post, display,
             transmit, perform, publish, distribute, or broadcast content and
-            materials to us or on the Services (collectively, "Contributions").
-            Contributions may be viewable by other users and through third-party
-            websites. As such, any Contributions you transmit may be treated in
-            accordance with the Services' Privacy Policy.
+            materials to us or on the Services (collectively,
+            &quot;Contributions&quot;). Contributions may be viewable by other
+            users and through third-party websites. As such, any Contributions
+            you transmit may be treated in accordance with the Services&apos
+            Privacy Policy.
           </p>
           <p className=" mb-4">
             When you create or make available any Contributions, you thereby
@@ -548,14 +550,14 @@ export default function termPage() {
           </h1>
           <p>
             The Services may contain (or you may be sent via the Site) links to
-            other websites ('Third-Party Websites') as well as articles,
+            other websites (&aposThird-Party Websites&apos) as well as articles,
             photographs, text, graphics, pictures, designs, music, sound, video,
             information, applications, software, and other content or items
-            belonging to or originating from third parties ('Third-Party
-            Content'). Such Third-Party Websites and Third-Party Content are not
-            investigated, monitored, or checked for accuracy, appropriateness,
-            or completeness by us, and we are not responsible for any
-            Third-Party Websites accessed through the Services or any
+            belonging to or originating from third parties (&aposThird-Party
+            Content&apos). Such Third-Party Websites and Third-Party Content are
+            not investigated, monitored, or checked for accuracy,
+            appropriateness, or completeness by us, and we are not responsible
+            for any Third-Party Websites accessed through the Services or any
             Third-Party Content posted on, available through, or installed from
             the Services, including the content, accuracy, offensiveness,
             opinions, reliability, privacy practices, or other policies of or
@@ -718,13 +720,14 @@ export default function termPage() {
           <h2 className="text-xl font-semibold mb-4">Informal Negotiations</h2>
           <p className="text-base  leading-relaxed">
             To expedite resolution and control the cost of any dispute,
-            controversy, or claim related to these Legal Terms (each a 'Dispute'
-            and collectively, the 'Disputes') brought by either you or us
-            (individually, a 'Party' and collectively, the 'Parties'), the
-            Parties agree to first attempt to negotiate any Dispute (except
-            those Disputes expressly provided below) informally for at least 15
-            days before initiating arbitration. Such informal negotiations
-            commence upon written notice from one Party to the other Party.
+            controversy, or claim related to these Legal Terms (each a
+            &aposDispute&apos and collectively, the &aposDisputes&apos) brought
+            by either you or us (individually, a &aposParty&apos and
+            collectively, the &aposParties&apos), the Parties agree to first
+            attempt to negotiate any Dispute (except those Disputes expressly
+            provided below) informally for at least 15 days before initiating
+            arbitration. Such informal negotiations commence upon written notice
+            from one Party to the other Party.
           </p>
           <h2 className="text-xl font-semibold mt-6 mb-4">
             Binding Arbitration
@@ -792,8 +795,8 @@ export default function termPage() {
             THEREOF, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
             MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
             NON-INFRINGEMENT. WE MAKE NO WARRANTIES OR REPRESENTATIONS ABOUT THE
-            ACCURACY OR COMPLETENESS OF THE SERVICES' CONTENT OR THE CONTENT OF
-            ANY WEBSITES OR MOBILE APPLICATIONS LINKED TO THE SERVICES AND WE
+            ACCURACY OR COMPLETENESS OF THE SERVICES&apos CONTENT OR THE CONTENT
+            OF ANY WEBSITES OR MOBILE APPLICATIONS LINKED TO THE SERVICES AND WE
             WILL ASSUME NO LIABILITY OR RESPONSIBILITY FOR ANY:
           </p>
           <ul className="list-disc pl-6 space-y-2 ">
@@ -858,8 +861,8 @@ export default function termPage() {
             You agree to defend, indemnify, and hold us harmless, including our
             subsidiaries, affiliates, and all of our respective officers,
             agents, partners, and employees, from and against any loss, damage,
-            liability, claim, or demand, including reasonable attorneys’ fees
-            and expenses, made by any third party due to or arising out of:
+            liability, claim, or demand, including reasonable attorneys&aposs
+            fees and expenses, made by any third party due to or arising out of:
           </p>
           <ul className="list-disc pl-6 space-y-2 ">
             <li>Use of the Services;</li>
@@ -932,8 +935,8 @@ export default function termPage() {
           <h2 className="text-xl font-semibold  mb-4">Opting Out</h2>
           <p className="text-base  leading-relaxed">
             If at any time you wish to stop receiving SMS messages from us,
-            simply reply to the text with "STOP.” You may receive an SMS message
-            confirming your opt out.
+            simply reply to the text with &quot;STOP.&quot; You may receive an
+            SMS message confirming your opt out.
           </p>
 
           {/* Message and Data Rates */}
