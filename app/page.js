@@ -74,7 +74,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="px-1">
       {/* Main Page Content */}
       <div>
         <Slider sliderList={sliderList} />
@@ -84,34 +84,34 @@ const Home = () => {
         <BrandsSlider brandSliderList={brandSliderList} />
       </div>
 
-      <div className="lg:px-10 md:px-2 sm:px-1">
+      <div className="lg:px-5 md:px-3 sm:px-2">
         <FeaturedProducts featuredProductsList={featuredProductsList} />
       </div>
 
       {banner1 && (
-        <div className="py-2 lg:px-10 md:px-2 sm:px-1">
+        <div className="py-2 lg:px-5 md:px-3 sm:px-2">
           <Image
             unoptimized
             src={process.env.NEXT_PUBLIC_BACKEND_BASE_URL + banner1?.Image?.url}
             width={1000}
             height={1000}
             alt={banner1?.Name}
-            className="w-full h-auto"
+            className="w-full h-auto rounded-2xl"
           />
         </div>
       )}
 
-      <div className="py-2 lg:px-10 md:px-2 sm:px-1">
+      <div className="py-2 lg:px-5 md:px-3 sm:px-2">
         <Customertype customerTypeList={customerTypeList} />
       </div>
 
-      <div className="py-2 lg:px-10 md:px-2 sm:px-1">
+      <div className="py-2 lg:px-5 md:px-3 sm:px-2">
         <NewArrivals AllProductsList={AllProductsList} />
       </div>
 
       <div>
         {banner2 && (
-          <div className="py-2 lg:px-10 md:px-2 sm:px-1">
+          <div className="py-2 lg:px-5 md:px-3 sm:px-2">
             <Image
               unoptimized
               src={
@@ -120,7 +120,7 @@ const Home = () => {
               width={1000}
               height={1000}
               alt={banner2?.Name}
-              className="w-full h-auto"
+              className="w-full h-auto rounded-2xl"
             />
           </div>
         )}
