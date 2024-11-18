@@ -74,6 +74,10 @@ const getProductsForTags = (slug, page = 1, pageSize = 25) =>
   axiosClient.get(
     `/products?filters[tags][slug][$eq]=${slug}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
   );
+const getBannerByName = (name, page = 1, pageSize = 25) =>
+  axiosClient.get(
+    `/banners?filters[Name][$eq]=${name}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+  );
 
 // New method for searching products
 const searchProducts = (searchTerm, page = 1, pageSize = 25) =>
@@ -159,4 +163,5 @@ export default {
   getProductsForTags,
   getTagsBySlug,
   getAllTags,
+  getBannerByName,
 };
