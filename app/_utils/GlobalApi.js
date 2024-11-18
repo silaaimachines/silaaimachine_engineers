@@ -100,6 +100,7 @@ const getAllFeaturedProducts = () =>
 const getAllProducts = () => fetchAllPaginatedData("/products");
 
 const getAllItems = () => fetchAllPaginatedData("/items");
+const getAllTags = () => fetchAllPaginatedData("/tags");
 
 const postSalesInvoiceData = (jsonData) =>
   axiosClient.post("/invoices", jsonData, {
@@ -157,4 +158,5 @@ export default {
   postSalesInvoiceData,
   getProductsForTags,
   getTagsBySlug,
+  getAllTags,
 };
