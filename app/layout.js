@@ -4,9 +4,10 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 const META_PIXEL_ID = "1306533554041867";
-const GOOGLE_ADS_ID = "AW-16742877720";
+const GOOGLE_ADS_ID = "GTM-5ZZZB2K8";
 
 const montserrat = localFont({
   src: [
@@ -103,9 +104,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={montserrat.className} suppressHydrationWarning>
-      <head>
-        {/* Google Tags Manager */}
+      {/* Google Tag Manager */}
+      <GoogleTagManager gtmId={GOOGLE_ADS_ID} />
 
+      <head>
         {/* Meta Pixel Script */}
         <script
           dangerouslySetInnerHTML={{
@@ -131,22 +133,6 @@ export default function RootLayout({ children }) {
             src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
           />
         </noscript>
-
-        {/* Google Ads Manager Script */}
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`}
-        ></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GOOGLE_ADS_ID}');
-            `,
-          }}
-        />
       </head>
       <body className="antialiased">
         <ThemeProvider
