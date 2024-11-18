@@ -12,6 +12,8 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetClose,
+  SheetFooter,
 } from "@/components/ui/sheet";
 import GlobalApi from "../_utils/GlobalApi";
 import {
@@ -215,8 +217,12 @@ const Header = () => {
                 <SheetTitle className="text-lg font-semibold">Menu</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-3 mt-4">
-                <Link href="/">Home</Link>
-                <Link href="/store">Store</Link>
+                <SheetClose asChild>
+                  <Link href="/">Home</Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link href="/store">Store</Link>
+                </SheetClose>
                 {Object.entries(groupedCategories).map(
                   ([mainCategory, subCategories]) => (
                     <div key={mainCategory}>
@@ -224,9 +230,11 @@ const Header = () => {
                       <ul className="ml-4">
                         {subCategories.map((category) => (
                           <li key={category.id}>
-                            <Link href={`/category/${category.slug}`}>
-                              {category.Name}
-                            </Link>
+                            <SheetClose asChild>
+                              <Link href={`/category/${category.slug}`}>
+                                {category.Name}
+                              </Link>
+                            </SheetClose>
                           </li>
                         ))}
                       </ul>
@@ -235,6 +243,7 @@ const Header = () => {
                 )}
                 <ThemeToggle />
               </nav>
+              <SheetFooter />
             </SheetContent>
           </Sheet>
         </div>

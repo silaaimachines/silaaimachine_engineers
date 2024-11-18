@@ -8,17 +8,21 @@ import BrandsSlider from "./_components/BrandsSlider";
 import FeaturedProducts from "./_components/FeaturedProducts";
 import Customertype from "./_components/Customertype";
 import Image from "next/image";
+import NewArrivals from "./_components/NewArrivals";
+
 const Home = () => {
   const [sliderList, setSliderList] = useState([]);
   const [brandSliderList, setBrandSliderList] = useState([]);
-  const [featuredProductsList, setFeaturedProductsList] = useState([]);
+  const [AllProductsList, setAllProductsList] = useState([]);
   const [customerTypeList, setCustomerTypeList] = useState([]);
+  const [featuredProductsList, setFeaturedProductsList] = useState([]);
 
   useEffect(() => {
     getSliders();
     getBrandSliders();
     getFeaturedProductList();
     getCustomerTypeList();
+    getAllProductsList();
   }, []);
 
   const getSliders = () => {
@@ -44,6 +48,12 @@ const Home = () => {
       setCustomerTypeList(res);
     });
   };
+  const getAllProductsList = () => {
+    GlobalApi.getAllProducts().then((res) => {
+      setAllProductsList(res);
+      console.log(res);
+    });
+  };
 
   return (
     <div>
@@ -63,6 +73,9 @@ const Home = () => {
 
         <div className="py-2 lg:px-10 md:px-2 sm:px-1">
           <Customertype customerTypeList={customerTypeList} />
+        </div>
+        <div className=" py-2 lg:px-10 md:px-2 sm:px-1">
+          <NewArrivals AllProductsList={AllProductsList} />
         </div>
       </div>
     </div>
