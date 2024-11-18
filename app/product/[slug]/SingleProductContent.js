@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/table";
 import { remark } from "remark";
 import html from "remark-html";
+import BoxReveal from "@/components/ui/box-reveal";
 
 export default function ProductPage() {
   const params = useParams();
@@ -47,9 +48,17 @@ export default function ProductPage() {
 
           // Format the product description
           if (fetchedProduct.Description) {
+            // Preprocess to preserve spaces and newlines
+            const formattedDescription = fetchedProduct.Description.replace(
+              / {2,}/g,
+              (match) => "&nbsp;".repeat(match.length)
+            ).replace(/\n/g, "  \n");
+
+            // Process with remark
             const processedDescription = await remark()
               .use(html)
-              .process(fetchedProduct.Description);
+              .process(formattedDescription);
+
             setFormattedDescription(processedDescription.toString());
           }
 
@@ -352,17 +361,23 @@ export default function ProductPage() {
                       <div className="text-center flex items-center justify-center gap-3 text-xs md:text-sm py-2 rounded-b-2xl">
                         {relatedProduct.DiscountPrice ? (
                           <>
-                            <p className="text-sm font-semibold">
-                              {formatPrice(relatedProduct.DiscountPrice)}
-                            </p>
-                            <p className="text-xs line-through">
-                              {formatPrice(relatedProduct.BasePrice)}
-                            </p>
+                            <BoxReveal boxColor={"#e61a72"} duration={0.25}>
+                              <p className="text-sm font-semibold">
+                                {formatPrice(relatedProduct.DiscountPrice)}
+                              </p>
+                            </BoxReveal>
+                            <BoxReveal boxColor={"#e61a72"} duration={0.25}>
+                              <p className="text-xs line-through">
+                                {formatPrice(relatedProduct.BasePrice)}
+                              </p>
+                            </BoxReveal>
                           </>
                         ) : (
-                          <p className="text-sm font-semibold text-center">
-                            {formatPrice(relatedProduct.BasePrice)}
-                          </p>
+                          <BoxReveal boxColor={"#e61a72"} duration={0.25}>
+                            <p className="text-sm font-semibold text-center">
+                              {formatPrice(relatedProduct.BasePrice)}
+                            </p>
+                          </BoxReveal>
                         )}
                       </div>
                     </div>

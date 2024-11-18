@@ -20,7 +20,7 @@ export default function StoreContentPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(2);
   const [loading, setLoading] = useState(false);
-  const [sortOption, setSortOption] = useState(""); // State for sort option
+  const [sortOption, setSortOption] = useState("");
   const observer = useRef();
 
   useEffect(() => {

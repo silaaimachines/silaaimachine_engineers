@@ -133,7 +133,7 @@ export default function CustomerTypeContent() {
                         )}
                       </div>
                       <div className="rounded-b-2xl w-full">
-                        <BoxReveal boxColor={"#00000000"} duration={0.5}>
+                        <BoxReveal boxColor={"#00000000"} duration={0.25}>
                           <h2 className="text-xs md:text-sm px-3 py-2">
                             {Name}
                           </h2>
@@ -141,20 +141,20 @@ export default function CustomerTypeContent() {
                         <div className="text-center flex items-center justify-center gap-3  text-xs md:text-sm  py-2 rounded-b-2xl">
                           {DiscountPrice ? (
                             <>
-                              <BoxReveal boxColor={"#e61a72"} duration={1}>
+                              <BoxReveal boxColor={"#e61a72"} duration={0.25}>
                                 <p className="text-sm font-semibold">
                                   {formatPrice(DiscountPrice)}
                                 </p>
                               </BoxReveal>
 
-                              <BoxReveal boxColor={"#e61a72"} duration={1}>
+                              <BoxReveal boxColor={"#e61a72"} duration={0.25}>
                                 <p className="text-xs line-through ">
                                   {formatPrice(BasePrice)}
                                 </p>
                               </BoxReveal>
                             </>
                           ) : (
-                            <BoxReveal boxColor={"#e61a72"} duration={1}>
+                            <BoxReveal boxColor={"#e61a72"} duration={0.25}>
                               <p className="text-sm font-semibold text-center">
                                 {formatPrice(BasePrice)}
                               </p>

@@ -81,19 +81,19 @@ const FeaturedProducts = ({ featuredProductsList }) => {
                     <div className="text-center flex items-center justify-center gap-1 md:gap-2 lg:gap-3 text-xs md:text-sm py-2 rounded-b-2xl">
                       {DiscountPrice ? (
                         <>
-                          <BoxReveal boxColor={"#e61a72"} duration={0.5}>
+                          <BoxReveal boxColor={"#e61a72"} duration={0.25}>
                             <p className="text-sm font-semibold">
                               {formatPrice(DiscountPrice)}
                             </p>
                           </BoxReveal>
-                          <BoxReveal boxColor={"#e61a72"} duration={0.5}>
+                          <BoxReveal boxColor={"#e61a72"} duration={0.25}>
                             <p className="text-xs line-through">
                               {formatPrice(BasePrice)}
                             </p>
                           </BoxReveal>
                         </>
                       ) : (
-                        <BoxReveal boxColor={"#e61a72"} duration={0.5}>
+                        <BoxReveal boxColor={"#e61a72"} duration={0.25}>
                           <p className="font-semibold text-sm text-center">
                             {formatPrice(BasePrice)}
                           </p>
