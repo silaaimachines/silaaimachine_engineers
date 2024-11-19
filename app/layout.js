@@ -5,6 +5,8 @@ import Footer from "./_components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { GoogleTagManager } from "@next/third-parties/google";
+import Image from "next/image";
+import Script from "next/script";
 
 const META_PIXEL_ID = "1306533554041867";
 const GOOGLE_ADS_ID = "GTM-5ZZZB2K8";
@@ -107,33 +109,6 @@ export default function RootLayout({ children }) {
       {/* Google Tag Manager */}
       <GoogleTagManager gtmId={GOOGLE_ADS_ID} />
 
-      <head>
-        {/* Meta Pixel Script */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '${META_PIXEL_ID}');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
-          />
-        </noscript>
-      </head>
       <body className="antialiased">
         <ThemeProvider
           attribute="class"
@@ -173,6 +148,29 @@ export default function RootLayout({ children }) {
 
           <Footer />
         </ThemeProvider>
+
+        <Script id="facebook-pixel" strategy="afterInteractive">
+          {`
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', ${META_PIXEL_ID});
+          fbq('track', 'PageView');
+        `}
+        </Script>
+        <noscript>
+          <Image
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+          />
+        </noscript>
       </body>
     </html>
   );

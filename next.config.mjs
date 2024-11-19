@@ -5,6 +5,7 @@ const nextConfig = {
     domains: [
       "silaaimachines.com",
       "admin.silaaimachines.com",
+      "www.facebook.com",
       "localhost",
       "192.168.29.15",
       "192.168.29.181",
