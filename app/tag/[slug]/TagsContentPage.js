@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useCallback, useEffect, useState, useRef, use } from "react";
 import GlobalApi from "@/app/_utils/GlobalApi";
 import { useParams } from "next/navigation";
 import Link from "next/link";
@@ -23,9 +23,9 @@ export default function TagsPageContent() {
   useEffect(() => {
     getProductList();
     fetchTagsDetails();
-  }, [params.slug, page]);
+  }, [getProductList, fetchTagsDetails, page]);
 
-  const fetchTagsDetails = async () => {
+  const fetchTagsDetails = useCallback(async () => {
     try {
       const response = await GlobalApi.getTagsBySlug(params.slug);
       if (response.data.data.length) {
@@ -36,28 +36,31 @@ export default function TagsPageContent() {
     } catch (error) {
       ("");
     }
-  };
+  }, [params.slug]);
 
-  const getProductList = async (currentPage) => {
-    setLoading(true);
-    try {
-      const response = await GlobalApi.getProductsForTags(
-        params.slug,
-        currentPage
-      );
-      setProductList((prev) => [...prev, ...response.data.data]);
-      if (response.data.meta.pagination) {
-        setTotalPages(response.data.meta.pagination.pageCount);
+  const getProductList = useCallback(
+    async (currentPage) => {
+      setLoading(true);
+      try {
+        const response = await GlobalApi.getProductsForTags(
+          params.slug,
+          currentPage
+        );
+        setProductList((prev) => [...prev, ...response.data.data]);
+        if (response.data.meta.pagination) {
+          setTotalPages(response.data.meta.pagination.pageCount);
+        }
+        if (response.data.data.length === 0 && currentPage === 1) {
+          setNoProducts(true);
+        }
+        console.log(response);
+      } catch (error) {
+      } finally {
+        setLoading(false);
       }
-      if (response.data.data.length === 0 && currentPage === 1) {
-        setNoProducts(true);
-      }
-      console.log(response);
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    [params.slug]
+  );
 
   const lastProductRef = useCallback(
     (node) => {

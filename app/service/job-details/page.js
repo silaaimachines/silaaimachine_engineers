@@ -42,7 +42,7 @@ const JobDetailsPage = () => {
     if (page > 1) {
       fetchJobDetails(searchType, searchTerm, page);
     }
-  }, [page]);
+  }, [page, searchTerm, searchType]);
 
   const fetchJobDetails = async (type, term, currentPage) => {
     setLoading(true);
