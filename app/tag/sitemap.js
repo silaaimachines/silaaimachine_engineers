@@ -1,7 +1,5 @@
+import { BASE_URL } from "@/app/lib/constants";
 import GlobalApi from "../_utils/GlobalApi";
-
-// Define the base URL for the sitemap entries
-const BASE_URL = "https://silaaimachines.com";
 
 // Define the maximum number of URLs per batch (Google's limit is 50,000 URLs per sitemap)
 const urlsPerSitemap = 50000;

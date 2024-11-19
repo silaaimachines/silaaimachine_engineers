@@ -179,19 +179,19 @@ export default function StoreContentPage() {
                       <div className="text-center flex items-center justify-center gap-3 text-xs md:text-sm py-2 rounded-b-2xl">
                         {DiscountPrice ? (
                           <>
-                            <BoxReveal boxColor={"#e61a72"} duration={0.5}>
+                            <BoxReveal boxColor={"#e61a72"} duration={0.25}>
                               <p className="text-sm font-semibold">
                                 {formatPrice(DiscountPrice)}
                               </p>
                             </BoxReveal>
-                            <BoxReveal boxColor={"#e61a72"} duration={0.5}>
+                            <BoxReveal boxColor={"#e61a72"} duration={0.25}>
                               <p className="text-xs line-through text-gray-500 dark:text-gray-300">
                                 {formatPrice(BasePrice)}
                               </p>
                             </BoxReveal>
                           </>
                         ) : (
-                          <BoxReveal boxColor={"#e61a72"} duration={0.5}>
+                          <BoxReveal boxColor={"#e61a72"} duration={0.25}>
                             <p className="text-sm font-semibold text-center">
                               {formatPrice(BasePrice)}
                             </p>

@@ -1,17 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import GradualSpacing from "@/components/ui/gradual-spacing";
 
 const Customertype = ({ customerTypeList }) => {
   return (
     <div>
-      <div className="flex items-center gap-1 md:gap-2">
-        <h1 className="font-bold w-full text-center px-2 py-1 md:py-2 text-4xl">
-          What are you looking for?
-        </h1>
-      </div>
-
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1">
         {customerTypeList.map((customer_type, index) => (
           <Link

@@ -1,5 +1,3 @@
-import GlobalApi from "./_utils/GlobalApi";
-
 // Define the base URL for the sitemap entries
 const BASE_URL = "https://silaaimachines.com";
 
@@ -8,6 +6,7 @@ export default async function sitemap() {
     // Define URLs for static pages (e.g., homepage, about page, contact page)
     const staticUrls = [
       { url: BASE_URL, lastModified: new Date().toISOString() },
+      { url: `${BASE_URL}/store`, lastModified: new Date().toISOString() },
       { url: `${BASE_URL}/contact-us`, lastModified: new Date().toISOString() },
       {
         url: `${BASE_URL}/privacy-policy`,
@@ -31,16 +30,16 @@ export default async function sitemap() {
       },
       {
         url: `${BASE_URL}/product/sitemap.xml`,
-        lastModified: new Date().toISOString,
+        lastModified: new Date().toISOString(),
       },
       {
         url: `${BASE_URL}/tag/sitemap.xml`,
-        lastModified: new Date().toISOString,
+        lastModified: new Date().toISOString(),
       },
     ];
 
     // Combine all URLs into one array
-    return [...staticUrls, ...sitemapEntries];
+    return [...staticUrls];
   } catch (error) {
     console.error("Error generating sitemap:", error);
     return [];
