@@ -5,6 +5,9 @@ const API_TOKEN =
 
 const axiosClient = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api`,
+  headers: {
+    Authorization: `Bearer ${API_TOKEN}`,
+  },
 });
 
 const fetchAllPaginatedData = async (endpoint, filters = {}, pageSize = 25) => {
@@ -87,12 +90,7 @@ const searchProducts = (searchTerm, page = 1, pageSize = 25) =>
 
 const searchJobDetails = (searchType, searchTerm, page = 1, pageSize = 25) =>
   axiosClient.get(
-    `/servicings?filters[${searchType}][$contains]=${searchTerm}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`,
-    {
-      headers: {
-        Authorization: `Bearer ${API_TOKEN}`,
-      },
-    }
+    `/servicings?filters[${searchType}][$contains]=${searchTerm}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
   );
 
 const getAllCategories = () => fetchAllPaginatedData("/categories");
@@ -107,24 +105,12 @@ const getAllItems = () => fetchAllPaginatedData("/items");
 const getAllTags = () => fetchAllPaginatedData("/tags");
 
 const postSalesInvoiceData = (jsonData) =>
-  axiosClient.post("/invoices", jsonData, {
-    headers: {
-      Authorization: `Bearer ${API_TOKEN}`,
-    },
-  });
+  axiosClient.post("/invoices", jsonData);
 
 const postServiceRegistrationData = (jsonData) =>
-  axiosClient.post("/servicings", jsonData, {
-    headers: {
-      Authorization: `Bearer ${API_TOKEN}`,
-    },
-  });
+  axiosClient.post("/servicings", jsonData);
 const putServiceJobUpdateByJobNumber = (jsonData, JobId) =>
-  axiosClient.put(`/servicings/${JobId}`, jsonData, {
-    headers: {
-      Authorization: `Bearer ${API_TOKEN}`,
-    },
-  });
+  axiosClient.put(`/servicings/${JobId}`, jsonData);
 
 axiosClient.put;
 
