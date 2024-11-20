@@ -211,7 +211,7 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-64 max-h-screen overflow-y-auto"
+              className="w-70 max-h-screen overflow-y-auto"
             >
               <SheetHeader>
                 <SheetTitle className="text-lg font-semibold">Menu</SheetTitle>

@@ -20,41 +20,47 @@ export default function CategoryPageContent() {
   const [noProducts, setNoProducts] = useState(false);
   const observer = useRef();
 
-  useEffect(() => {
-    fetchCategoryDetails();
-    fetchProducts(page);
-  }, [params.slug, page]);
-
-  const fetchCategoryDetails = async () => {
+  const fetchCategoryDetails = useCallback(async () => {
     try {
       const response = await GlobalApi.getCategoryBySlug(params.slug);
       if (response.data.data.length) {
         setCategory(response.data.data[0]);
       }
-    } catch (error) {}
-  };
-
-  const fetchProducts = async (currentPage) => {
-    setLoading(true);
-    try {
-      const response = await GlobalApi.getProductsForCategories(
-        params.slug,
-        currentPage
-      );
-      if (response.data.data.length) {
-        setProducts((prev) => [...prev, ...response.data.data]);
-        setNoProducts(false);
-      } else if (currentPage === 1) {
-        setNoProducts(true);
-      }
-      if (response.data.meta.pagination) {
-        setTotalPages(response.data.meta.pagination.pageCount);
-      }
     } catch (error) {
-    } finally {
-      setLoading(false);
+      console.error(error);
     }
-  };
+  }, [params.slug]);
+
+  const fetchProducts = useCallback(
+    async (currentPage) => {
+      setLoading(true);
+      try {
+        const response = await GlobalApi.getProductsForCategories(
+          params.slug,
+          currentPage
+        );
+        if (response.data.data.length) {
+          setProducts((prev) => [...prev, ...response.data.data]);
+          setNoProducts(false);
+        } else if (currentPage === 1) {
+          setNoProducts(true);
+        }
+        if (response.data.meta.pagination) {
+          setTotalPages(response.data.meta.pagination.pageCount);
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [params.slug]
+  );
+
+  useEffect(() => {
+    fetchCategoryDetails();
+    fetchProducts(page);
+  }, [fetchCategoryDetails, fetchProducts, page]);
 
   const lastProductRef = useCallback(
     (node) => {

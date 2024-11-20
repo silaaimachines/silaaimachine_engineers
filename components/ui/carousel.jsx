@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const CarouselContext = React.createContext(null);
 
@@ -273,7 +274,7 @@ const CarouselThumbnail = React.forwardRef(({ className, ...props }, ref) => {
           onClick={() => scrollToSlide(index)}
           aria-label={`Go to slide ${index + 1}`}
         >
-          <img
+          <Image
             src={slide.firstChild?.getAttribute("src") || ""}
             alt={`Thumbnail for slide ${index + 1}`}
             className="object-cover w-full h-full"

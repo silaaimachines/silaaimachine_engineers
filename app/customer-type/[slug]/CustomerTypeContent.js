@@ -22,9 +22,9 @@ export default function CustomerTypeContent() {
   useEffect(() => {
     getProductList(page);
     fetchCustomerTypeDetails();
-  }, [params.slug, page]);
+  }, [fetchCustomerTypeDetails, getProductList, page]);
 
-  const fetchCustomerTypeDetails = async () => {
+  const fetchCustomerTypeDetails = useCallback(async () => {
     try {
       const response = await GlobalApi.getCustomerTypeBySlug(params.slug);
       if (response.data.data.length) {
@@ -32,24 +32,27 @@ export default function CustomerTypeContent() {
       } else {
       }
     } catch (error) {}
-  };
+  }, [params.slug]);
 
-  const getProductList = async (currentPage) => {
-    setLoading(true);
-    try {
-      const response = await GlobalApi.getProductsForCustomerType(
-        params.slug,
-        currentPage
-      );
-      setProductList((prev) => [...prev, ...response.data.data]);
-      if (response.data.meta.pagination) {
-        setTotalPages(response.data.meta.pagination.pageCount);
+  const getProductList = useCallback(
+    async (currentPage) => {
+      setLoading(true);
+      try {
+        const response = await GlobalApi.getProductsForCustomerType(
+          params.slug,
+          currentPage
+        );
+        setProductList((prev) => [...prev, ...response.data.data]);
+        if (response.data.meta.pagination) {
+          setTotalPages(response.data.meta.pagination.pageCount);
+        }
+      } catch (error) {
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    [params.slug]
+  );
 
   const lastProductRef = useCallback(
     (node) => {
