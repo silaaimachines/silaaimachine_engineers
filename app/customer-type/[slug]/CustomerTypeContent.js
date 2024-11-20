@@ -19,11 +19,6 @@ export default function CustomerTypeContent() {
   const [noProducts, setNoProducts] = useState(false);
   const observer = useRef();
 
-  useEffect(() => {
-    getProductList(page);
-    fetchCustomerTypeDetails();
-  }, [fetchCustomerTypeDetails, getProductList, page]);
-
   const fetchCustomerTypeDetails = useCallback(async () => {
     try {
       const response = await GlobalApi.getCustomerTypeBySlug(params.slug);
@@ -53,6 +48,11 @@ export default function CustomerTypeContent() {
     },
     [params.slug]
   );
+
+  useEffect(() => {
+    getProductList(page);
+    fetchCustomerTypeDetails();
+  }, [fetchCustomerTypeDetails, getProductList, page]);
 
   const lastProductRef = useCallback(
     (node) => {
