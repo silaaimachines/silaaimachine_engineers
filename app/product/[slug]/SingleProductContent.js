@@ -221,6 +221,12 @@ export default function ProductPage() {
                   {product.Material || "N/A"}
                 </TableCell>
               </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Weight</TableCell>
+                <TableCell className="text-right">
+                  {product.Weight || "N/A"}
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
 
