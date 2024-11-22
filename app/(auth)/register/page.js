@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { SubmitButton } from "@/app/_components/RegisterSubmitButton";
 import {
   Card,
   CardContent,
@@ -74,9 +75,11 @@ export default function RegistrationForm() {
                 <ZodErrors error={formState?.zodErrors?.password} />
               </div>
 
-              <Button type="submit" className="w-full">
-                Register
-              </Button>
+              <SubmitButton
+                className="w-full"
+                text="Register"
+                loadingText="Loading"
+              />
               <StrapiErrors error={formState?.strapiErrors} />
               <Button variant="outline" className="w-full">
                 Register with Google
