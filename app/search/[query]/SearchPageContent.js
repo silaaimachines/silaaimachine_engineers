@@ -64,7 +64,7 @@ export default function SearchPageContent() {
   return (
     <>
       <MetaPixel />
-      <div className="p-3 md:p-5">
+      <div className="p-3 md:p-5 min-h-screen">
         <h2 className="text-xl font-semibold mb-4">
           Search Results for: {searchTerm}
         </h2>

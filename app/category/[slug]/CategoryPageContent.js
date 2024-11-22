@@ -81,7 +81,7 @@ export default function CategoryPageContent() {
   return (
     <>
       <MetaPixel />
-      <div className="p-3 md:p-5">
+      <div className="p-3 md:p-5 min-h-screen">
         <h2 className="text-xl font-semibold mb-4">{category?.Name}</h2>
         <Separator />
 

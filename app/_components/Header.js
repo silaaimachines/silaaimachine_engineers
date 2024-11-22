@@ -145,7 +145,7 @@ const Header = () => {
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>Brands</NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="p-2 px-5 md:w-[400px] lg:w-[500px]">
+                    <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                       {brandList.map((brand) => (
                         <li key={brand.id}>
                           <NavigationMenuLink asChild>

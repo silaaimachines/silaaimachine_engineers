@@ -105,7 +105,7 @@ const BrandPageContent = () => {
   return (
     <>
       <MetaPixel />
-      <div className="p-3 md:p-5">
+      <div className="p-3 md:p-5 min-h-screen">
         {/* Brand Banner */}
         {brand.Banner && (
           <div className="mb-4">

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -15,7 +14,7 @@ import { Label } from "@/components/ui/label";
 
 export default function RegistrationForm() {
   return (
-    <div className="py-10 px-5 lg:py-32">
+    <div className="min-h-screen flex items-center justify-center">
       <form>
         <Card className="mx-auto max-w-sm">
           <CardHeader>

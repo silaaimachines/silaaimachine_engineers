@@ -117,7 +117,7 @@ export default function StoreContentPage() {
   return (
     <>
       <MetaPixel />
-      <div className="p-3 md:p-5">
+      <div className="p-3 md:p-5 min-h-screen">
         <div>
           <Select onValueChange={setSortOption}>
             {" "}

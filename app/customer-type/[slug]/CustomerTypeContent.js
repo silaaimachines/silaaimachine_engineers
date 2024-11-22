@@ -86,7 +86,7 @@ export default function CustomerTypeContent() {
   return (
     <>
       <MetaPixel />
-      <div className="p-3 md:p-5">
+      <div className="p-3 md:p-5 min-h-screen">
         <div>
           <h2 className="text-xl font-semibold mb-4">{customerType?.Name}</h2>
         </div>

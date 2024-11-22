@@ -98,7 +98,7 @@ export default function ProductPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-4 min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-theme_color border-solid"></div>
       </div>
     );
@@ -111,7 +111,7 @@ export default function ProductPage() {
   return (
     <>
       <MetaPixel />
-      <div className="p-5 md:p-10 lg:px-20">
+      <div className="p-5 md:p-10 lg:px-20 min-h-screen">
         <div className="flex flex-col md:flex-row gap-9 pb-10">
           {/* Left section - Product images */}
           <div className="flex-1 w-full md:w-1/2 md:sticky md:top-20 self-start">
