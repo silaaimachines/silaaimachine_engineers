@@ -4,10 +4,6 @@ import Header from "./_components/Header";
 import Footer from "./_components/Footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
-import Script from "next/script";
-import Image from "next/image";
-import Head from "next/head";
-import MetaPixel from "./_components/MetaPixel";
 
 const montserrat = localFont({
   src: [
