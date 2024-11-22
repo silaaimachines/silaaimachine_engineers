@@ -25,6 +25,12 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Input } from "@/components/ui/search_input";
 
 const Header = () => {
@@ -242,38 +248,86 @@ const Header = () => {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-70 max-h-screen overflow-y-auto"
+              className="w-[300px] max-h-screen overflow-y-auto"
             >
               <SheetHeader>
                 <SheetTitle className="text-lg font-semibold">Menu</SheetTitle>
               </SheetHeader>
-              <nav className="flex flex-col gap-3 mt-4">
-                <SheetClose asChild>
-                  <Link href="/">Home</Link>
-                </SheetClose>
-                <SheetClose asChild>
-                  <Link href="/store">Store</Link>
-                </SheetClose>
-                {Object.entries(groupedCategories).map(
-                  ([mainCategory, subCategories]) => (
-                    <div key={mainCategory}>
-                      <h3 className="font-semibold mt-3">{mainCategory}</h3>
-                      <ul className="ml-4">
-                        {subCategories.map((category) => (
-                          <li key={category.id}>
+              <nav className="mt-4">
+                {/* Home and Store Links */}
+                <div className="mb-3">
+                  <SheetClose asChild>
+                    <Link
+                      href="/"
+                      className="block p-2 rounded-md hover:bg-theme_color hover:text-white"
+                    >
+                      Home
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link
+                      href="/store"
+                      className="block p-2 rounded-md hover:bg-theme_color hover:text-white"
+                    >
+                      Store
+                    </Link>
+                  </SheetClose>
+                </div>
+
+                {/* Accordion for Dynamic Sections */}
+                <Accordion type="single" collapsible className="w-full">
+                  {/* Brands Section */}
+                  <AccordionItem value="brands">
+                    <AccordionTrigger>Brands</AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="ml-4 list-disc">
+                        {brandList.map((brand) => (
+                          <li key={brand.id} className="p-1">
                             <SheetClose asChild>
-                              <Link href={`/category/${category.slug}`}>
-                                {category.Name}
+                              <Link
+                                href={`/brand/${brand.slug}`}
+                                className="hover:underline truncate"
+                              >
+                                {brand.Name}
                               </Link>
                             </SheetClose>
                           </li>
                         ))}
                       </ul>
-                    </div>
-                  )
-                )}
-                <ThemeToggle />
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  {/* Categories Section */}
+                  {Object.entries(groupedCategories).map(
+                    ([mainCategory, subCategories]) => (
+                      <AccordionItem key={mainCategory} value={mainCategory}>
+                        <AccordionTrigger>{mainCategory}</AccordionTrigger>
+                        <AccordionContent>
+                          <ul className="ml-4 list-disc">
+                            {subCategories.map((category) => (
+                              <li key={category.id} className="p-1">
+                                <SheetClose asChild>
+                                  <Link
+                                    href={`/category/${category.slug}`}
+                                    className="hover:underline truncate"
+                                  >
+                                    {category.Name}
+                                  </Link>
+                                </SheetClose>
+                              </li>
+                            ))}
+                          </ul>
+                        </AccordionContent>
+                      </AccordionItem>
+                    )
+                  )}
+                </Accordion>
               </nav>
+
+              {/* Theme Toggle */}
+              <div className="mt-4 flex justify-center items-center">
+                <ThemeToggle />
+              </div>
               <SheetFooter />
             </SheetContent>
           </Sheet>

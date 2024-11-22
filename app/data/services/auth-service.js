@@ -12,6 +12,8 @@ export async function registerUserService(userData) {
       body: JSON.stringify({ ...userData }),
     });
 
+    console.log("Auth-Service:", response);
+
     return response.json();
   } catch (error) {
     console.error("Registration Service Error:", error);

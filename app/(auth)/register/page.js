@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { SubmitButton } from "@/app/_components/RegisterSubmitButton";
 import {
   Card,
   CardContent,
@@ -13,26 +12,11 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { registerUserAction } from "@/app/data/actions/auth-actions";
-import { useActionState } from "react";
-import { ZodErrors } from "@/app/_components/zod-errors";
-import { StrapiErrors } from "@/app/_components/strapi-errors";
-
-const INITIAL_STATE = {
-  data: null,
-};
 
 export default function RegistrationForm() {
-  const [formState, formAction] = useActionState(
-    registerUserAction,
-    INITIAL_STATE
-  );
-
-  console.log(formState);
-
   return (
     <div className="py-10 px-5 lg:py-32">
-      <form action={formAction}>
+      <form>
         <Card className="mx-auto max-w-sm">
           <CardHeader>
             <CardTitle className="text-2xl">Register</CardTitle>
@@ -50,7 +34,6 @@ export default function RegistrationForm() {
                   type="text"
                   placeholder="username"
                 />
-                <ZodErrors error={formState?.zodErrors?.username} />
               </div>
 
               <div className="space-y-2">
@@ -61,7 +44,6 @@ export default function RegistrationForm() {
                   type="email"
                   placeholder="name@example.com"
                 />
-                <ZodErrors error={formState?.zodErrors?.email} />
               </div>
 
               <div className="space-y-2">
@@ -72,15 +54,11 @@ export default function RegistrationForm() {
                   type="password"
                   placeholder="password"
                 />
-                <ZodErrors error={formState?.zodErrors?.password} />
               </div>
 
-              <SubmitButton
-                className="w-full"
-                text="Register"
-                loadingText="Loading"
-              />
-              <StrapiErrors error={formState?.strapiErrors} />
+              <Button type="submit" className="w-full">
+                Register
+              </Button>
               <Button variant="outline" className="w-full">
                 Register with Google
               </Button>

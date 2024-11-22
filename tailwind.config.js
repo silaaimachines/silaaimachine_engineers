@@ -16,7 +16,9 @@ module.exports = {
     			scroll: 'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
     			ripple: 'ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite',
     			marquee: 'marquee var(--duration) infinite linear',
-    			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
+    			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+    			'accordion-down': 'accordion-down 0.2s ease-out',
+    			'accordion-up': 'accordion-up 0.2s ease-out'
     		},
     		keyframes: {
     			aurora: {
@@ -54,6 +56,22 @@ module.exports = {
     				},
     				to: {
     					transform: 'translateY(calc(-100% - var(--gap)))'
+    				}
+    			},
+    			'accordion-down': {
+    				from: {
+    					height: '0'
+    				},
+    				to: {
+    					height: 'var(--radix-accordion-content-height)'
+    				}
+    			},
+    			'accordion-up': {
+    				from: {
+    					height: 'var(--radix-accordion-content-height)'
+    				},
+    				to: {
+    					height: '0'
     				}
     			}
     		},
