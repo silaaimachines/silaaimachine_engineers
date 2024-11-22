@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useTheme } from "next-themes";
+import MetaPixel from "../_components/MetaPixel";
 
 export default function StoreContentPage() {
   const { theme } = useTheme();
@@ -114,105 +115,108 @@ export default function StoreContentPage() {
   const sortedProductList = getSortedProducts(productList);
 
   return (
-    <div className="p-3 md:p-5">
-      <div>
-        <Select onValueChange={setSortOption}>
-          {" "}
-          {/* Update sort option on change */}
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Sort By" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="high_to_low">Price: High to Low</SelectItem>
-            <SelectItem value="low_to_high">Price: Low to High</SelectItem>
-            <SelectItem value="discount">Better Discount</SelectItem>
-            <SelectItem value="new_arrival">New Arrival</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-start gap-x-3 gap-y-5 py-2 md:py-5">
-        {sortedProductList.map((product, index) => {
-          const { BasePrice, DiscountPrice, Name, Images, slug } = product;
-          const discountPercentage = calculateDiscountPercentage(
-            BasePrice,
-            DiscountPrice
-          );
-          const isLastProduct = index === sortedProductList.length - 1;
+    <>
+      <MetaPixel />
+      <div className="p-3 md:p-5">
+        <div>
+          <Select onValueChange={setSortOption}>
+            {" "}
+            {/* Update sort option on change */}
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Sort By" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="high_to_low">Price: High to Low</SelectItem>
+              <SelectItem value="low_to_high">Price: Low to High</SelectItem>
+              <SelectItem value="discount">Better Discount</SelectItem>
+              <SelectItem value="new_arrival">New Arrival</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 items-start gap-x-3 gap-y-5 py-2 md:py-5">
+          {sortedProductList.map((product, index) => {
+            const { BasePrice, DiscountPrice, Name, Images, slug } = product;
+            const discountPercentage = calculateDiscountPercentage(
+              BasePrice,
+              DiscountPrice
+            );
+            const isLastProduct = index === sortedProductList.length - 1;
 
-          return (
-            <Link key={index} href={`/product/${slug}`} passHref>
-              <BackgroundGradient>
-                <div ref={isLastProduct ? lastProductRef : null}>
-                  <div className="flex flex-col items-center justify-center rounded-2xl border transition-all duration-300 ease-in-out bg-white dark:bg-black cursor-pointer">
-                    <div className="relative">
-                      {Images && Images[0]?.url && (
-                        <div
-                          className="rounded-t-2xl"
-                          style={{
-                            backgroundImage:
-                              theme === "dark"
-                                ? `url('/DarkThemeBackgroundImage.webp')`
-                                : `url('/LightThemeBackgroundImage.webp')`,
-                          }}
-                        >
-                          <Image
-                            unoptimized
-                            src={
-                              process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
-                              Images[0].url
-                            }
-                            width={400}
-                            height={400}
-                            alt={Name}
-                            className="rounded-t-2xl h-full w-full object-contain p-3"
-                          />
-                        </div>
-                      )}
-                      {DiscountPrice && (
-                        <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                          {discountPercentage}% off
-                        </div>
-                      )}
-                    </div>
-                    <div className="rounded-b-2xl w-full">
-                      <h2 className="text-xs md:text-sm px-3 py-2">{Name}</h2>
-                      <div className="text-center flex items-center justify-center gap-3 text-xs md:text-sm py-2 rounded-b-2xl">
-                        {DiscountPrice ? (
-                          <>
+            return (
+              <Link key={index} href={`/product/${slug}`} passHref>
+                <BackgroundGradient>
+                  <div ref={isLastProduct ? lastProductRef : null}>
+                    <div className="flex flex-col items-center justify-center rounded-2xl border transition-all duration-300 ease-in-out bg-white dark:bg-black cursor-pointer">
+                      <div className="relative">
+                        {Images && Images[0]?.url && (
+                          <div
+                            className="rounded-t-2xl"
+                            style={{
+                              backgroundImage:
+                                theme === "dark"
+                                  ? `url('/DarkThemeBackgroundImage.webp')`
+                                  : `url('/LightThemeBackgroundImage.webp')`,
+                            }}
+                          >
+                            <Image
+                              unoptimized
+                              src={
+                                process.env.NEXT_PUBLIC_BACKEND_BASE_URL +
+                                Images[0].url
+                              }
+                              width={400}
+                              height={400}
+                              alt={Name}
+                              className="rounded-t-2xl h-full w-full object-contain p-3"
+                            />
+                          </div>
+                        )}
+                        {DiscountPrice && (
+                          <div className="absolute top-5 right-5 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                            {discountPercentage}% off
+                          </div>
+                        )}
+                      </div>
+                      <div className="rounded-b-2xl w-full">
+                        <h2 className="text-xs md:text-sm px-3 py-2">{Name}</h2>
+                        <div className="text-center flex items-center justify-center gap-3 text-xs md:text-sm py-2 rounded-b-2xl">
+                          {DiscountPrice ? (
+                            <>
+                              <BoxReveal boxColor={"#e61a72"} duration={0.25}>
+                                <p className="text-sm font-semibold">
+                                  {formatPrice(DiscountPrice)}
+                                </p>
+                              </BoxReveal>
+                              <BoxReveal boxColor={"#e61a72"} duration={0.25}>
+                                <p className="text-xs line-through text-gray-500 dark:text-gray-300">
+                                  {formatPrice(BasePrice)}
+                                </p>
+                              </BoxReveal>
+                            </>
+                          ) : (
                             <BoxReveal boxColor={"#e61a72"} duration={0.25}>
-                              <p className="text-sm font-semibold">
-                                {formatPrice(DiscountPrice)}
-                              </p>
-                            </BoxReveal>
-                            <BoxReveal boxColor={"#e61a72"} duration={0.25}>
-                              <p className="text-xs line-through text-gray-500 dark:text-gray-300">
+                              <p className="text-sm font-semibold text-center">
                                 {formatPrice(BasePrice)}
                               </p>
                             </BoxReveal>
-                          </>
-                        ) : (
-                          <BoxReveal boxColor={"#e61a72"} duration={0.25}>
-                            <p className="text-sm font-semibold text-center">
-                              {formatPrice(BasePrice)}
-                            </p>
-                          </BoxReveal>
-                        )}
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </BackgroundGradient>
-            </Link>
-          );
-        })}
-      </div>
-
-      {/* Loading Spinner */}
-      {loading && (
-        <div className="flex justify-center mt-4 h-full w-full">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-theme_color border-solid"></div>
+                </BackgroundGradient>
+              </Link>
+            );
+          })}
         </div>
-      )}
-    </div>
+
+        {/* Loading Spinner */}
+        {loading && (
+          <div className="flex justify-center mt-4 h-full w-full">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-theme_color border-solid"></div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }

@@ -32,19 +32,27 @@ const Header = () => {
   const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryList, setCategoryList] = useState([]);
+  const [brandList, setBrandList] = useState([]);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    setMounted(true);
-    getCategories();
-  }, []);
 
   const getCategories = () => {
     GlobalApi.getAllCategories().then((res) => {
       setCategoryList(res);
     });
   };
+
+  const getBrands = () => {
+    GlobalApi.getAllBrandSliders().then((res) => {
+      setBrandList(res);
+    });
+  };
+
+  useEffect(() => {
+    setMounted(true);
+    getCategories();
+    getBrands();
+  }, []);
 
   const groupedCategories = categoryList.reduce((acc, category) => {
     const mainCategory = category.MainCategory;
@@ -126,6 +134,29 @@ const Header = () => {
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
+
+                {/* Brand Menu */}
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>Brands</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="p-2 px-5 md:w-[400px] lg:w-[500px]">
+                      {brandList.map((brand) => (
+                        <li key={brand.id}>
+                          <NavigationMenuLink asChild>
+                            <Link
+                              href={`/brand/${brand.slug}`}
+                              className="block p-2 rounded-md hover:bg-theme_color hover:text-white"
+                            >
+                              {brand.Name}
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                {/* Category Menu */}
                 {Object.entries(groupedCategories).map(
                   ([mainCategory, subCategories]) => (
                     <NavigationMenuItem key={mainCategory}>
