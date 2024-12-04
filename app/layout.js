@@ -70,7 +70,7 @@ const montserrat = localFont({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://silaaimachines.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_FRONTEND_BASE_URL),
 
   title: {
     default: "Silaaimachine Engineers | Service Bhi Sales Bhi",
@@ -86,7 +86,7 @@ export const metadata = {
   openGraph: {
     title: "Silaaimachine Engineers | Service Bhi Sales Bhi",
     type: "website",
-    url: "https://silaaimachines.com",
+    url: process.env.NEXT_PUBLIC_FRONTEND_BASE_URL,
     siteName: "Silaaimachine Engineers",
     description:
       "At Silaaimachine Engineers, we believe in offering more than just great products – that's why we say, 'Service bhi, Sales bhi.' Whether you're looking for home sewing machines or industrial-grade equipment, we provide high-quality options from trusted brands like Singer, Brother, Usha, Jack, Juki, etc. Shop with us for the best deals, expert advice, and after-sales support that ensures you get the most out of your sewing experience.",

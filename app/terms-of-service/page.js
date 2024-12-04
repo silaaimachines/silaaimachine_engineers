@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export const metadata = {
@@ -5,7 +6,7 @@ export const metadata = {
 
   openGraph: {
     title: "Terms of Service",
-    url: `https://silaaimachines.com/terms-of-service`,
+    url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/terms-of-service`,
     siteName: "Silaaimachine Engineers",
   },
 };
@@ -30,10 +31,10 @@ export default function termPage() {
         </p>
         <br />
         <p>
-          We operate the website https://silaaimachines.com (the
-          &aposSite&apos), as well as any other related products and services
-          that refer or link to these legal terms (the &aposLegal Terms&apos)
-          (collectively, the &aposServices&apos).
+          We operate the website {process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}{" "}
+          (the &aposSite&apos), as well as any other related products and
+          services that refer or link to these legal terms (the &aposLegal
+          Terms&apos) (collectively, the &aposServices&apos).
         </p>
         <br />
         <p>
@@ -635,14 +636,14 @@ export default function termPage() {
             <p className="text-base ">
               We care about data privacy and security. Please review our Privacy
               Policy:{" "}
-              <a
-                href="https://silaaimachines.com/privacy-policy"
+              <Link
+                href={`${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/privacy-policy`}
                 className="text-blue-600 hover:underline"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                https://silaaimachines.com/privacy-policy
-              </a>
+                {process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/privacy-policy
+              </Link>
               . By using the Services, you agree to be bound by our Privacy
               Policy, which is incorporated into these Legal Terms. Please be
               advised the Services are hosted in India. If you access the

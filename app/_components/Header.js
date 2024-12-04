@@ -45,6 +45,7 @@ const Header = () => {
   const getCategories = () => {
     GlobalApi.getAllCategories().then((res) => {
       setCategoryList(res);
+      console.log(res);
     });
   };
 
@@ -199,16 +200,16 @@ const Header = () => {
                 className="w-full px-2"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key == "Enter") {
+                    window.location.href = `/search/${searchQuery}`;
+                  }
+                }}
               />
               <Link href={`/search/${searchQuery}`} passHref>
                 <Search className="h-5 w-5 dark:text-white  text-black cursor-pointer" />
               </Link>
             </div>
-            <Button asChild>
-              <Link href="/login">
-                <User />
-              </Link>
-            </Button>
             <ThemeToggle />
           </div>
         </div>
@@ -340,6 +341,11 @@ const Header = () => {
             className="w-full px-2"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key == "Enter") {
+                window.location.href = `/search/${searchQuery}`;
+              }
+            }}
           />
           <Link href={`/search/${searchQuery}`} passHref>
             <Search className="h-5 w-5 cursor-pointer" />

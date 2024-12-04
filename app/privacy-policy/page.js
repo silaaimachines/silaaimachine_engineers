@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export const metadata = {
@@ -23,17 +24,7 @@ export default function PrivacyPolicy() {
         <p className="text-base  mb-4">
           We use Your Personal data to provide and improve the Service. By using
           the Service, You agree to the collection and use of information in
-          accordance with this Privacy Policy. This Privacy Policy has been
-          created with the help of the{" "}
-          <a
-            href="https://www.termsfeed.com/privacy-policy-generator/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-500 hover:underline"
-          >
-            Privacy Policy Generator
-          </a>
-          .
+          accordance with this Privacy Policy. .
         </p>
 
         <h2 className="text-2xl font-semibold  mt-8 mb-4">
@@ -112,14 +103,14 @@ export default function PrivacyPolicy() {
           <li>
             <strong>Website</strong> refers to Silaaimachine Engineers,
             accessible from{" "}
-            <a
-              href="https://silaaimachines.com"
+            <Link
+              href={`${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}`}
               rel="external nofollow noopener"
               target="_blank"
               className="text-blue-500 hover:underline"
             >
-              https://silaaimachines.com
-            </a>
+              {process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}
+            </Link>
           </li>
           <li>
             <strong>You</strong> means the individual accessing or using the
@@ -766,14 +757,14 @@ export default function PrivacyPolicy() {
             {/* Website Contact Page */}
             <p className="text-base  leading-relaxed">
               By visiting this page on our website:{" "}
-              <a
-                href="https://silaaimachines.com/contact-us"
+              <Link
+                href={`${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/contact-us`}
                 className="text-blue-600 hover:text-blue-800"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                https://silaaimachines.com/contact-us
-              </a>
+                {process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/contact-us
+              </Link>
             </p>
           </div>
         </section>

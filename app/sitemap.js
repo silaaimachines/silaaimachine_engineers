@@ -1,5 +1,5 @@
 // Define the base URL for the sitemap entries
-const BASE_URL = "https://silaaimachines.com";
+const BASE_URL = process.env.NEXT_PUBLIC_FRONTEND_BASE_URL;
 
 export default async function sitemap() {
   try {

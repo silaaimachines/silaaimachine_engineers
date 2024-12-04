@@ -5,6 +5,6 @@ export default function robots() {
       allow: "*",
       disallow: ["/service/*", "/sales/* "],
     },
-    sitemap: "https://silaaimachines.com/sitemap.xml",
+    sitemap: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/sitemap.xml`,
   };
 }

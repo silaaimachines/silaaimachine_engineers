@@ -16,7 +16,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
     openGraph: {
       title: `${title} Customer Type`,
-      url: `https://silaaimachines.com/customer-type/${slug}`,
+      url: `${process.env.NEXT_PUBLIC_FRONTEND_BASE_URL}/customer-type/${slug}`,
       siteName: "Silaaimachine Engineers",
     },
   };
